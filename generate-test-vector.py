@@ -38,15 +38,38 @@ def read_receiving_test_inputs(recipient):
 
     return outpoints, input_pub_keys, bip32_seed, labels
 
+def rmd160(in_str):
+    h = hashlib.new('ripemd160')
+    h.update(in_str)
+    return h.hexdigest()
+
+def get_p2pkh_scriptsig(pub_key, priv_key):
+    msg = reference.sha256(b'message')
+    sig = priv_key.sign_ecdsa(msg, False).hex()
+    x = len(sig) // 2
+    return f'{x:0x}' + sig + "21" + pub_key.get_bytes(False).hex()
+
+def get_p2pkh_scriptPubKey(pub_key):
+    return "76a914" + rmd160(pub_key.get_bytes(False)) + "88ac"
+
+def get_p2tr_witness(priv_key):
+    msg = reference.sha256(b'message')
+    sig = priv_key.sign_schnorr(msg).hex()
+    return sig
+
+def get_p2tr_scriptPubKey(pub_key):
+    return "5120" + pub_key.get_bytes(True).hex()
+
 def new_test_case():
     recipient =  {
         "supports_labels": False,
         "given": {
-            "outpoints": [],
-            "input_pub_keys": [],
-            "bip32_seed": "",
-            "scan_priv_key": "",
-            "spend_priv_key": "",
+            "inputs": [],
+            "outputs": [],
+            "key_material": {
+                "spend_priv_key": "hex",
+                "scan_priv_key": "hex",
+            },
             "labels": {},
         },
         "expected": {
@@ -56,7 +79,7 @@ def new_test_case():
     }
     sender = {
         "given": {
-            "outpoints": [],
+            "inputs": [],
             "input_priv_keys": [],
             "recipients": []
         },
@@ -70,7 +93,6 @@ def new_test_case():
         "receiving": [],
     }
     return sender, recipient, test_case
-
 
 # In[10]:
 
@@ -107,18 +129,23 @@ def generate_labeled_output_tests():
         address = reference.create_labeled_silent_payment_address(B_scan, B_spend, bytes.fromhex(case), hrp=HRP)
         addresses = [(address, 1.0)]
 
-        sender['given']['outpoints'] = outpoints
+        inputs = []
+        for i, outpoint in enumerate(outpoints):
+            inputs += [{
+                'prevout': list(outpoint) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+                'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+            }]
+    
+        sender['given']['inputs'] = inputs
         sender['given']['recipients'] = addresses
-        recipient['given']['outpoints'] = outpoints
-        recipient['given']['bip32_seed'] = recipient_bip32_seed
-        recipient['given']['scan_priv_key'] = b_scan.get_bytes().hex()
-        recipient['given']['spend_priv_key'] = b_spend.get_bytes().hex()
+        recipient['given']['inputs'] = inputs
+        recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
+        recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         recipient['expected']['addresses'] = recipient_addresses
         recipient['given']['labels'] = recipient_labels
         recipient['supports_labels'] = True
         sender['given']['input_priv_keys'].extend(
-            [(i1.get_bytes().hex(), False), (i2.get_bytes().hex(), False)])
-        recipient['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
+            [i1.get_bytes().hex(), i2.get_bytes().hex()])
 
         outpoints_hash = reference.hash_outpoints(outpoints)
         outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addresses, hrp=HRP)
@@ -198,16 +225,23 @@ def generate_single_output_outpoint_tests():
     for i, outpoints in enumerate(outpoint_test_cases):
         sender, recipient, test_case = new_test_case()
         test_case["comment"] = comments[i]
-        sender['given']['outpoints'] = outpoints
-        recipient['given']['outpoints'] = outpoints
+
+        inputs = []
+        for x, outpoint in enumerate(outpoints):
+            scriptSig = get_p2pkh_scriptsig(input_pub_keys[x], input_priv_keys[x][0])
+            inputs += [{
+                "prevout": list(outpoint) + [scriptSig, ""],
+                "scriptPubKey": get_p2pkh_scriptPubKey(input_pub_keys[x])
+            }]
+        sender['given']['inputs'] = inputs
         sender['given']['input_priv_keys'].extend(
-            [(i1.get_bytes().hex(), False),(i2.get_bytes().hex(), False)])
-        recipient['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
+            [i1.get_bytes().hex(), i2.get_bytes().hex()])
+
+        recipient['given']['inputs'] = inputs 
 
         b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
-        recipient['given']['bip32_seed'] = recipient_bip32_seed
-        recipient['given']['scan_priv_key'] = b_scan.get_bytes().hex()
-        recipient['given']['spend_priv_key'] = b_spend.get_bytes().hex()
+        recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
+        recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
         sender['given']['recipients'].extend([(address, 1.0)])
@@ -282,29 +316,32 @@ def generate_multiple_output_tests():
     recipient2 = deepcopy(recipient1)
     test_case2 = deepcopy(test_case)
 
+    inputs = []
+    for i, outpoint in enumerate(outpoints):
+        inputs += [{
+            'prevout': list(outpoint) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+            'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        }]
 
-    sender['given']['outpoints'] = outpoints
-    sender1['given']['outpoints'] = outpoints
+
+    sender['given']['inputs'] = inputs
+    sender1['given']['inputs'] = inputs
     sender['given']['recipients'] = addresses1
-    recipient1['given']['outpoints'] = outpoints
-    recipient2['given']['outpoints'] = outpoints
-    recipient1['given']['bip32_seed'] = recipient_one_bip32_seed
-    recipient1['given']['scan_priv_key'] = scan1.get_bytes().hex()
-    recipient1['given']['spend_priv_key'] = spend1.get_bytes().hex()
+    recipient1['given']['inputs'] = inputs
+    recipient2['given']['inputs'] = inputs
+    recipient1['given']['key_material']['scan_priv_key'] = scan1.get_bytes().hex()
+    recipient1['given']['key_material']['spend_priv_key'] = spend1.get_bytes().hex()
     recipient1['expected']['addresses'] = [address1]
-    recipient2['given']['bip32_seed'] = recipient_two_bip32_seed
-    recipient2['given']['scan_priv_key'] = scan2.get_bytes().hex()
-    recipient2['given']['spend_priv_key'] = spend2.get_bytes().hex()
+    recipient2['given']['key_material']['scan_priv_key'] = scan2.get_bytes().hex()
+    recipient2['given']['key_material']['spend_priv_key'] = spend2.get_bytes().hex()
     recipient2['expected']['addresses'] = [address2]
 
     sender['given']['input_priv_keys'].extend(
-        [(i1.get_bytes().hex(), False), (i2.get_bytes().hex(), False)]
+        [i1.get_bytes().hex(), i2.get_bytes().hex()]
     )
     sender1['given']['input_priv_keys'].extend(
-        [(i1.get_bytes().hex(), False), (i2.get_bytes().hex(), False)]
+        [i1.get_bytes().hex(), i2.get_bytes().hex()]
     )
-    recipient1['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
-    recipient2['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
 
     outpoints_hash = reference.hash_outpoints(outpoints)
     outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addresses1, hrp=HRP)
@@ -483,14 +520,20 @@ def generate_multiple_outputs_with_labels_tests():
     ]
     for i, addrs in enumerate([addresses1, addresses2, addresses3]):
         sender, recipient, test_case = new_test_case()
-        sender['given']['outpoints'] = outpoints
-        recipient['given']['outpoints'] = outpoints
-        sender['given']['input_priv_keys'].extend([(i1.get_bytes().hex(), False), (i2.get_bytes().hex(), False)])
-        recipient['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
 
-        recipient['given']['bip32_seed'] = recipient_bip32_seed
-        recipient['given']['scan_priv_key'] = scan1.get_bytes().hex()
-        recipient['given']['spend_priv_key'] = spend1.get_bytes().hex()
+        inputs = []
+        for i, outpoint in enumerate(outpoints):
+            inputs += [{
+                'prevout': list(outpoint) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+                'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+            }]
+
+        sender['given']['inputs'] = inputs
+        recipient['given']['inputs'] = inputs
+        sender['given']['input_priv_keys'].extend([i1.get_bytes().hex(), i2.get_bytes().hex()])
+
+        recipient['given']['key_material']['scan_priv_key'] = scan1.get_bytes().hex()
+        recipient['given']['key_material']['spend_priv_key'] = spend1.get_bytes().hex()
         sender['given']['recipients'] = addrs
         recipient['expected']['addresses'] = sp_addresses[i]
         recipient['given']['labels'] = labels[i]
@@ -556,6 +599,7 @@ def generate_single_output_input_tests():
     i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
     i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
     i3, I3 = get_key_pair(2, seed=bytes.fromhex(sender_bip32_seed))
+    i4, I4 = get_key_pair(3, seed=bytes.fromhex(sender_bip32_seed))
 
     if I1.get_y()%2 != 0:
         i1.negate()
@@ -569,29 +613,31 @@ def generate_single_output_input_tests():
         i3.negate()
         I3.negate()
 
+    if I4.get_y()%2 == 0:
+        i4.negate()
+        I4.negate()
+
+
     address_reuse = [
-        [(i1.get_bytes().hex(), False), (i1.get_bytes().hex(), False)],
-        [I1.get_bytes(False).hex(), I1.get_bytes(False).hex()]
+        [(i1, False), (i1, False)],
+        [I1, I1]
     ]
     taproot_only = [
-        [(i1.get_bytes().hex(), True), (i2.get_bytes().hex(), True)],
-        [I1.get_bytes().hex(), I2.get_bytes().hex()]
+        [(i1, True), (i2, True)],
+        [I1, I2]
     ]
-
-    i2.negate()
-    I2.negate()
 
     taproot_only_with_odd_y = [
-        [(i1.get_bytes().hex(), True), (i2.get_bytes().hex(), True)],
-        [I1.get_bytes().hex(), I2.get_bytes().hex()]
+        [(i1, True), (i4, True)],
+        [I1, I4]
     ]
     mixed = [
-        [(i1.get_bytes().hex(), True), (i3.get_bytes().hex(), False)],
-        [I1.get_bytes().hex(), I3.get_bytes(False).hex()]
+        [(i1, True), (i3, False)],
+        [I1, I3]
     ]
     mixed_with_odd_y = [
-        [(i2.get_bytes().hex(), True), (i3.get_bytes().hex(), False)],
-        [I2.get_bytes().hex(), I3.get_bytes(False).hex()]
+        [(i4, True), (i3, False)],
+        [I4, I3]
     ]
     test_cases = []
     comments = [
@@ -603,27 +649,45 @@ def generate_single_output_input_tests():
     ]
     for i, inputs in enumerate([address_reuse, taproot_only, taproot_only_with_odd_y, mixed, mixed_with_odd_y]):
         sender, recipient, test_case = new_test_case()
-        sender['given']['outpoints'] = outpoints
-        recipient['given']['outpoints'] = outpoints
-        sender['given']['input_priv_keys'] = inputs[0]
-        recipient['given']['input_pub_keys'] = inputs[1]
+
+        inp = []
+        for x, (key, is_taproot) in enumerate(inputs[0]):
+            pub_key = inputs[1][x]
+            if is_taproot:
+                inp += [{
+                    "prevout": list(outpoints[x]) + ["", get_p2tr_witness(key)],
+                    "scriptPubKey": get_p2tr_scriptPubKey(pub_key)
+                }]
+            else:
+                inp += [{
+                    "prevout": list(outpoints[x]) + [get_p2pkh_scriptsig(pub_key, key), ""],
+                    "scriptPubKey": get_p2pkh_scriptPubKey(pub_key)
+                }]
+
+        priv_keys = []
+        for (priv_key, is_taproot) in inputs[0]:
+            priv_keys += [priv_key.get_bytes().hex()]
+            
+
+        sender['given']['input_priv_keys'] = priv_keys
+        recipient['given']['inputs'] = inp
+        sender['given']['inputs'] = inp
 
         b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
-        recipient['given']['bip32_seed'] = recipient_bip32_seed
-        recipient['given']['scan_priv_key'] = b_scan.get_bytes().hex()
-        recipient['given']['spend_priv_key'] = b_spend.get_bytes().hex()
+        recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
+        recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
         sender['given']['recipients'].extend([(address, 1.0)])
         recipient['expected']['addresses'].extend([address])
 
         outpoints_hash = reference.hash_outpoints(outpoints)
-        outputs = reference.create_outputs([(ECKey().set(bytes.fromhex(k)), is_xonly) for k, is_xonly in inputs[0]], outpoints_hash, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs(inputs[0], outpoints_hash, [(address, 1.0)], hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [recipient[0] for recipient in outputs]
         recipient['given']['outputs'] = output_pub_keys
 
-        A_sum = sum([ECPubKey().set(bytes.fromhex(p)) for p in inputs[1]])
+        A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(inputs[1])])
         add_to_wallet = reference.scanning(
             b_scan,
             B_spend,
@@ -681,6 +745,7 @@ def generate_change_tests():
     change_address = reference.create_labeled_silent_payment_address(Scan0, Spend0, m=change_label, hrp=HRP)
 
     recipient_bip32_seed = 'f00dbabe'
+    seeds = [sender_bip32_seed, recipient_bip32_seed]
     scan1, spend1, Scan1, Spend1 = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan1, Spend1, hrp=HRP)
     addresses = [(address, 1.0), (change_address, 2.0)]
@@ -689,20 +754,27 @@ def generate_change_tests():
     sp_recipients = [[address, change_address]]
 
     rec1, rec2 = deepcopy(recipient), deepcopy(recipient)
-    rec1['given']['bip32_seed'] = sender_bip32_seed
-    rec1['given']['scan_priv_key'] = scan0.get_bytes().hex()
-    rec1['given']['spend_priv_key'] = spend0.get_bytes().hex()
-    rec2['given']['bip32_seed'] = recipient_bip32_seed
-    rec2['given']['scan_priv_key'] = scan1.get_bytes().hex()
-    rec2['given']['spend_priv_key'] = spend1.get_bytes().hex()
+    rec1['given']['key_material']['scan_priv_key'] = scan0.get_bytes().hex()
+    rec1['given']['key_material']['spend_priv_key'] = spend0.get_bytes().hex()
+    rec2['given']['key_material']['scan_priv_key'] = scan1.get_bytes().hex()
+    rec2['given']['key_material']['spend_priv_key'] = spend1.get_bytes().hex()
     rec1['expected']['addresses'] = [sender_address, change_address]
     rec1['given']['labels'] = change_labels
     rec1['supports_labels'] = True
     rec2['expected']['addresses'] = [address]
 
     sender['given']['input_priv_keys'].extend(
-        [(i1.get_bytes().hex(), False), (i2.get_bytes().hex(), False)])
-    sender['given']['outpoints'] = outpoints
+        [i1.get_bytes().hex(), i2.get_bytes().hex()])
+
+
+    inputs = []
+    for i, outpoint in enumerate(outpoints):
+        inputs += [{
+            'prevout': list(outpoint) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+            'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        }]
+
+    sender['given']['inputs'] = inputs
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
@@ -712,12 +784,11 @@ def generate_change_tests():
     test_case['sending'].extend([sender])
     labels = [change_labels, {}]
     for i, rec in enumerate([rec1, rec2]):
-        rec['given']['outpoints'] = outpoints
-        rec['given']['input_pub_keys'].extend([I1.get_bytes(False).hex(), I2.get_bytes(False).hex()])
+        rec['given']['inputs'] = inputs
         rec['given']['outputs'] = output_pub_keys
 
         A_sum = sum(input_pub_keys)
-        scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(rec['given']['bip32_seed']))
+        scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(seeds[i]))
         add_to_wallet = reference.scanning(
             scan,
             Spend,
