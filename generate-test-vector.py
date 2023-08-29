@@ -40,7 +40,7 @@ def read_receiving_test_inputs(recipient):
 
 def rmd160(in_str):
     h = hashlib.new('ripemd160')
-    h.update(in_str)
+    h.update(reference.sha256(in_str))
     return h.hexdigest()
 
 def get_p2pkh_scriptsig(pub_key, priv_key):
