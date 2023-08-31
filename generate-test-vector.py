@@ -819,6 +819,182 @@ def generate_change_tests():
 
 # In[17]:
 
+def generate_all_inputs_test():
+
+    sender, recipient, test_case = new_test_case()
+
+    msg = reference.sha256(b'message')
+    aux = reference.sha256(b'random auxiliary data')
+    G = ECKey().set(1).get_pubkey()
+    recipient_test_cases = []
+    outpoints = [
+            ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 1),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 2),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 3),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 4),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 5),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 6),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 7),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
+    ]
+    sender_bip32_seed = 'deadbeef'
+    i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
+    i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+    input_priv_keys = [
+        (i1, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+        (i2, False),
+    ]
+    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
+
+    recipient_bip32_seed = 'f00dbabe'
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+
+    sender['given']['input_priv_keys'].extend([
+        i1.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+        i2.get_bytes().hex(),
+    ])
+
+
+    inputs = []
+
+    ## included
+    # p2pk
+    i = len(inputs)
+    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
+    x = len(sig) // 2
+    inputs += [{
+        'prevout': list(outpoints[i]) + [f'{x:0x}' + sig, ""],
+        'scriptPubKey': "21" + input_pub_keys[i].get_bytes(False).hex() + "ac",
+    }]
+    # p2pkh
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2pkh maleated
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + ["0075" + get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2pkh hybrid key
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2wpkh
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2wpkh hybrid key
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2tr key path
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+
+    ## exlcuded
+    # p2tr spend path with P == H
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2sh
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2wsh
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+    # p2ms
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    }]
+
+    sender['given']['inputs'] = inputs
+    sender['given']['recipients'] = addresses
+    outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
+    sender['expected']['outputs'] = outputs
+
+    output_pub_keys = [recipient[0] for recipient in outputs]
+
+    test_case['sending'].extend([sender])
+    recipient['given']['inputs'] = inputs
+    recipient['given']['outputs'] = output_pub_keys
+
+    A_sum = sum(input_pub_keys)
+    add_to_wallet = reference.scanning(
+        scan,
+        Spend,
+        A_sum,
+        reference.hash_outpoints(outpoints),
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        labels={},
+    )
+    for o in add_to_wallet:
+
+        pubkey = ECPubKey().set(bytes.fromhex(o['pub_key']))
+        full_private_key = spend.add(
+            bytes.fromhex(o['priv_key_tweak'])
+        )
+        if full_private_key.get_pubkey().get_y()%2 != 0:
+            full_private_key.negate()
+
+        sig = full_private_key.sign_schnorr(msg, aux)
+        assert pubkey.verify_schnorr(sig, msg)
+        o['signature'] = sig.hex()
+
+    recipient['expected']['outputs'] = add_to_wallet
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "Pubkey extraction"
+    test_cases = []
+    test_cases.append(test_case)
+    return test_cases
 
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
@@ -827,7 +1003,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_multiple_output_tests() +
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
-        generate_change_tests(),
+        generate_change_tests() +
+        generate_all_inputs_test(),
         f,
         indent=4,
     )
