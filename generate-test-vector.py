@@ -43,14 +43,27 @@ def rmd160(in_str):
     h.update(reference.sha256(in_str))
     return h.hexdigest()
 
-def get_p2pkh_scriptsig(pub_key, priv_key):
+def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
     msg = reference.sha256(b'message')
     sig = priv_key.sign_ecdsa(msg, False).hex()
-    x = len(sig) // 2
-    return f'{x:0x}' + sig + "21" + pub_key.get_bytes(False).hex()
+    s = len(sig) // 2
+    if not hybrid:
+        pubkey_bytes = bytes([0x21]) + pub_key.get_bytes(False)
+    else:
+        x = pub_key.get_x()
+        y = pub_key.get_y()
+        pubkey_bytes = bytes([0x41]) + bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
 
-def get_p2pkh_scriptPubKey(pub_key):
-    return "76a914" + rmd160(pub_key.get_bytes(False)) + "88ac"
+    return f'{s:0x}' + sig + pubkey_bytes.hex()
+
+def get_p2pkh_scriptPubKey(pub_key, hybrid=False):
+    if not hybrid:
+        pubkey_bytes = pub_key.get_bytes(False)
+    else:
+        x = pub_key.get_x()
+        y = pub_key.get_y()
+        pubkey_bytes = bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
+    return "76a914" + rmd160(pubkey_bytes) + "88ac"
 
 def get_p2tr_witness(priv_key):
     msg = reference.sha256(b'message')
@@ -908,8 +921,8 @@ def generate_all_inputs_test():
     # p2pkh hybrid key
     i = len(inputs)
     inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0], hybrid=True), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i], hybrid=True),
     }]
     # p2wpkh
     i = len(inputs)
