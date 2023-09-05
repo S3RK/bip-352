@@ -43,6 +43,11 @@ def rmd160(in_str):
     h.update(reference.sha256(in_str))
     return h.hexdigest()
 
+def encode_hybrid_key(pub_key):
+    x = pub_key.get_x()
+    y = pub_key.get_y()
+    return bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
+
 def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
     msg = reference.sha256(b'message')
     sig = priv_key.sign_ecdsa(msg, False).hex()
@@ -50,9 +55,7 @@ def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
     if not hybrid:
         pubkey_bytes = bytes([0x21]) + pub_key.get_bytes(False)
     else:
-        x = pub_key.get_x()
-        y = pub_key.get_y()
-        pubkey_bytes = bytes([0x41]) + bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
+        pubkey_bytes = bytes([0x41]) + encode_hybrid_key(pub_key)
 
     return f'{s:0x}' + sig + pubkey_bytes.hex()
 
@@ -60,9 +63,7 @@ def get_p2pkh_scriptPubKey(pub_key, hybrid=False):
     if not hybrid:
         pubkey_bytes = pub_key.get_bytes(False)
     else:
-        x = pub_key.get_x()
-        y = pub_key.get_y()
-        pubkey_bytes = bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
+        pubkey_bytes = encode_hybrid_key(pub_key)
     return "76a914" + rmd160(pubkey_bytes) + "88ac"
 
 def get_p2tr_witness(priv_key):
@@ -852,6 +853,7 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 7),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
     ]
     sender_bip32_seed = 'deadbeef'
     i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
@@ -868,8 +870,9 @@ def generate_all_inputs_test():
         (i2, False),
         (i2, False),
         (i2, False),
+        (i2, False),
     ]
-    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
+    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
 
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
@@ -882,6 +885,7 @@ def generate_all_inputs_test():
 
     sender['given']['input_priv_keys'].extend([
         i1.get_bytes().hex(),
+        i2.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
@@ -926,11 +930,19 @@ def generate_all_inputs_test():
     }]
     # p2wpkh
     i = len(inputs)
+    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
+    x = len(sig) // 2
     inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        'prevout': list(outpoints[i]) + ["", f'{x:0x}' + sig + "21" + input_pub_keys[i].get_bytes(False).hex()],
+        'scriptPubKey': "0014" + rmd160(input_pub_keys[i].get_bytes(False)),
     }]
     # p2wpkh hybrid key
+    i = len(inputs)
+    inputs += [{
+        'prevout': list(outpoints[i]) + ["", f'{x:0x}' + sig + "41" + encode_hybrid_key(input_pub_keys[i]).hex()],
+        'scriptPubKey': "0014" + rmd160(encode_hybrid_key(input_pub_keys[i])),
+    }]
+    # p2sh-p2wpkh
     i = len(inputs)
     inputs += [{
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
