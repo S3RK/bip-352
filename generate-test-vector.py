@@ -854,6 +854,7 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
     ]
     sender_bip32_seed = 'deadbeef'
     i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
@@ -871,8 +872,9 @@ def generate_all_inputs_test():
         (i2, False),
         (i2, False),
         (i2, False),
+        (i2, False),
     ]
-    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
+    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
 
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
@@ -885,6 +887,7 @@ def generate_all_inputs_test():
 
     sender['given']['input_priv_keys'].extend([
         i1.get_bytes().hex(),
+        i2.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
@@ -944,11 +947,23 @@ def generate_all_inputs_test():
     }]
     # p2sh-p2wpkh
     i = len(inputs)
+    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
+    x = len(sig) // 2
+    witnessProgramm = bytes([0x00, 0x14]) + bytes.fromhex(rmd160(input_pub_keys[i].get_bytes(False)))
+    inputs += [{
+        'prevout': list(outpoints[i]) + [
+            "16" + witnessProgramm.hex(),
+            f'{x:0x}' + sig + "21" + input_pub_keys[i].get_bytes(False).hex()
+        ],
+        'scriptPubKey': "a914" + rmd160(witnessProgramm) + "87",
+    }]
+    # p2tr key path
+    i = len(inputs)
     inputs += [{
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
         'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     }]
-    # p2tr key path
+    # p2tr script path
     i = len(inputs)
     inputs += [{
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
