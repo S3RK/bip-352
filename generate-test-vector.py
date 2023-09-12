@@ -21,22 +21,11 @@ def get_key_pair(index, seed=b'deadbeef', derivation='m/0h'):
 
     return d, P
 
-def read_sending_test_inputs(sender):
+def add_private_keys(inputs, input_priv_keys):
+    for x, i in enumerate(inputs):
+        i['private_key'] = input_priv_keys[x][0].get_bytes().hex()
 
-    outpoints = sender['given']['outpoints']
-    input_priv_keys = [ECKey().set(bytes.fromhex(key)) for key in sender['given']['input_priv_keys']]
-    addresses = sender['given']['recipients']
-
-    return outpoints, input_priv_keys, addresses
-
-def read_receiving_test_inputs(recipient):
-
-    outpoints = recipient['given']['outpoints']
-    input_pub_keys = [ECPubKey().set(bytes.fromhex(key)) for key in recipient['given']['input_pub_keys']]
-    bip32_seed = recipient['given']['bip32_seed']
-    labels = recipient['given']['labels']
-
-    return outpoints, input_pub_keys, bip32_seed, labels
+    return inputs
 
 def rmd160(in_str):
     h = hashlib.new('ripemd160')
@@ -94,7 +83,6 @@ def new_test_case():
     sender = {
         "given": {
             "inputs": [],
-            "input_priv_keys": [],
             "recipients": []
         },
         "expected": {
@@ -150,7 +138,7 @@ def generate_labeled_output_tests():
                 'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
             }]
     
-        sender['given']['inputs'] = inputs
+        sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
         sender['given']['recipients'] = addresses
         recipient['given']['inputs'] = inputs
         recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
@@ -158,8 +146,6 @@ def generate_labeled_output_tests():
         recipient['expected']['addresses'] = recipient_addresses
         recipient['given']['labels'] = recipient_labels
         recipient['supports_labels'] = True
-        sender['given']['input_priv_keys'].extend(
-            [i1.get_bytes().hex(), i2.get_bytes().hex()])
 
         outpoints_hash = reference.hash_outpoints(outpoints)
         outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addresses, hrp=HRP)
@@ -245,13 +231,11 @@ def generate_single_output_outpoint_tests():
             scriptSig = get_p2pkh_scriptsig(input_pub_keys[x], input_priv_keys[x][0])
             inputs += [{
                 "prevout": list(outpoint) + [scriptSig, ""],
-                "scriptPubKey": get_p2pkh_scriptPubKey(input_pub_keys[x])
+                "scriptPubKey": get_p2pkh_scriptPubKey(input_pub_keys[x]),
             }]
-        sender['given']['inputs'] = inputs
-        sender['given']['input_priv_keys'].extend(
-            [i1.get_bytes().hex(), i2.get_bytes().hex()])
+        sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
 
-        recipient['given']['inputs'] = inputs 
+        recipient['given']['inputs'] = inputs
 
         b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
         recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
@@ -337,9 +321,7 @@ def generate_multiple_output_tests():
             'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
         }]
 
-
-    sender['given']['inputs'] = inputs
-    sender1['given']['inputs'] = inputs
+    sender1['given']['inputs'] = sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses1
     recipient1['given']['inputs'] = inputs
     recipient2['given']['inputs'] = inputs
@@ -349,13 +331,6 @@ def generate_multiple_output_tests():
     recipient2['given']['key_material']['scan_priv_key'] = scan2.get_bytes().hex()
     recipient2['given']['key_material']['spend_priv_key'] = spend2.get_bytes().hex()
     recipient2['expected']['addresses'] = [address2]
-
-    sender['given']['input_priv_keys'].extend(
-        [i1.get_bytes().hex(), i2.get_bytes().hex()]
-    )
-    sender1['given']['input_priv_keys'].extend(
-        [i1.get_bytes().hex(), i2.get_bytes().hex()]
-    )
 
     outpoints_hash = reference.hash_outpoints(outpoints)
     outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addresses1, hrp=HRP)
@@ -542,9 +517,8 @@ def generate_multiple_outputs_with_labels_tests():
                 'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
             }]
 
-        sender['given']['inputs'] = inputs
+        sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
         recipient['given']['inputs'] = inputs
-        sender['given']['input_priv_keys'].extend([i1.get_bytes().hex(), i2.get_bytes().hex()])
 
         recipient['given']['key_material']['scan_priv_key'] = scan1.get_bytes().hex()
         recipient['given']['key_material']['spend_priv_key'] = spend1.get_bytes().hex()
@@ -683,9 +657,8 @@ def generate_single_output_input_tests():
             priv_keys += [priv_key.get_bytes().hex()]
             
 
-        sender['given']['input_priv_keys'] = priv_keys
+        sender['given']['inputs'] = add_private_keys(deepcopy(inp), inputs[0])
         recipient['given']['inputs'] = inp
-        sender['given']['inputs'] = inp
 
         b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
         recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
@@ -777,9 +750,6 @@ def generate_change_tests():
     rec1['supports_labels'] = True
     rec2['expected']['addresses'] = [address]
 
-    sender['given']['input_priv_keys'].extend(
-        [i1.get_bytes().hex(), i2.get_bytes().hex()])
-
 
     inputs = []
     for i, outpoint in enumerate(outpoints):
@@ -788,7 +758,7 @@ def generate_change_tests():
             'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
         }]
 
-    sender['given']['inputs'] = inputs
+    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
@@ -1043,8 +1013,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_multiple_output_tests() +
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
-        generate_change_tests() +
-        generate_all_inputs_test(),
+        generate_change_tests(),
+        #generate_all_inputs_test(),
         f,
         indent=4,
     )

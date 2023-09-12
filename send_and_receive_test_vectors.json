@@ -9,24 +9,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "46304402200c50dfa6c267327b8b9b768cffaf62bdea9b67d0d2672a0f7785074bb9236e1402203f5105bcdc166bc498182b681bf37fbcee5c7deff7db38e0c1c71a0eedf89dec21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022023fa0d03f6d853588912ce2a5bc2a8ee6b9fcedbae99a1f28f8d2d1d8c8200f2022100fd73c662d98feb7b5b862195c3d6f6b7077765b61dda43020b87f5a020354af421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100fea405d4cdec727c3421cb8ad84f6500474e492b6f08ff31c4a4c14e6881176e022100eacac9344221d5a91cebb3b890bbe3e37a1767a5e1d856aa2113c497e5f9a31d2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "473045022100c9b13b9040ba3ae08ec64317a9f138a8b3653db6e23764407e8965bc7fdbf199022079d3f56b3629f007b33f54ee2ace8147254e214feb5846e73a2380c065188a3b2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                     ],
                     "recipients": [
                         [
@@ -54,7 +52,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "46304402200c50dfa6c267327b8b9b768cffaf62bdea9b67d0d2672a0f7785074bb9236e1402203f5105bcdc166bc498182b681bf37fbcee5c7deff7db38e0c1c71a0eedf89dec21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022023fa0d03f6d853588912ce2a5bc2a8ee6b9fcedbae99a1f28f8d2d1d8c8200f2022100fd73c662d98feb7b5b862195c3d6f6b7077765b61dda43020b87f5a020354af421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -63,7 +61,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100fea405d4cdec727c3421cb8ad84f6500474e492b6f08ff31c4a4c14e6881176e022100eacac9344221d5a91cebb3b890bbe3e37a1767a5e1d856aa2113c497e5f9a31d2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "473045022100c9b13b9040ba3ae08ec64317a9f138a8b3653db6e23764407e8965bc7fdbf199022079d3f56b3629f007b33f54ee2ace8147254e214feb5846e73a2380c065188a3b2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
                             "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
@@ -103,24 +101,22 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100ad081148aa1c5b397010b2afb1a50514e82fc2fb640c7b86bc12e23a6cd2b85e0221009fd0c8fbafde9b9f8be0210ff8b4c4c0a59dfc416f9cc4dd097aec1c85002f3e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100c88cc9338c096abbfbc5e5c9551dbd06214177705c33fc8271cbc6ebbbc0a0f4022032da645b929eb53a7eb40747a8bd3b76d689c0b9a48e94175b5e3b0be68af8f221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "46304402201d521329ba088981db67186f68e2618dc4135fe17207b77a16c7ec0aef15832102202da64c9d445fc165a10f2ba8167b09bcbe34b57c66a0c43d7e2fb8a004c5d5a72103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "47304502201fdef18252db6999522e81c35d21c19590015c8acaba1bfffd633bdd79ad7ac2022100872ecb42061321e3fb215586b25944c920332fbfcac41da7d2d5c20d11fecdf72103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                     ],
                     "recipients": [
                         [
@@ -148,7 +144,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100ad081148aa1c5b397010b2afb1a50514e82fc2fb640c7b86bc12e23a6cd2b85e0221009fd0c8fbafde9b9f8be0210ff8b4c4c0a59dfc416f9cc4dd097aec1c85002f3e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100c88cc9338c096abbfbc5e5c9551dbd06214177705c33fc8271cbc6ebbbc0a0f4022032da645b929eb53a7eb40747a8bd3b76d689c0b9a48e94175b5e3b0be68af8f221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -157,7 +153,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "46304402201d521329ba088981db67186f68e2618dc4135fe17207b77a16c7ec0aef15832102202da64c9d445fc165a10f2ba8167b09bcbe34b57c66a0c43d7e2fb8a004c5d5a72103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "47304502201fdef18252db6999522e81c35d21c19590015c8acaba1bfffd633bdd79ad7ac2022100872ecb42061321e3fb215586b25944c920332fbfcac41da7d2d5c20d11fecdf72103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
                             "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
@@ -197,24 +193,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 3,
-                                "473045022100c22749611cc205ab17c14920d2ac630654fc2fe9ef143e8864dbeb1281e5557a022075f04a12d12ba17a5afd42ed04779ea40608f43b2a888ded286025bdde16753821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502201db5efd6947b401443c3c6d67da8f06685431656f476cf61ef580a4b956e57da022100d804ad1c10305bdebfade4fc1d0a96453deb010bd9305b874bc989218620149021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 7,
-                                "483046022100d95acf2105a5a979d42eae7ab7f718e4a9c8c97153be0412d4e17523968ea2e2022100eb74fa65432094d9580ac1a5af7d177d241bc024cf9da201c512aab85d64c51d2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "4730450221008383c30f30968af24e971f81abfd39d140bdfc1b6bdbe66db5886879dd85e26a02206e4b23fd20656bfd10dd2b2e1bea02edf9f87d0822b8772d814359cd172d322a2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                     ],
                     "recipients": [
                         [
@@ -242,7 +236,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 3,
-                                "473045022100c22749611cc205ab17c14920d2ac630654fc2fe9ef143e8864dbeb1281e5557a022075f04a12d12ba17a5afd42ed04779ea40608f43b2a888ded286025bdde16753821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502201db5efd6947b401443c3c6d67da8f06685431656f476cf61ef580a4b956e57da022100d804ad1c10305bdebfade4fc1d0a96453deb010bd9305b874bc989218620149021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -251,7 +245,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 7,
-                                "483046022100d95acf2105a5a979d42eae7ab7f718e4a9c8c97153be0412d4e17523968ea2e2022100eb74fa65432094d9580ac1a5af7d177d241bc024cf9da201c512aab85d64c51d2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "4730450221008383c30f30968af24e971f81abfd39d140bdfc1b6bdbe66db5886879dd85e26a02206e4b23fd20656bfd10dd2b2e1bea02edf9f87d0822b8772d814359cd172d322a2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
                             "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
@@ -291,24 +285,22 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 7,
-                                "46304402206e816d1c262426a00e7a524a25fb25d86f00fce0880edcdfef5a6d96481da9c5022035ee4a9d05cb9b447f9b1c007cd38e7fcba4d19f0819905b7c91bc4159e2b2f021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4730450220504f769e5fcf24f362692420b4cb1bc7e04b438ee1d637618441cbd0e9d7d562022100a5ed958a90f4cc25aa6c6b9d517be6083c096422c9427b7cd040af4495355e8c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 3,
-                                "4730450220047eaf3b5abfec821a0d8b21fc3f10e6ed219b21a0c8cfaf9e20c99a198a6395022100e5813c9e23f9fb4ff914589a67befe0f9f7542de846a861c44e812b33a5b3b552103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "46304402200af025a5882b31203c097e9ca0f5034d656d31990e847fc0ecf09016f121ce790220741821d27d34ffae1c999543c3b571390478b00d6c932f217ebf720bd95ea44a2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                     ],
                     "recipients": [
                         [
@@ -336,7 +328,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 7,
-                                "46304402206e816d1c262426a00e7a524a25fb25d86f00fce0880edcdfef5a6d96481da9c5022035ee4a9d05cb9b447f9b1c007cd38e7fcba4d19f0819905b7c91bc4159e2b2f021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4730450220504f769e5fcf24f362692420b4cb1bc7e04b438ee1d637618441cbd0e9d7d562022100a5ed958a90f4cc25aa6c6b9d517be6083c096422c9427b7cd040af4495355e8c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -345,7 +337,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 3,
-                                "4730450220047eaf3b5abfec821a0d8b21fc3f10e6ed219b21a0c8cfaf9e20c99a198a6395022100e5813c9e23f9fb4ff914589a67befe0f9f7542de846a861c44e812b33a5b3b552103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                                "46304402200af025a5882b31203c097e9ca0f5034d656d31990e847fc0ecf09016f121ce790220741821d27d34ffae1c999543c3b571390478b00d6c932f217ebf720bd95ea44a2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
                                 ""
                             ],
                             "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
@@ -385,24 +377,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4830460221009cb17f53bbe8870c92f51acfe738fee6f166b6cf77c5311de0e9bf6e75f9560c022100802b07789d258eda36cbb972a7f025b6b8323dc2bcd8f2aa23ffa0005475250421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502201b1a8a9f05b903d84a40951fbb1d17a357df3713d8b44be380708676382a1122022100f7e536518c36628c3a72b4b087defddb735cecca54e0fee700721e658344ca3d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "4630440220796e0eb077078e09d8cd331b135ac680b2f7d46d81c57747859be26e5638d1cb022023dadff2f9dac926002b2d2f138361d2c6b146dbbb81738009a9d1f12e04034c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "483046022100f4cb592a23fffc9e5c37a8abd1f429daee1050b82d3fe33324d9fdb4acd8e322022100b31a0fbe472ac8e5d572e80914ab3494ab1d0bbd67806203f19668ef3e04faa921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                     ],
                     "recipients": [
                         [
@@ -430,7 +420,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4830460221009cb17f53bbe8870c92f51acfe738fee6f166b6cf77c5311de0e9bf6e75f9560c022100802b07789d258eda36cbb972a7f025b6b8323dc2bcd8f2aa23ffa0005475250421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502201b1a8a9f05b903d84a40951fbb1d17a357df3713d8b44be380708676382a1122022100f7e536518c36628c3a72b4b087defddb735cecca54e0fee700721e658344ca3d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -439,7 +429,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "4630440220796e0eb077078e09d8cd331b135ac680b2f7d46d81c57747859be26e5638d1cb022023dadff2f9dac926002b2d2f138361d2c6b146dbbb81738009a9d1f12e04034c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "483046022100f4cb592a23fffc9e5c37a8abd1f429daee1050b82d3fe33324d9fdb4acd8e322022100b31a0fbe472ac8e5d572e80914ab3494ab1d0bbd67806203f19668ef3e04faa921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -482,7 +472,8 @@
                                 "",
                                 "c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
                             ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
@@ -491,12 +482,9 @@
                                 "",
                                 "bd1e708f92dbeaf24a6b8dd22e59c6274355424d62baea976b449e220fd75b13578e262ab11b7aa58e037f0c6b0519b66803b7d9decaa1906dedebfb531c56c1"
                             ],
-                            "scriptPubKey": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
+                            "scriptPubKey": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "private_key": "fc8716a97a48ba9a05a98ae47b5cd201a25a7fd5d8b73c203c5f7b6b6b3b6ad7"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "fc8716a97a48ba9a05a98ae47b5cd201a25a7fd5d8b73c203c5f7b6b6b3b6ad7"
                     ],
                     "recipients": [
                         [
@@ -576,7 +564,8 @@
                                 "",
                                 "c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
                             ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
@@ -585,12 +574,9 @@
                                 "",
                                 "0a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5"
                             ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4",
+                            "private_key": "1d37787c2b7116ee983e9f9c13269df29091b391c04db94239e0d2bc2182c3bf"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "1d37787c2b7116ee983e9f9c13269df29091b391c04db94239e0d2bc2182c3bf"
                     ],
                     "recipients": [
                         [
@@ -670,21 +656,19 @@
                                 "",
                                 "c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
                             ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100af5363f0cf94a0c11a16da498f366c85f976024ba03bbf844a38aa3b661a5b86022100c434d07b7858418b1709d47b60db21707c90c36ed2e3675286f51600adf9495e2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                                "463044022037c584e51c48d5cd3ed7697759fddcf39d5b572527387c24fce68a9a3bd241b8022060dfb05caa56ebd0ae619702cc2fb480d9cf96b7e8339fba860156911dead57d2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
                                 ""
                             ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac",
+                            "private_key": "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                     ],
                     "recipients": [
                         [
@@ -721,7 +705,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100af5363f0cf94a0c11a16da498f366c85f976024ba03bbf844a38aa3b661a5b86022100c434d07b7858418b1709d47b60db21707c90c36ed2e3675286f51600adf9495e2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                                "463044022037c584e51c48d5cd3ed7697759fddcf39d5b572527387c24fce68a9a3bd241b8022060dfb05caa56ebd0ae619702cc2fb480d9cf96b7e8339fba860156911dead57d2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
                                 ""
                             ],
                             "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
@@ -764,21 +748,19 @@
                                 "",
                                 "4517e32b783cb235cd67ea90971a014edae0281a997d87f5a00f6dd09363fabf8eae4a756c4608762e6b8433a42af3d605a4216ee278695ad14cd9129bdcf694"
                             ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4",
+                            "private_key": "e2c88783d48ee91167c16063ecd9620c2a1d2954eefae6f985f18bd0aeb37d82"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022065462e5fcb1ce1ee15791706642f8423f7bd99f123279202af8e06c00e7733a6022100f64a51120db85d856bbb469f66021548127dd283fa99f3000f740751b066eadc2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                                "4730450220537347a3678dd889d1bd5aa142d0552fa8085571fa80f5417f98eff0812f0add022100c7b2759f20e47d0394d627c75d2818e9dbea7570f009b535208ae5eb6f065bd52103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
                                 ""
                             ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac",
+                            "private_key": "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "e2c88783d48ee91167c16063ecd9620c2a1d2954eefae6f985f18bd0aeb37d82",
-                        "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                     ],
                     "recipients": [
                         [
@@ -815,7 +797,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022065462e5fcb1ce1ee15791706642f8423f7bd99f123279202af8e06c00e7733a6022100f64a51120db85d856bbb469f66021548127dd283fa99f3000f740751b066eadc2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                                "4730450220537347a3678dd889d1bd5aa142d0552fa8085571fa80f5417f98eff0812f0add022100c7b2759f20e47d0394d627c75d2818e9dbea7570f009b535208ae5eb6f065bd52103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
                                 ""
                             ],
                             "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
@@ -855,24 +837,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4730450220228c08ade484943fda828f5f16b07b2194b102a626595b847875f52c5667e67b022100c9c9b5b2a60f056595df3a1b805f095969efff26b0024311a2320f9193745adc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402204d23dded3a590f4c2c753486732b84a3acd7109b038d0f4e28c483f4f1f2f86602206b3065809d6d43c5775c39c25e5406d29f1555a11fe28a94eb3058dee7bad2fc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100f4104021b3ba09029531649410901fb624fdc183e3b3c20db62eb47259eaefb2022100bd0fd0c2a4b5371491b59e82ede4a45f47edde5c8e532fb3d4984fc67b0efca22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221009460719810514fcab0558a64dad714da7a687d91bb1c7306fb00beeafd9002fa022100c7bf42b0c1067ef7f03651bb91f97197370124409aa338e804ad246d76ff55972103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -908,7 +888,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4730450220228c08ade484943fda828f5f16b07b2194b102a626595b847875f52c5667e67b022100c9c9b5b2a60f056595df3a1b805f095969efff26b0024311a2320f9193745adc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402204d23dded3a590f4c2c753486732b84a3acd7109b038d0f4e28c483f4f1f2f86602206b3065809d6d43c5775c39c25e5406d29f1555a11fe28a94eb3058dee7bad2fc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -917,7 +897,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100f4104021b3ba09029531649410901fb624fdc183e3b3c20db62eb47259eaefb2022100bd0fd0c2a4b5371491b59e82ede4a45f47edde5c8e532fb3d4984fc67b0efca22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221009460719810514fcab0558a64dad714da7a687d91bb1c7306fb00beeafd9002fa022100c7bf42b0c1067ef7f03651bb91f97197370124409aa338e804ad246d76ff55972103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -965,24 +945,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4730450220228c08ade484943fda828f5f16b07b2194b102a626595b847875f52c5667e67b022100c9c9b5b2a60f056595df3a1b805f095969efff26b0024311a2320f9193745adc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402204d23dded3a590f4c2c753486732b84a3acd7109b038d0f4e28c483f4f1f2f86602206b3065809d6d43c5775c39c25e5406d29f1555a11fe28a94eb3058dee7bad2fc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100f4104021b3ba09029531649410901fb624fdc183e3b3c20db62eb47259eaefb2022100bd0fd0c2a4b5371491b59e82ede4a45f47edde5c8e532fb3d4984fc67b0efca22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221009460719810514fcab0558a64dad714da7a687d91bb1c7306fb00beeafd9002fa022100c7bf42b0c1067ef7f03651bb91f97197370124409aa338e804ad246d76ff55972103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1034,7 +1012,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4730450220228c08ade484943fda828f5f16b07b2194b102a626595b847875f52c5667e67b022100c9c9b5b2a60f056595df3a1b805f095969efff26b0024311a2320f9193745adc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402204d23dded3a590f4c2c753486732b84a3acd7109b038d0f4e28c483f4f1f2f86602206b3065809d6d43c5775c39c25e5406d29f1555a11fe28a94eb3058dee7bad2fc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1043,7 +1021,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100f4104021b3ba09029531649410901fb624fdc183e3b3c20db62eb47259eaefb2022100bd0fd0c2a4b5371491b59e82ede4a45f47edde5c8e532fb3d4984fc67b0efca22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221009460719810514fcab0558a64dad714da7a687d91bb1c7306fb00beeafd9002fa022100c7bf42b0c1067ef7f03651bb91f97197370124409aa338e804ad246d76ff55972103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1087,7 +1065,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "4730450220228c08ade484943fda828f5f16b07b2194b102a626595b847875f52c5667e67b022100c9c9b5b2a60f056595df3a1b805f095969efff26b0024311a2320f9193745adc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402204d23dded3a590f4c2c753486732b84a3acd7109b038d0f4e28c483f4f1f2f86602206b3065809d6d43c5775c39c25e5406d29f1555a11fe28a94eb3058dee7bad2fc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1096,7 +1074,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100f4104021b3ba09029531649410901fb624fdc183e3b3c20db62eb47259eaefb2022100bd0fd0c2a4b5371491b59e82ede4a45f47edde5c8e532fb3d4984fc67b0efca22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221009460719810514fcab0558a64dad714da7a687d91bb1c7306fb00beeafd9002fa022100c7bf42b0c1067ef7f03651bb91f97197370124409aa338e804ad246d76ff55972103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1144,24 +1122,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "47304502207a20fc93d7bb07d00bd4091269e1dcce7094e694684e4f363d7480e0903b1d4802210098db115e1a842408977d317611200c441ba666b5ada8043507873424eaec311421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4630440220636f8433ecb5bfac8b8fb23374337fde83c37ede14390f58ddcbe97748121c2d02202fe880e9f9e373fcfcf3df8fef74cd04aa5484caeb5a8163d33b2e0cbe2c2ea021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "47304502201dd422af839094d27bb55ef079ab900cb861da31255226d05dceb8f3bd91e3a00221009b4c98e2b543675e312353f770bd7949ddcd184be42e44b55122470a32da42782103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "47304502207b48c3b56741c1e090f690aeebb9777106278ad339fece50f013285a56d6c4f1022100d150174f830b4dc14bf8fc3eed9375c919bda75ffb9aed1e355a729616aa13b82103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1189,7 +1165,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "47304502207a20fc93d7bb07d00bd4091269e1dcce7094e694684e4f363d7480e0903b1d4802210098db115e1a842408977d317611200c441ba666b5ada8043507873424eaec311421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4630440220636f8433ecb5bfac8b8fb23374337fde83c37ede14390f58ddcbe97748121c2d02202fe880e9f9e373fcfcf3df8fef74cd04aa5484caeb5a8163d33b2e0cbe2c2ea021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1198,7 +1174,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "47304502201dd422af839094d27bb55ef079ab900cb861da31255226d05dceb8f3bd91e3a00221009b4c98e2b543675e312353f770bd7949ddcd184be42e44b55122470a32da42782103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "47304502207b48c3b56741c1e090f690aeebb9777106278ad339fece50f013285a56d6c4f1022100d150174f830b4dc14bf8fc3eed9375c919bda75ffb9aed1e355a729616aa13b82103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1245,24 +1221,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100884459597806707353f1b7045123ce72d781cab06d9eedb67c441b817d58d1ea022100c109dcd4972b8c66f1b1d1fd013f975c42e662bc2db937cc9a002ef2358852ff21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502203713c2a6740b853ffe3ac017dabae02b75b6618aa90e2f3b39cb0d1f59b554d3022100a39c987b519fb17afad6b53f4b2148bc2acca897fe11deb8344b3a75c2e3563721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "47304502203226eaeded2eb4f6f51014ef8b33971caeaa086b5b02b53b4a393644bb06c870022100c02c5fd30b2f8e77317559adc39b129fba8d6bd8e87bd7cefc0c5b147e0f6ad52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "483046022100a9d617878efa90c9971257d2a45f4bf0bb58249a8f966ad76e971c26e178bf32022100d769a4861e7181dd6192843b386e75fe651ce8b7ef5b8c501e81734c23efdf6a2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1290,7 +1264,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100884459597806707353f1b7045123ce72d781cab06d9eedb67c441b817d58d1ea022100c109dcd4972b8c66f1b1d1fd013f975c42e662bc2db937cc9a002ef2358852ff21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "47304502203713c2a6740b853ffe3ac017dabae02b75b6618aa90e2f3b39cb0d1f59b554d3022100a39c987b519fb17afad6b53f4b2148bc2acca897fe11deb8344b3a75c2e3563721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1299,7 +1273,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "47304502203226eaeded2eb4f6f51014ef8b33971caeaa086b5b02b53b4a393644bb06c870022100c02c5fd30b2f8e77317559adc39b129fba8d6bd8e87bd7cefc0c5b147e0f6ad52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "483046022100a9d617878efa90c9971257d2a45f4bf0bb58249a8f966ad76e971c26e178bf32022100d769a4861e7181dd6192843b386e75fe651ce8b7ef5b8c501e81734c23efdf6a2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1346,24 +1320,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100d74e31aa8c874ef07b827328c6ad73d0cebcf9868a0a8f646a1473b50fd4c6c2022100e367fce1be53036b141dc4d81c1546cd3c0ab67624cacfcc5a23fe0ffe52132e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100a1aaf28630ec9cdce3250c4bd9e43dc6025aba768ff96ee5cd765fc712174c1102201d53cad4aaf4ddf819ac4728494b788f3ef96bc83e6167279e7222c015fba03921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022100ae81609b458970ece993f0e17b031c53c58de9cddd334a610d70228d20266b9a02206a35fbed1472340c586fa264c8004ef4a97e1ba7150429dc8de7be87c73d7f962103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "473045022100f704d315720ee8de3a6a10136fd00d5668d106b2921b6ee36e632cef3111a53102205a51c6b72c16189c075926fa9d4e4d041a8803b2e14728230d13e5fc5aeef65f2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1391,7 +1363,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100d74e31aa8c874ef07b827328c6ad73d0cebcf9868a0a8f646a1473b50fd4c6c2022100e367fce1be53036b141dc4d81c1546cd3c0ab67624cacfcc5a23fe0ffe52132e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100a1aaf28630ec9cdce3250c4bd9e43dc6025aba768ff96ee5cd765fc712174c1102201d53cad4aaf4ddf819ac4728494b788f3ef96bc83e6167279e7222c015fba03921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1400,7 +1372,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022100ae81609b458970ece993f0e17b031c53c58de9cddd334a610d70228d20266b9a02206a35fbed1472340c586fa264c8004ef4a97e1ba7150429dc8de7be87c73d7f962103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "473045022100f704d315720ee8de3a6a10136fd00d5668d106b2921b6ee36e632cef3111a53102205a51c6b72c16189c075926fa9d4e4d041a8803b2e14728230d13e5fc5aeef65f2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1447,24 +1419,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "473045022100abedca26e6b16ce38834b7b8b1ac965c1403c23734aca6ab580a98ccc6818f67022019c2a3445c9927d9acd1f5a0808bf8cdb640a6b590272f8fa95ed4e885a229af21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100bacec0d98083a85981587a8350ef3523c5f5885cd396368a5c6230b95a369bc702207f75781dd796a3d94b66b7c2384f451577463704b2084c967e2d36306f3015d721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "46304402200db483d9ba1a34983f66c732be736c5d87d1a80bbfc54fac8769a451eb36d795022015a6487eae8d2bd64ca10e305b834f422cee3fb0ac778cbf120a1a08e7370e0b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "46304402207b27d2b9495e00bd67eaff3a7bbfb648be9a610d2cc3edf49fbce5ea0929a5e702204546c4ccbeca5de796318bc5b8333f23de42d7e8e77047d78ba6bc042aaf0c032103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1500,7 +1470,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "473045022100abedca26e6b16ce38834b7b8b1ac965c1403c23734aca6ab580a98ccc6818f67022019c2a3445c9927d9acd1f5a0808bf8cdb640a6b590272f8fa95ed4e885a229af21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "473045022100bacec0d98083a85981587a8350ef3523c5f5885cd396368a5c6230b95a369bc702207f75781dd796a3d94b66b7c2384f451577463704b2084c967e2d36306f3015d721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1509,7 +1479,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "46304402200db483d9ba1a34983f66c732be736c5d87d1a80bbfc54fac8769a451eb36d795022015a6487eae8d2bd64ca10e305b834f422cee3fb0ac778cbf120a1a08e7370e0b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "46304402207b27d2b9495e00bd67eaff3a7bbfb648be9a610d2cc3edf49fbce5ea0929a5e702204546c4ccbeca5de796318bc5b8333f23de42d7e8e77047d78ba6bc042aaf0c032103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1558,24 +1528,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100a18761cb84ff80df649b92c0d95b38fe34926145ab89adffd2dadf4cdb9b902e022100c137636210bf13a98b5463e559de003eece3261995bce3f78df57b7b821e3e3021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402207231c66b7f192162693db030c2fe90620a45b193b5841626943174aac77bd0d102206e15cebdfa9c2126aa4150ee136d2b3cc0346f41d7ca6f6e495bec9d2171a1d921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022026bf6d1ef7f834b48f2f5f2fb3cd7dc18aa7445546a078eed4c4e067e9d86116022100dcc296e7704e71fe111ae411a69eab3aa4516f0e20b5f034a4150cb6a99bfaab2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221008502f992fe047090d8136ccf03c618190b49c3689a3172745a4796967e533089022100d3f171f93d68c663486a6cc4d61e3ce9a71b20b651fbb1c5f4b9350c359decce2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1611,7 +1579,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100a18761cb84ff80df649b92c0d95b38fe34926145ab89adffd2dadf4cdb9b902e022100c137636210bf13a98b5463e559de003eece3261995bce3f78df57b7b821e3e3021025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402207231c66b7f192162693db030c2fe90620a45b193b5841626943174aac77bd0d102206e15cebdfa9c2126aa4150ee136d2b3cc0346f41d7ca6f6e495bec9d2171a1d921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1620,7 +1588,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022026bf6d1ef7f834b48f2f5f2fb3cd7dc18aa7445546a078eed4c4e067e9d86116022100dcc296e7704e71fe111ae411a69eab3aa4516f0e20b5f034a4150cb6a99bfaab2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "4830460221008502f992fe047090d8136ccf03c618190b49c3689a3172745a4796967e533089022100d3f171f93d68c663486a6cc4d61e3ce9a71b20b651fbb1c5f4b9350c359decce2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1669,24 +1637,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100ce56327db648d06483dc65be265b04bcaf4ca21771f6cd28c5be0a862c88336d022100c36f2e87a177ccacb1519f56f8ca5e3665796971fddcc7988fad7bc3ad703be821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4630440220268e3837d0432463465872bdef71247289a902f38738c63c250ed9de3341036c02201dc93c6b21172f8b226b758d41a2b5c5a6364396324a4f3537901d081a07031d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022100d015239720bf53045fe6d2e3d7eacef5da1dba642dcc1878f82a9e7eb63014b802200df6401d0745c85f9c7ed08a3ef78a2d22690267ecf08e5e6d6407af1a617eda2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "473045022100fc5a9a779686cb6ab5da1a5cae1eb93ff9ba8f4658130156a1cbeab9da3c4aae02203b22c2c5bcd6b8a624adb073e968ddb0a334d467190e0e544d2d7adfc44d1fd12103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1738,7 +1704,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "483046022100ce56327db648d06483dc65be265b04bcaf4ca21771f6cd28c5be0a862c88336d022100c36f2e87a177ccacb1519f56f8ca5e3665796971fddcc7988fad7bc3ad703be821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "4630440220268e3837d0432463465872bdef71247289a902f38738c63c250ed9de3341036c02201dc93c6b21172f8b226b758d41a2b5c5a6364396324a4f3537901d081a07031d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1747,7 +1713,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "473045022100d015239720bf53045fe6d2e3d7eacef5da1dba642dcc1878f82a9e7eb63014b802200df6401d0745c85f9c7ed08a3ef78a2d22690267ecf08e5e6d6407af1a617eda2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "473045022100fc5a9a779686cb6ab5da1a5cae1eb93ff9ba8f4658130156a1cbeab9da3c4aae02203b22c2c5bcd6b8a624adb073e968ddb0a334d467190e0e544d2d7adfc44d1fd12103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1798,24 +1764,22 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "47304502202bfcb6db026ad4661c9a3dbc11add19e2c0bee910559fad983bc6101cf6af38a022100abe06b6d2aacd57b23277301d69bcc4eac2107ca5a08dfa2bcc8c3ab8c59017d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402203e1bca9e80a89a6e1951696f9290e583626b4771d0d69babff38c16d5b8f203c022077a2be5b1391d4145f622412d05d6bf5630ef1b0376d00841996ba888f98077721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100c1c4cab2b1396fd1bde7df6a296255a68f52efe64f8c2543587d0a1fd0f535f3022100b38ea40667ba0a281949aec0590f68fa118c0c2f9bb357a20a9374dded81e5792103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "483046022100dca1c8167775d66e870691b2398f616bf7f6b2645e03d4126987464e40aef017022100b0e4a62ff81c7c2b28dbe6ea4e1ce026e2ec9ec6539aa61b1f57144447db66dd2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                     ],
                     "recipients": [
                         [
@@ -1851,7 +1815,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "47304502202bfcb6db026ad4661c9a3dbc11add19e2c0bee910559fad983bc6101cf6af38a022100abe06b6d2aacd57b23277301d69bcc4eac2107ca5a08dfa2bcc8c3ab8c59017d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402203e1bca9e80a89a6e1951696f9290e583626b4771d0d69babff38c16d5b8f203c022077a2be5b1391d4145f622412d05d6bf5630ef1b0376d00841996ba888f98077721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1860,7 +1824,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100c1c4cab2b1396fd1bde7df6a296255a68f52efe64f8c2543587d0a1fd0f535f3022100b38ea40667ba0a281949aec0590f68fa118c0c2f9bb357a20a9374dded81e5792103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "483046022100dca1c8167775d66e870691b2398f616bf7f6b2645e03d4126987464e40aef017022100b0e4a62ff81c7c2b28dbe6ea4e1ce026e2ec9ec6539aa61b1f57144447db66dd2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1900,7 +1864,7 @@
                             "prevout": [
                                 "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
                                 0,
-                                "47304502202bfcb6db026ad4661c9a3dbc11add19e2c0bee910559fad983bc6101cf6af38a022100abe06b6d2aacd57b23277301d69bcc4eac2107ca5a08dfa2bcc8c3ab8c59017d21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                                "46304402203e1bca9e80a89a6e1951696f9290e583626b4771d0d69babff38c16d5b8f203c022077a2be5b1391d4145f622412d05d6bf5630ef1b0376d00841996ba888f98077721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
                                 ""
                             ],
                             "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
@@ -1909,7 +1873,7 @@
                             "prevout": [
                                 "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
                                 0,
-                                "483046022100c1c4cab2b1396fd1bde7df6a296255a68f52efe64f8c2543587d0a1fd0f535f3022100b38ea40667ba0a281949aec0590f68fa118c0c2f9bb357a20a9374dded81e5792103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                                "483046022100dca1c8167775d66e870691b2398f616bf7f6b2645e03d4126987464e40aef017022100b0e4a62ff81c7c2b28dbe6ea4e1ce026e2ec9ec6539aa61b1f57144447db66dd2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
                                 ""
                             ],
                             "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
@@ -1934,309 +1898,6 @@
                             "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
                             "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
                             "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "comment": "Pubkey extraction",
-        "sending": [
-            {
-                "given": {
-                    "inputs": [
-                        {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022069264a8d35bcf98e216b226d4e816b6f0906369c4155b9d82b1b2385bcdf6987022000c9a322e30021c747034239e4fd1a881178394a51c46bff5c0382344699965d",
-                                ""
-                            ],
-                            "scriptPubKey": "21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "4630440220620f770e77da6dc28b4a14ea6e0f5983502b312b38d778dc4b6dbe7d4bd17cad02202e66f2bcde28b09452a2a99954e978d211ab51ec8eee249ea6c4d83f09fff3b52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                1,
-                                "0075483046022100fa72cbe315cf6b8261fcb5d0d3490ef599c695e0f5f116f680cc2507cb06b81f0221008f07510e3bffff9125586ef63f9b81b542f1de599758b21cdddce91f272789d42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                2,
-                                "483046022100d4c6be231cbdc5143d58f85e508625ec67b1dbe6aca75134a69890ebaa7a748f022100c4a170c8be655c56ec6bbc1e18bc9df3ff11f07f3a35141fa8416b1b2e900cd94106782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c3799373233387c5343bf58e23269e903335b958a12182f9849297321e8d710e49a8727129cab",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9145a15440265dfddedcc938f11875332f9c6f1987888ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "",
-                                "47304502204e630a5698653a9782b3d9d04c580c0d9eed1ad3a4455e71a81fb4aae0197343022100b2b01fb1082f79721edb937e411c1a638f663302b1622f3c562525080f1ac52c2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
-                            ],
-                            "scriptPubKey": "00147cdd63cc408564188e8e472640e921c7c90e651d"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                4,
-                                "",
-                                "47304502204e630a5698653a9782b3d9d04c580c0d9eed1ad3a4455e71a81fb4aae0197343022100b2b01fb1082f79721edb937e411c1a638f663302b1622f3c562525080f1ac52c4106782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c3799373233387c5343bf58e23269e903335b958a12182f9849297321e8d710e49a8727129cab"
-                            ],
-                            "scriptPubKey": "00145a15440265dfddedcc938f11875332f9c6f19878"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                5,
-                                "1600147cdd63cc408564188e8e472640e921c7c90e651d",
-                                "46304402203ecc3ba2120ed1950118bf108b3253d4697ba1e98be371a480f28b2bf15a5266022015279dabeb18c990977a130552704a5617b96121c828337662781e7faa0b83ee2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
-                            ],
-                            "scriptPubKey": "a914d37c679cae8f6622dd6dfac479b1bcc0bade4bec87"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                6,
-                                "47304502207aae38dc85c3ea3b3405de16823a4b6ddb46c0b90119313d4a74f6b20ae05c5e022100caddf2fa95eeede2fa103876816858cb8e608b355f98801d926211060826fab22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "483046022100ca3688e28edba972e1338fcff6909ae4f86a4bb989917d75daf2d13dd31eb1cd022100bc9406c613a200de9c8a48395f0667edbe7a69f8c56a4370d05bc274404404862103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                8,
-                                "4730450220703603a3fa706c2e557b82844ff477c4d455173601edf18db83b64f14ea4bd14022100e76a7aceb23892a89d57c9d31d797ced4dc1c0a26ab1da863b795389328ea2d52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                9,
-                                "473045022100a105f128d1486c8ff6acbfaa6165a069f1e4dff5f3b618cd858ad5ef55ea2b980220018156b09653021d6a2690fede8f45afd5094409c21f510bda7b0fc32f957f442103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                10,
-                                "483046022100d9103115337d2d6b458b3f68bfe5a35a9bdc872a2a9b572ab2925f10a8e0a111022100e5170da35f4cfac403e3783cf45fe63278bcb55595704bd108417292338e7cf42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                11,
-                                "4730450221008d9524c6ae46204c2a3d38f6103a8737208b839604e2312aa9607204f1b17fe80220240f4ba88691409e8996e3c3e51c5f315a10506748d01a44478f82c3116e77232103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        }
-                    ],
-                    "input_priv_keys": [
-                        "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a",
-                        "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
-                    ],
-                    "recipients": [
-                        [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                            1.0
-                        ]
-                    ]
-                },
-                "expected": {
-                    "outputs": [
-                        [
-                            "efab04e862066b3c35356dd09853aec1d5e570a652a13d6fb41b2757164a84cc",
-                            1.0
-                        ]
-                    ]
-                }
-            }
-        ],
-        "receiving": [
-            {
-                "supports_labels": false,
-                "given": {
-                    "inputs": [
-                        {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022069264a8d35bcf98e216b226d4e816b6f0906369c4155b9d82b1b2385bcdf6987022000c9a322e30021c747034239e4fd1a881178394a51c46bff5c0382344699965d",
-                                ""
-                            ],
-                            "scriptPubKey": "21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "4630440220620f770e77da6dc28b4a14ea6e0f5983502b312b38d778dc4b6dbe7d4bd17cad02202e66f2bcde28b09452a2a99954e978d211ab51ec8eee249ea6c4d83f09fff3b52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                1,
-                                "0075483046022100fa72cbe315cf6b8261fcb5d0d3490ef599c695e0f5f116f680cc2507cb06b81f0221008f07510e3bffff9125586ef63f9b81b542f1de599758b21cdddce91f272789d42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                2,
-                                "483046022100d4c6be231cbdc5143d58f85e508625ec67b1dbe6aca75134a69890ebaa7a748f022100c4a170c8be655c56ec6bbc1e18bc9df3ff11f07f3a35141fa8416b1b2e900cd94106782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c3799373233387c5343bf58e23269e903335b958a12182f9849297321e8d710e49a8727129cab",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9145a15440265dfddedcc938f11875332f9c6f1987888ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "",
-                                "47304502204e630a5698653a9782b3d9d04c580c0d9eed1ad3a4455e71a81fb4aae0197343022100b2b01fb1082f79721edb937e411c1a638f663302b1622f3c562525080f1ac52c2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
-                            ],
-                            "scriptPubKey": "00147cdd63cc408564188e8e472640e921c7c90e651d"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                4,
-                                "",
-                                "47304502204e630a5698653a9782b3d9d04c580c0d9eed1ad3a4455e71a81fb4aae0197343022100b2b01fb1082f79721edb937e411c1a638f663302b1622f3c562525080f1ac52c4106782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c3799373233387c5343bf58e23269e903335b958a12182f9849297321e8d710e49a8727129cab"
-                            ],
-                            "scriptPubKey": "00145a15440265dfddedcc938f11875332f9c6f19878"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                5,
-                                "1600147cdd63cc408564188e8e472640e921c7c90e651d",
-                                "46304402203ecc3ba2120ed1950118bf108b3253d4697ba1e98be371a480f28b2bf15a5266022015279dabeb18c990977a130552704a5617b96121c828337662781e7faa0b83ee2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
-                            ],
-                            "scriptPubKey": "a914d37c679cae8f6622dd6dfac479b1bcc0bade4bec87"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                6,
-                                "47304502207aae38dc85c3ea3b3405de16823a4b6ddb46c0b90119313d4a74f6b20ae05c5e022100caddf2fa95eeede2fa103876816858cb8e608b355f98801d926211060826fab22103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "483046022100ca3688e28edba972e1338fcff6909ae4f86a4bb989917d75daf2d13dd31eb1cd022100bc9406c613a200de9c8a48395f0667edbe7a69f8c56a4370d05bc274404404862103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                8,
-                                "4730450220703603a3fa706c2e557b82844ff477c4d455173601edf18db83b64f14ea4bd14022100e76a7aceb23892a89d57c9d31d797ced4dc1c0a26ab1da863b795389328ea2d52103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                9,
-                                "473045022100a105f128d1486c8ff6acbfaa6165a069f1e4dff5f3b618cd858ad5ef55ea2b980220018156b09653021d6a2690fede8f45afd5094409c21f510bda7b0fc32f957f442103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                10,
-                                "483046022100d9103115337d2d6b458b3f68bfe5a35a9bdc872a2a9b572ab2925f10a8e0a111022100e5170da35f4cfac403e3783cf45fe63278bcb55595704bd108417292338e7cf42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                11,
-                                "4730450221008d9524c6ae46204c2a3d38f6103a8737208b839604e2312aa9607204f1b17fe80220240f4ba88691409e8996e3c3e51c5f315a10506748d01a44478f82c3116e77232103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        }
-                    ],
-                    "outputs": [
-                        "efab04e862066b3c35356dd09853aec1d5e570a652a13d6fb41b2757164a84cc"
-                    ],
-                    "key_material": {
-                        "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
-                        "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
-                    },
-                    "labels": {}
-                },
-                "expected": {
-                    "addresses": [
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv"
-                    ],
-                    "outputs": [
-                        {
-                            "pub_key": "efab04e862066b3c35356dd09853aec1d5e570a652a13d6fb41b2757164a84cc",
-                            "priv_key_tweak": "4ab057a0bb5371be9a67724ab40f1b87a115ae3a879df443c71e4282987572cb",
-                            "signature": "27b4f335f5940adf6f73c6bc3d6e322ac347e7bfaeeea641f6e2b9257960c847ce49ec2b02acfacca8fb04de66b2f1aeca366bfb77fabf72c011e85b55f5aa3c"
                         }
                     ]
                 }
