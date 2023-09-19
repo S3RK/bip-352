@@ -199,7 +199,7 @@ if __name__ == "__main__":
                     A_sum=A_sum,
                     outpoints_hash=outpoints_hash,
                     outputs_to_check=outputs_to_check,
-                    labels=given["labels"],
+                    labels={l[0]:l[1] for l in given["labels"]},
                     )
 
             # Check that the private key is correct for the found output public key

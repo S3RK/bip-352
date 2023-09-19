@@ -35,7 +35,7 @@ def rmd160(in_str):
 def encode_hybrid_key(pub_key):
     x = pub_key.get_x()
     y = pub_key.get_y()
-    return bytes([0x05 if y % 2 == 0 else 0x06]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
+    return bytes([0x06 if y % 2 == 0 else 0x07]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
 
 def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
     msg = reference.sha256(b'message')
@@ -65,7 +65,6 @@ def get_p2tr_scriptPubKey(pub_key):
 
 def new_test_case():
     recipient =  {
-        "supports_labels": False,
         "given": {
             "inputs": [],
             "outputs": [],
@@ -73,7 +72,7 @@ def new_test_case():
                 "spend_priv_key": "hex",
                 "scan_priv_key": "hex",
             },
-            "labels": {},
+            "labels": [],
         },
         "expected": {
             "addresses": [],
@@ -117,7 +116,7 @@ def generate_labeled_output_tests():
 
     recipient_bip32_seed = 'f00dbabe'
     label_ints = [(2).to_bytes(32, 'big').hex(),(3).to_bytes(32, 'big').hex(),(1001337).to_bytes(32, 'big').hex()]
-    recipient_labels = {(bytes.fromhex(label_int)*G).get_bytes(False).hex(): label_int for label_int in label_ints}
+    recipient_labels = [[(bytes.fromhex(label_int)*G).get_bytes(False).hex(), label_int] for label_int in label_ints]
     b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
 
     address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
@@ -145,7 +144,6 @@ def generate_labeled_output_tests():
         recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         recipient['expected']['addresses'] = recipient_addresses
         recipient['given']['labels'] = recipient_labels
-        recipient['supports_labels'] = True
 
         outpoints_hash = reference.hash_outpoints(outpoints)
         outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addresses, hrp=HRP)
@@ -160,7 +158,7 @@ def generate_labeled_output_tests():
             A_sum,
             outpoints_hash,
             [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
-            labels=recipient_labels,
+            labels={l[0]:l[1] for l in recipient_labels},
         )
         for o in add_to_wallet:
 
@@ -469,9 +467,6 @@ def generate_paying_to_self_test():
     return test_case
 
 
-# In[14]:
-
-
 def generate_multiple_outputs_with_labels_tests():
 
     msg = reference.sha256(b'message')
@@ -493,8 +488,8 @@ def generate_multiple_outputs_with_labels_tests():
     address = reference.encode_silent_payment_address(Scan1, Spend1, hrp=HRP)
     label_address_one = reference.create_labeled_silent_payment_address(Scan1, Spend1, m=(1).to_bytes(32, 'big'), hrp=HRP)
     label_address_two = reference.create_labeled_silent_payment_address(Scan1, Spend1, m=(1337).to_bytes(32,'big'), hrp=HRP)
-    labels_one = {((1).to_bytes(32, 'big')*G).get_bytes(False).hex():(1).to_bytes(32, 'big').hex()}
-    labels_three = {(1*G).get_bytes(False).hex():(1).to_bytes(32, 'big').hex(), (1337*G).get_bytes(False).hex(): (1337).to_bytes(32, 'big').hex()}
+    labels_one = [[((1).to_bytes(32, 'big')*G).get_bytes(False).hex(), (1).to_bytes(32, 'big').hex()]]
+    labels_three = [[(1*G).get_bytes(False).hex(), (1).to_bytes(32, 'big').hex()], [(1337*G).get_bytes(False).hex(), (1337).to_bytes(32, 'big').hex()]]
     addresses1 = [(address, 1.0), (label_address_one, 2.0)]
     addresses2 = [(label_address_one, 3.0), (label_address_one, 4.0)]
     addresses3 = [(address, 5.0), (label_address_one, 6.0), (label_address_two, 7.0), (label_address_two, 8.0)]
@@ -525,7 +520,6 @@ def generate_multiple_outputs_with_labels_tests():
         sender['given']['recipients'] = addrs
         recipient['expected']['addresses'] = sp_addresses[i]
         recipient['given']['labels'] = labels[i]
-        recipient['supports_labels'] = True
         outpoints_hash = reference.hash_outpoints(outpoints)
         outputs = reference.create_outputs(input_priv_keys, outpoints_hash, addrs, hrp=HRP)
         sender['expected']['outputs'] = outputs
@@ -539,7 +533,7 @@ def generate_multiple_outputs_with_labels_tests():
             A_sum,
             reference.hash_outpoints(outpoints),
             [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
-            labels=labels[i],
+            labels={l[0]:l[1] for l in labels[i]},
         )
         for o in add_to_wallet:
 
@@ -561,15 +555,6 @@ def generate_multiple_outputs_with_labels_tests():
         test_cases.append(test_case)
 
     return test_cases
-
-
-# In[ ]:
-
-
-
-
-
-# In[15]:
 
 
 def generate_single_output_input_tests():
@@ -704,9 +689,6 @@ def generate_single_output_input_tests():
     return test_cases
 
 
-# In[16]:
-
-
 def generate_change_tests():
 
     sender, recipient, test_case = new_test_case()
@@ -728,7 +710,7 @@ def generate_change_tests():
     scan0, spend0, Scan0, Spend0 = reference.derive_silent_payment_key_pair(bytes.fromhex(sender_bip32_seed))
     sender_address = reference.encode_silent_payment_address(Scan0, Spend0, hrp=HRP)
     change_label = reference.sha256(scan0.get_bytes())
-    change_labels = {(change_label*G).get_bytes(False).hex(): change_label.hex()}
+    change_labels = [[(change_label*G).get_bytes(False).hex(), change_label.hex()]]
     change_address = reference.create_labeled_silent_payment_address(Scan0, Spend0, m=change_label, hrp=HRP)
 
     recipient_bip32_seed = 'f00dbabe'
@@ -747,7 +729,6 @@ def generate_change_tests():
     rec2['given']['key_material']['spend_priv_key'] = spend1.get_bytes().hex()
     rec1['expected']['addresses'] = [sender_address, change_address]
     rec1['given']['labels'] = change_labels
-    rec1['supports_labels'] = True
     rec2['expected']['addresses'] = [address]
 
 
@@ -766,7 +747,7 @@ def generate_change_tests():
     output_pub_keys = [recipient[0] for recipient in outputs]
 
     test_case['sending'].extend([sender])
-    labels = [change_labels, {}]
+    labels = [change_labels, []]
     for i, rec in enumerate([rec1, rec2]):
         rec['given']['inputs'] = inputs
         rec['given']['outputs'] = output_pub_keys
@@ -779,7 +760,7 @@ def generate_change_tests():
             A_sum,
             reference.hash_outpoints(outpoints),
             [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
-            labels=labels[i],
+            labels={l[0]:l[1] for l in labels[i]},
         )
         for o in add_to_wallet:
 
@@ -855,7 +836,7 @@ def generate_all_inputs_test():
     recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
     recipient['expected']['addresses'] = [address]
 
-    sender['given']['input_priv_keys'].extend([
+    priv_keys = [
         i1.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
@@ -869,7 +850,7 @@ def generate_all_inputs_test():
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
         i2.get_bytes().hex(),
-    ])
+    ]
 
 
     inputs = []
@@ -965,8 +946,11 @@ def generate_all_inputs_test():
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
         'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     }]
+    inputs_with_priv_keys = [i for i in inputs]
+    for i,elem in enumerate(inputs_with_priv_keys):
+        elem['private_key'] = priv_keys[i] 
 
-    sender['given']['inputs'] = inputs
+    sender['given']['inputs'] = inputs_with_priv_keys
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
@@ -1006,7 +990,7 @@ def generate_all_inputs_test():
     test_cases.append(test_case)
     return test_cases
 
-with open("send_and_receive_test_vectors.json", "w") as f:
+with open("send_and_receive_test_vectors_v2.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
         generate_single_output_input_tests() +
@@ -1014,7 +998,7 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
         generate_change_tests(),
-        #generate_all_inputs_test(),
+        # generate_all_inputs_test(),
         f,
         indent=4,
     )
