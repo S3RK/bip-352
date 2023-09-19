@@ -58,7 +58,8 @@ def get_p2pkh_scriptPubKey(pub_key, hybrid=False):
 def get_p2tr_witness(priv_key):
     msg = reference.sha256(b'message')
     sig = priv_key.sign_schnorr(msg).hex()
-    return sig
+    s = len(sig) // 2
+    return "01" + f'{s:0x}' + sig
 
 def get_p2tr_scriptPubKey(pub_key):
     return "5120" + pub_key.get_bytes(True).hex()
@@ -911,8 +912,8 @@ def generate_all_inputs_test():
     # p2tr key path
     i = len(inputs)
     inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        'prevout': list(outpoints[i]) + ["", get_p2tr_witness(input_priv_keys[i][0])],
+        'scriptPubKey': get_p2tr_scriptPubKey(input_pub_keys[i]),
     }]
     # p2tr script path
     i = len(inputs)
@@ -946,11 +947,7 @@ def generate_all_inputs_test():
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
         'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     }]
-    inputs_with_priv_keys = [i for i in inputs]
-    for i,elem in enumerate(inputs_with_priv_keys):
-        elem['private_key'] = priv_keys[i] 
-
-    sender['given']['inputs'] = inputs_with_priv_keys
+    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
@@ -997,8 +994,8 @@ with open("send_and_receive_test_vectors_v2.json", "w") as f:
         generate_multiple_output_tests() +
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
-        generate_change_tests(),
-        # generate_all_inputs_test(),
+        generate_change_tests() +
+        generate_all_inputs_test(),
         f,
         indent=4,
     )
