@@ -58,11 +58,19 @@ def get_p2pkh_scriptPubKey(pub_key, hybrid=False):
 def get_p2tr_witness(priv_key):
     msg = reference.sha256(b'message')
     sig = priv_key.sign_schnorr(msg).hex()
-    s = len(sig) // 2
-    return "01" + f'{s:0x}' + sig
+    return serialize_witness_stack([sig])
 
 def get_p2tr_scriptPubKey(pub_key):
     return "5120" + pub_key.get_bytes(True).hex()
+
+def serialize_witness_stack(stack_items):
+    stack_size = len(stack_items)
+    result = f'{stack_size:02x}'
+    for item in stack_items:
+        size = len(item) // 2
+        result += f'{size:0x}' + item
+    return result
+
 
 def new_test_case():
     recipient =  {
@@ -888,13 +896,13 @@ def generate_all_inputs_test():
     sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
     x = len(sig) // 2
     inputs += [{
-        'prevout': list(outpoints[i]) + ["", f'{x:0x}' + sig + "21" + input_pub_keys[i].get_bytes(False).hex()],
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()])],
         'scriptPubKey': "0014" + rmd160(input_pub_keys[i].get_bytes(False)),
     }]
     # p2wpkh hybrid key
     i = len(inputs)
     inputs += [{
-        'prevout': list(outpoints[i]) + ["", f'{x:0x}' + sig + "41" + encode_hybrid_key(input_pub_keys[i]).hex()],
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, encode_hybrid_key(input_pub_keys[i]).hex()])],
         'scriptPubKey': "0014" + rmd160(encode_hybrid_key(input_pub_keys[i])),
     }]
     # p2sh-p2wpkh
@@ -905,7 +913,7 @@ def generate_all_inputs_test():
     inputs += [{
         'prevout': list(outpoints[i]) + [
             "16" + witnessProgramm.hex(),
-            f'{x:0x}' + sig + "21" + input_pub_keys[i].get_bytes(False).hex()
+            serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()])
         ],
         'scriptPubKey': "a914" + rmd160(witnessProgramm) + "87",
     }]
@@ -987,7 +995,7 @@ def generate_all_inputs_test():
     test_cases.append(test_case)
     return test_cases
 
-with open("send_and_receive_test_vectors_v2.json", "w") as f:
+with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
         generate_single_output_input_tests() +
