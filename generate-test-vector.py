@@ -912,10 +912,25 @@ def generate_all_inputs_test():
 
     # p2tr script path
     i = len(inputs)
+    # can verify calculation below with following command
+    # tap 782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338 1 '[OP_TRUE]' 0
+    leaf_version = "c0"
+    script = "51" # OP_TRUE
+    # copy keys
+    pub_key = ECPubKey().set(input_pub_keys[i].get_bytes())
+    priv_key = ECKey().set(input_priv_keys[i][0].get_bytes())
+    if priv_key.get_pubkey().get_y() % 2 != 0:
+        priv_key.negate()
+    leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + "01" + script))
+    tap_tweak = TaggedHash("TapTweak", pub_key.get_bytes() + leaf_hash)
+    tweaked_key = pub_key.tweak_add(tap_tweak)
+    control_block = leaf_version + pub_key.get_bytes().hex()
     inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([script, control_block])],
+        'scriptPubKey': get_p2tr_scriptPubKey(tweaked_key),
     }]
+    input_pub_keys[i] = tweaked_key
+    input_priv_keys[i] = (priv_key.tweak_add(tap_tweak), True)
 
     ## exlcuded
     # p2tr spend path with P == H
@@ -942,6 +957,9 @@ def generate_all_inputs_test():
         'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
         'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     }]
+    # TODO: add non-standard spend
+
+
     sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
