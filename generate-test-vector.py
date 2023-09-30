@@ -68,7 +68,7 @@ def serialize_witness_stack(stack_items):
     result = f'{stack_size:02x}'
     for item in stack_items:
         size = len(item) // 2
-        result += f'{size:0x}' + item
+        result += f'{size:02x}' + item
     return result
 
 
