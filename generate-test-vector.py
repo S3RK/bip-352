@@ -907,6 +907,9 @@ def generate_all_inputs_test():
         'prevout': list(outpoints[i]) + ["", get_p2tr_witness(input_priv_keys[i][0])],
         'scriptPubKey': get_p2tr_scriptPubKey(input_pub_keys[i]),
     }]
+    # mark input as taproot
+    input_priv_keys[i] = (input_priv_keys[i][0], True)
+
     # p2tr script path
     i = len(inputs)
     inputs += [{
@@ -950,7 +953,7 @@ def generate_all_inputs_test():
     recipient['given']['inputs'] = inputs
     recipient['given']['outputs'] = output_pub_keys
 
-    A_sum = sum(input_pub_keys)
+    A_sum = sum([p if not input_priv_keys[i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(input_pub_keys)])
     add_to_wallet = reference.scanning(
         scan,
         Spend,
