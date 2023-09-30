@@ -799,7 +799,6 @@ def generate_all_inputs_test():
 
     msg = reference.sha256(b'message')
     aux = reference.sha256(b'random auxiliary data')
-    G = ECKey().set(1).get_pubkey()
     recipient_test_cases = []
     outpoints = [
             ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
@@ -844,23 +843,6 @@ def generate_all_inputs_test():
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
     recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
     recipient['expected']['addresses'] = [address]
-
-    priv_keys = [
-        i1.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-        i2.get_bytes().hex(),
-    ]
-
 
     inputs = []
 
@@ -912,7 +894,9 @@ def generate_all_inputs_test():
     witnessProgramm = bytes([0x00, 0x14]) + bytes.fromhex(rmd160(input_pub_keys[i].get_bytes(False)))
     inputs += [{
         'prevout': list(outpoints[i]) + [
+            # scriptSig
             "16" + witnessProgramm.hex(),
+            # witness
             serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()])
         ],
         'scriptPubKey': "a914" + rmd160(witnessProgramm) + "87",
