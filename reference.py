@@ -76,9 +76,10 @@ def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], outpoints_hash: by
     G = ECKey().set(1).get_pubkey()
     negated_keys = []
     for key, is_xonly in input_priv_keys:
-        if is_xonly and key.get_pubkey().get_y()%2 != 0:
-            key.negate()
-        negated_keys.append(key)
+        k = ECKey().set(key.get_bytes())
+        if is_xonly and k.get_pubkey().get_y()%2 != 0:
+            k.negate()
+        negated_keys.append(k)
 
     a_sum = sum(negated_keys)
     silent_payment_groups: Dict[ECPubKey, List[Tuple[ECPubKey, float]]] = {}
