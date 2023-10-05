@@ -811,9 +811,9 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 6),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 7),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
-            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
-            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
-            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
+            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
+            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
+            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
     ]
     sender_bip32_seed = 'deadbeef'
     i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
@@ -828,12 +828,8 @@ def generate_all_inputs_test():
         (i2, False),
         (i2, False),
         (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
     ]
-    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
+    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2]
 
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
@@ -862,6 +858,7 @@ def generate_all_inputs_test():
         'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     }]
     # p2pkh maleated
+    # TODO: make dummy look like public key
     i = len(inputs)
     inputs += [{
         'prevout': list(outpoints[i]) + ["0075" + get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
@@ -935,35 +932,48 @@ def generate_all_inputs_test():
     ## exlcuded
     # p2tr spend path with P == H
     i = len(inputs)
+    # can verify calculation below with following command
+    # tap 50929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac0 1 '[OP_TRUE]' 0
+    # it's intended that the keys don't much
+    G2 = bytes([0x04]) + SECP256K1_G[0].to_bytes(32, 'big') + SECP256K1_G[1].to_bytes(32, 'big')
+    pub_key = ECPubKey().set(reference.sha256(G2))
+    leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + "01" + script))
+    tap_tweak = TaggedHash("TapTweak", pub_key.get_bytes() + leaf_hash)
+    tweaked_key = pub_key.tweak_add(tap_tweak)
+    control_block = leaf_version + pub_key.get_bytes().hex()
     inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([script, control_block])],
+        'scriptPubKey': get_p2tr_scriptPubKey(tweaked_key),
     }]
-    # p2sh
-    i = len(inputs)
-    inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    }]
-    # p2wsh
-    i = len(inputs)
-    inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    }]
-    # p2ms
-    i = len(inputs)
-    inputs += [{
-        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-        'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    }]
+
+    ## p2sh
+    #i = len(inputs)
+    # script = "21" + input_pub_keys[i].get_bytes().hex() + "88"
+    #inputs += [{
+    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    #}]
+    ## p2wsh
+    #i = len(inputs)
+    #inputs += [{
+    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    #}]
+    ## p2ms
+    #i = len(inputs)
+    #inputs += [{
+    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
+    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
+    #}]
     # TODO: add non-standard spend
 
 
-    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     outputs = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
+
+    input_priv_keys += [(i2, True)] # add some random keys so we cover all inputs
+    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
 
     output_pub_keys = [recipient[0] for recipient in outputs]
 
