@@ -940,6 +940,7 @@ def generate_all_inputs_test():
     leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + "01" + script))
     tap_tweak = TaggedHash("TapTweak", pub_key.get_bytes() + leaf_hash)
     tweaked_key = pub_key.tweak_add(tap_tweak)
+    leaf_version = "c1" # the final tweaked key key is not even
     control_block = leaf_version + pub_key.get_bytes().hex()
     inputs += [{
         'prevout': list(outpoints[i]) + ["", serialize_witness_stack([script, control_block])],
