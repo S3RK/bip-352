@@ -811,7 +811,7 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 6),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 7),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
-            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
             #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
             #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
     ]
@@ -854,7 +854,7 @@ def generate_all_inputs_test():
     input_pub_keys += [pub]
 
     # p2pkh maleated
-    # TODO: make dummy look like public key
+    # TODO: make dummy look like public key, wrap in OP_IF <real_script> <fake_key> 
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
@@ -966,12 +966,20 @@ def generate_all_inputs_test():
     input_priv_keys += [(priv_key.tweak_add(tap_tweak), True)]
 
     ## p2sh
-    #i = len(inputs)
-    # script = "21" + input_pub_keys[i].get_bytes().hex() + "88"
-    #inputs += [{
-    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    #}]
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    # use standard p2pkh within p2sh
+    redeem_script = get_p2pkh_scriptPubKey(pub)
+    s = len(redeem_script) // 2
+    ser_script = f'{s:0x}' + redeem_script
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(pub, priv) + ser_script, ""],
+        'scriptPubKey': "a914" + rmd160(bytes.fromhex(redeem_script)) + "87",
+    }]
+    input_pub_keys += [pub]
+    input_priv_keys += [(priv, False)]
+    # TODO: broken p2sh
+
     ## p2wsh
     #i = len(inputs)
     #inputs += [{
@@ -985,6 +993,7 @@ def generate_all_inputs_test():
     #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
     #}]
     # TODO: add non-standard spend
+    # TODO: unkown witness 
 
 
     sender['given']['recipients'] = addresses
