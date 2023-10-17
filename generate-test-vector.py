@@ -12,6 +12,7 @@ G = ECKey().set(1).get_pubkey()
 sending_test_vectors = []
 
 HRP="sp"
+#TODO: use clearly mock signatures, e.g. 010203040506...
 
 def get_key_pair(index, seed=b'deadbeef', derivation='m/0h'):
 
@@ -814,6 +815,7 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 12),
     ]
     sender_bip32_seed = 'deadbeef'
     input_priv_keys = []
@@ -886,6 +888,7 @@ def generate_all_inputs_test():
     input_pub_keys += [pub]
 
     # p2wpkh hybrid key
+    # TODO: verify is this is even possible
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     sig = priv.sign_ecdsa(msg, False).hex()
@@ -1015,13 +1018,22 @@ def generate_all_inputs_test():
     input_priv_keys += [(priv, False)]
 
     ## p2ms
-    #i = len(inputs)
-    #inputs += [{
-    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    #}]
-    # TODO: add non-standard spend
-    # TODO: unkown witness 
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv_key.sign_ecdsa(msg, False).hex()
+    s = len(sig) // 2
+    inputs += [{
+        'prevout': list(outpoints[i]) + ["00" + f'{s:0x}' + sig, ""],
+        'scriptPubKey': "5121" + pub.get_bytes(False).hex() + "51ae",  
+    }]
+    input_pub_keys += [pub]
+    input_priv_keys += [(priv, False)]
+    # TODO: add non-standard spend mimicing some parsing template
+
+    # scanning negative cases
+    # TODO: unkown witness should be ignored during scanning
+    # TODO: scanning no taproot output
+    # TODO: scanning no inputs for ECDH
 
 
     sender['given']['recipients'] = addresses
