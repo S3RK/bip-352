@@ -812,8 +812,8 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 7),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 8),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
-            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
-            #("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
     ]
     sender_bip32_seed = 'deadbeef'
     input_priv_keys = []
@@ -981,11 +981,39 @@ def generate_all_inputs_test():
     # TODO: broken p2sh
 
     ## p2wsh
-    #i = len(inputs)
-    #inputs += [{
-    #    'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]), ""],
-    #    'scriptPubKey': get_p2pkh_scriptPubKey(input_pub_keys[i]),
-    #}]
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    # use standard p2pkh within p2wsh
+    redeem_script = get_p2pkh_scriptPubKey(pub)
+    msg = reference.sha256(b'message')
+    sig = priv_key.sign_ecdsa(msg, False).hex()
+    inputs += [{
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, pub.get_bytes(False).hex(), redeem_script])],
+        'scriptPubKey': "0020" + reference.sha256(bytes.fromhex(redeem_script)).hex(),
+    }]
+    input_pub_keys += [pub]
+    input_priv_keys += [(priv, False)]
+
+    # p2sh-p2wsh
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    # use standard p2pkh script
+    redeem_script = get_p2pkh_scriptPubKey(pub)
+    witness_program = bytes([0x00, 0x20]) + reference.sha256(bytes.fromhex(redeem_script))
+    msg = reference.sha256(b'message')
+    sig = priv_key.sign_ecdsa(msg, False).hex()
+    inputs += [{
+        'prevout': list(outpoints[i]) + [
+            # scriptSig
+            "22" + witness_program.hex(),
+            # witness
+            serialize_witness_stack([sig, pub.get_bytes(False).hex(), redeem_script])
+        ],
+        'scriptPubKey': "a914" + rmd160(witness_program) + "87",
+    }]
+    input_pub_keys += [pub]
+    input_priv_keys += [(priv, False)]
+
     ## p2ms
     #i = len(inputs)
     #inputs += [{
