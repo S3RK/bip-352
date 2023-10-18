@@ -816,6 +816,7 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 12),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 13),
     ]
     sender_bip32_seed = 'deadbeef'
     input_priv_keys = []
@@ -867,6 +868,7 @@ def generate_all_inputs_test():
     input_pub_keys += [pub]
 
     # p2pkh hybrid key
+    # TODO: uncompressed key
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
@@ -981,7 +983,6 @@ def generate_all_inputs_test():
     }]
     input_pub_keys += [pub]
     input_priv_keys += [(priv, False)]
-    # TODO: broken p2sh
 
     ## p2wsh
     i = len(inputs)
@@ -1028,7 +1029,16 @@ def generate_all_inputs_test():
     }]
     input_pub_keys += [pub]
     input_priv_keys += [(priv, False)]
-    # TODO: add non-standard spend mimicing some parsing template
+
+    # not p2pkh
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(pub, priv), ""],
+        'scriptPubKey': "76a914" + rmd160(pub.get_bytes(False)) + "8875",
+    }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
 
     # scanning negative cases
     # TODO: unkown witness should be ignored during scanning
