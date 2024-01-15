@@ -12,6 +12,7 @@ G = ECKey().set(1).get_pubkey()
 sending_test_vectors = []
 
 HRP="sp"
+#TODO: use clearly mock signatures, e.g. 010203040506...
 
 def get_key_pair(index, seed=b'deadbeef', derivation='m/0h'):
 
@@ -831,26 +832,12 @@ def generate_all_inputs_test():
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 9),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 10),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 11),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 12),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 13),
     ]
     sender_bip32_seed = 'deadbeef'
-    i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
-    i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
-    input_priv_keys = [
-        (i1, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-        (i2, False),
-    ]
-    input_pub_keys = [I1, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2, I2]
+    input_priv_keys = []
+    input_pub_keys = []
 
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
@@ -866,7 +853,8 @@ def generate_all_inputs_test():
     ## included
     # p2pk
     i = len(inputs)
-    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv.sign_ecdsa(msg, False).hex()
     x = len(sig) // 2
     inputs += [{
         'txid': outpoints[i][0],
@@ -875,8 +863,12 @@ def generate_all_inputs_test():
         'txinwitness': '',
         'prevout': {'scriptPubKey': {'hex': "21" + input_pub_keys[i].get_bytes(False).hex() + "ac"}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2pkh
     i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -884,8 +876,13 @@ def generate_all_inputs_test():
         'txinwitness': '',
         'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(input_pub_keys[i])}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2pkh maleated
+    # TODO: make dummy look like public key, wrap in OP_IF <real_script> <fake_key> 
     i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -893,8 +890,13 @@ def generate_all_inputs_test():
         'txinwitness': '',
         'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(input_pub_keys[i])}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2pkh hybrid key
+    # TODO: uncompressed key
     i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -902,16 +904,25 @@ def generate_all_inputs_test():
         'txinwitness': '',
         'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(input_pub_keys[i], hybrid=True)}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2wpkh
     i = len(inputs)
-    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
-    x = len(sig) // 2
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv.sign_ecdsa(msg, False).hex()
     inputs += [{
         'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()])],
         'scriptPubKey': "0014" + reference.hash160(input_pub_keys[i].get_bytes(False)).hex(),
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2wpkh hybrid key
+    # TODO: verify is this is even possible
     i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv.sign_ecdsa(msg, False).hex()
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -919,6 +930,9 @@ def generate_all_inputs_test():
         'txinwitness': serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()]),
         'prevout': {'scriptPubKey': {'hex': "0014" + reference.hash160(encode_hybrid_key(input_pub_keys[i])).hex()}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2sh-p2wpkh
     i = len(inputs)
     sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
@@ -931,8 +945,12 @@ def generate_all_inputs_test():
         'txinwitness': serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()]),
         'prevout': {'scriptPubKey': {'hex': "a914" + reference.hash160(witnessProgramm).hex() + "87"}},
     }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
     # p2tr key path
     i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -940,19 +958,17 @@ def generate_all_inputs_test():
         'txinwitness': get_p2tr_witness(input_priv_keys[i][0]),
         'prevout': {'scriptPubKey': {'hex': get_p2tr_scriptPubKey(input_pub_keys[i])}},
     }]
-    # mark input as taproot
-    input_priv_keys[i] = (input_priv_keys[i][0], True)
+    input_priv_keys += [(priv, True)]
+    input_pub_keys += [pub]
 
     # p2tr script path
     i = len(inputs)
+    priv_key, pub_key = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
     # can verify calculation below with following command
-    # tap 782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338 1 '[OP_TRUE]' 0
+    # tap ae0554b17264a231ec94407263897a6294a92f8f1f587e56c1d4e9a1bad0d571 1 '[OP_TRUE]' 0
     leaf_version = "c0"
     script = "51" # OP_TRUE
-    # copy keys
-    pub_key = ECPubKey().set(input_pub_keys[i].get_bytes())
-    priv_key = ECKey().set(input_priv_keys[i][0].get_bytes())
-    if priv_key.get_pubkey().get_y() % 2 != 0:
+    if pub_key.get_y() % 2 != 0:
         priv_key.negate()
     leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + "01" + script))
     tap_tweak = TaggedHash("TapTweak", pub_key.get_bytes() + leaf_hash)
@@ -965,8 +981,9 @@ def generate_all_inputs_test():
         'txinwitness': serialize_witness_stack([script, control_block]),
         'prevout': {'scriptPubKey': {'hex': get_p2tr_scriptPubKey(tweaked_key)}},
     }]
-    input_pub_keys[i] = tweaked_key
-    input_priv_keys[i] = (priv_key.tweak_add(tap_tweak), True)
+    input_pub_keys += [tweaked_key]
+    input_priv_keys += [(priv_key.tweak_add(tap_tweak), True)]
+    eligible = i
 
     ## excluded output types
     # TODO: p2tr spend path with P == H
@@ -975,19 +992,24 @@ def generate_all_inputs_test():
     # TODO: p2ms
     # TODO: add non-standard spend
 
+    # scanning negative cases
+    # TODO: unkown witness should be ignored during scanning
+    # TODO: scanning no taproot output
+    # TODO: scanning no inputs for ECDH
 
-    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     A_sum = sum([p if not input_priv_keys[i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(input_pub_keys)])
     deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
+    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
 
     output_pub_keys = [recipient[0] for recipient in outputs]
 
     test_case['sending'].extend([sender])
     recipient['given']['vin'] = inputs
     recipient['given']['outputs'] = output_pub_keys
+
 
     add_to_wallet = reference.scanning(
         scan,
@@ -1017,6 +1039,71 @@ def generate_all_inputs_test():
     test_cases.append(test_case)
     return test_cases
 
+def generate_unknown_segwit_ver_test():
+    sender, recipient, test_case = new_test_case()
+
+    msg = reference.sha256(b'message')
+    aux = reference.sha256(b'random auxiliary data')
+    outpoints = [
+            ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+            ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+    ]
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+
+    inputs = []
+    input_priv_keys = []
+    input_pub_keys = []
+
+    ## included
+    # p2pkh
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    inputs += [{
+        'prevout': list(outpoints[i]) + [get_p2pkh_scriptsig(pub, priv), ""],
+        'scriptPubKey': get_p2pkh_scriptPubKey(pub),
+    }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
+    # unknown segwit version 
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv.sign_ecdsa(msg, False).hex()
+    inputs += [{
+        'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, pub.get_bytes(False).hex()])],
+        'scriptPubKey': "5214" + rmd160(pub.get_bytes(False)),
+    }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
+    sender['given']['recipients'] = addresses
+    sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+    # TODO: encode failure of sending explicitly 
+    test_case['sending'].extend([sender])
+
+    recipient['given']['inputs'] = inputs
+    # create plausible outputs
+    # a) using all detected keys
+    outputs_a = reference.create_outputs(input_priv_keys, reference.hash_outpoints(outpoints), addresses, hrp=HRP)
+    # b) using only p2pkh input
+    outputs_b = reference.create_outputs(input_priv_keys[:1], reference.hash_outpoints(outpoints), addresses, hrp=HRP)
+    recipient['given']['outputs'] = [outputs_a[0][0], outputs_b[0][0]]
+    test_case['receiving'].extend([recipient])
+
+    test_case["comment"] = "Skipped tx: unknown segwit version input"
+    return [test_case]
+
+    # scanning negative cases
+    # TODO: scanning no taproot output
+    # TODO: scanning no inputs for ECDH
+
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
@@ -1026,6 +1113,7 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_multiple_outputs_with_labels_tests() +
         generate_change_tests(),
         # generate_all_inputs_test(),
+
         f,
         indent=4,
     )
