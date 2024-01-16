@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
+import bip32  # type: ignore
 import hashlib
 import json
-import bip32  # type: ignore
+import struct
+from io import BytesIO
 from typing import List, Tuple, Dict, Union, cast
 from sys import argv
 from functools import reduce
@@ -10,76 +12,64 @@ from functools import reduce
 # local files
 from bech32m import convertbits, bech32_encode, decode, Encoding
 from secp256k1 import ECKey, ECPubKey, TaggedHash
+from bitcoin_utils import (
+        deser_txid,
+        from_hex,
+        hash160,
+        is_p2pkh,
+        is_p2sh,
+        is_p2wpkh,
+        is_p2tr,
+        ser_uint32,
+        COutPoint,
+        CTxInWitness,
+        VinInfo,
+    )
 
 
-def hash160(s: Union[bytes, bytearray]) -> bytes:
-    return hashlib.new("ripemd160", hashlib.sha256(s).digest()).digest()
-
-
-def is_p2tr(spk: bytes) -> bool:
-    if len(spk) != 34:
-        return False
-    # OP_1 OP_PUSHBYTES_32 <32 bytes>
-    return (spk[0] == 0x51) & (spk[1] == 0x20)
-
-
-def is_p2wpkh(spk: bytes) -> bool:
-    if len(spk) != 22:
-        return False
-    # OP_0 OP_PUSHBYTES_20 <20 bytes>
-    return (spk[0] == 0x00) & (spk[1] == 0x14)
-
-
-def is_p2sh(spk: bytes) -> bool:
-    if len(spk) != 23:
-        return False
-    # OP_HASH160 OP_PUSHBYTES_20 <20 bytes> OP_EQUAL
-    return (spk[0] == 0xA9) & (spk[1] == 0x14) & (spk[-1] == 0x87)
-
-
-def is_p2pkh(spk: bytes) -> bool:
-    if len(spk) != 25:
-        return False
-    # OP_DUP OP_HASH160 OP_PUSHBYTES_20 <20 bytes> OP_EQUALVERIFY OP_CHECKSIG
-    return (spk[0] == 0x76) & (spk[1] == 0xA9) & (spk[2] == 0x14) & (spk[-2] == 0x88) & (spk[-1] == 0xAC)
-
-
-def get_pubkey_from_input(input) -> ECPubKey:
-    spk = bytes.fromhex(input["prevout"]["scriptPubKey"]["hex"])
-    if is_p2pkh(spk):
-        spk_pkh = spk[3:3 + 20]
-        script_sig = bytes.fromhex(input["scriptSig"])
-        for i in range(len(script_sig), 0, -1):
+def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
+    if is_p2pkh(vin.prevout):
+        # skip the first 3 op_codes and grab the 20 byte hash
+        # from the scriptPubKey
+        spk_hash = vin.prevout[3:3 + 20]
+        for i in range(len(vin.scriptSig), 0, -1):
             if i - 33 >= 0:
-                pk = script_sig[i - 33:i]
-                pkh = hash160(pk)
-                if pkh == spk_pkh:
-                    return ECPubKey().set(pk)
-        # should never happen, as this would be an invalid spend
-        return ECPubKey()
-    if is_p2sh(spk):
-        redeem_script = bytes.fromhex(input["scriptSig"])[1:]
+                # starting from the back, we move over the scriptSig with a 33 byte
+                # window (to match a compressed pubkey). we hash this and check if it matches
+                # the 20 byte has from the scriptPubKey. for standard scriptSigs, this will match
+                # right away because the pubkey is the last item in the scriptSig.
+                # if its a non-standard (malleated) scriptSig, we will still find the pubkey if its
+                # a compressed pubkey.
+                #
+                # note: this is an incredibly inefficient implementation, for demonstration purposes only.
+                pubkey_bytes = vin.scriptSig[i - 33:i]
+                pubkey_hash = hash160(pubkey_bytes)
+                if pubkey_hash == spk_hash:
+                    pubkey = ECPubKey().set(pubkey_bytes)
+                    if (pubkey.valid) & (pubkey.compressed):
+                        return pubkey
+    if is_p2sh(vin.prevout):
+        redeem_script = vin.scriptSig[1:]
         if is_p2wpkh(redeem_script):
-            return ECPubKey().set(redeem_script[-33:])
-    if is_p2wpkh(spk):
-        # the witness must contain two items and the second item is the pubkey
-        return ECPubKey().set(bytes.fromhex(input["txinwitness"])[-33:])
-    if is_p2tr(spk):
-        return ECPubKey().set(spk[2:])
+            txin = CTxInWitness().deserialize(redeem_script)
+            pubkey = ECPubKey().set(txin.scriptWitness.stack[-1])
+            if (pubkey.valid) & (pubkey.compressed):
+                return pubkey
+    if is_p2wpkh(vin.prevout):
+        txin = CTxInWitness().deserialize(vin.txinwitness)
+        pubkey = ECPubKey().set(txin.scriptWitness.stack[-1])
+        if (pubkey.valid) & (pubkey.compressed):
+            return pubkey
+    if is_p2tr(vin.prevout):
+        pubkey = ECPubKey().set(vin.prevout[2:])
+        if (pubkey.valid) & (pubkey.compressed):
+            return pubkey
     return ECPubKey()
 
 
-def ser_uint32(u: int) -> bytes:
-    return u.to_bytes(4, "big")
-
-
-def get_input_nonce(outpoints: List[Tuple[str, int]], sum_input_pubkeys: ECPubKey) -> bytes:
-    lowest_outpoint = sorted([
-        bytes.fromhex(txid)[::-1] + n.to_bytes(4, "little")
-        for txid, n in outpoints
-    ])[0]
-
-    return TaggedHash("BIP0352/Inputs", lowest_outpoint + cast(bytes, sum_input_pubkeys.get_bytes(False)))
+def get_input_hash(outpoints: List[COutPoint], sum_input_pubkeys: ECPubKey) -> bytes:
+    lowest_outpoint = sorted(outpoints, key=lambda outpoint: (outpoint.hash, outpoint.n))[0]
+    return TaggedHash("BIP0352/Inputs", lowest_outpoint.serialize() + cast(bytes, sum_input_pubkeys.get_bytes(False)))
 
 
 def derive_silent_payment_key_pair(seed: bytes) -> Tuple[ECKey, ECKey, ECPubKey, ECPubKey]:
@@ -121,7 +111,7 @@ def decode_silent_payment_address(address: str, hrp: str = "tsp") -> Tuple[ECPub
     return B_scan, B_spend
 
 
-def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_nonce: bytes, recipients: List[Tuple[str, float]], hrp="tsp") -> List[Tuple[str, float]]:
+def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_hash: bytes, recipients: List[Tuple[str, float]], hrp="tsp") -> List[Tuple[str, float]]:
     G = ECKey().set(1).get_pubkey()
     negated_keys = []
     for key, is_xonly in input_priv_keys:
@@ -143,7 +133,7 @@ def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_nonce: bytes
     outputs = []
     for B_scan, B_m_values in silent_payment_groups.items():
         k = 0
-        ecdh_shared_secret = input_nonce * a_sum * B_scan
+        ecdh_shared_secret = input_hash * a_sum * B_scan
 
         # Sort B_m_values by amount to ensure determinism in the tests
         # Note: the receiver can find the outputs regardless of the ordering, this
@@ -157,9 +147,9 @@ def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_nonce: bytes
     return outputs
 
 
-def scanning(b_scan: ECKey, B_spend: ECPubKey, A_sum: ECPubKey, input_nonce: bytes, outputs_to_check: List[ECPubKey], labels: Dict[str, str] = {}) -> List[Dict[str, str]]:
+def scanning(b_scan: ECKey, B_spend: ECPubKey, A_sum: ECPubKey, input_hash: bytes, outputs_to_check: List[ECPubKey], labels: Dict[str, str] = {}) -> List[Dict[str, str]]:
     G = ECKey().set(1).get_pubkey()
-    ecdh_shared_secret = input_nonce * b_scan * A_sum
+    ecdh_shared_secret = input_hash * b_scan * A_sum
     k = 0
     wallet = []
     while True:
@@ -215,24 +205,33 @@ if __name__ == "__main__":
             given = sending_test["given"]
             expected = sending_test["expected"]
 
-            outpoints = [(input["txid"], input["vout"]) for input in given["vin"]]
+            vins = [
+                VinInfo(
+                    outpoint=COutPoint(hash=deser_txid(input["txid"]), n=input["vout"]),
+                    scriptSig=bytes.fromhex(input["scriptSig"]),
+                    txinwitness=CTxInWitness().deserialize(from_hex(input["txinwitness"])),
+                    prevout=bytes.fromhex(input["prevout"]["scriptPubKey"]["hex"]),
+                    private_key=ECKey().set(bytes.fromhex(input["private_key"])),
+                )
+                for input in given["vin"]
+            ]
             # Conver the tuples to lists so they can be easily compared to the json list of lists from the given test vectors
             input_priv_keys = []
             input_pub_keys = []
-            for input in given["vin"]:
-                pubkey = get_pubkey_from_input(input)
+            for vin in vins:
+                pubkey = get_pubkey_from_input(vin)
                 if not pubkey.valid:
                     continue
                 input_priv_keys.append((
-                    ECKey().set(bytes.fromhex(input["private_key"])),
-                    is_p2tr(bytes.fromhex(input["prevout"]["scriptPubKey"]["hex"])),
+                    vin.private_key,
+                    is_p2tr(vin.prevout),
                 ))
                 input_pub_keys.append(pubkey)
             A_sum = reduce(lambda x, y: x + y, input_pub_keys)
-            input_nonce = get_input_nonce(outpoints, A_sum)
+            input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
             sending_outputs = [
                 list(t)
-                for t in create_outputs(input_priv_keys, input_nonce, given["recipients"], hrp="sp")
+                for t in create_outputs(input_priv_keys, input_hash, given["recipients"], hrp="sp")
             ]
             # Check that for a given set of inputs, we were able to generate the expected outputs for the receiver
             sending_outputs.sort(key=lambda x: cast(float, x[1]))
@@ -247,10 +246,15 @@ if __name__ == "__main__":
             outputs_to_check = [
                 ECPubKey().set(bytes.fromhex(p)) for p in given["outputs"]
             ]
-            outpoints = [
-                (input["txid"], input["vout"]) for input in given["vin"]
+            vins = [
+                VinInfo(
+                    outpoint=COutPoint(hash=deser_txid(input["txid"]), n=input["vout"]),
+                    scriptSig=bytes.fromhex(input["scriptSig"]),
+                    txinwitness=CTxInWitness().deserialize(from_hex(input["txinwitness"])),
+                    prevout=bytes.fromhex(input["prevout"]["scriptPubKey"]["hex"]),
+                )
+                for input in given["vin"]
             ]
-
             # Check that the given inputs for the receiving test match what was generated during the sending test
             receiving_addresses = []
             b_scan = ECKey().set(bytes.fromhex(given["key_material"]["scan_priv_key"]))
@@ -273,13 +277,13 @@ if __name__ == "__main__":
             # Check that the silent payment addresses match for the given BIP32 seed and labels dictionary
             assert (receiving_addresses == expected["addresses"]), "Receiving addresses don't match"
             input_pub_keys = []
-            for input in given["vin"]:
-                pubkey = get_pubkey_from_input(input)
+            for vin in vins:
+                pubkey = get_pubkey_from_input(vin)
                 if not pubkey.valid:
                     continue
                 input_pub_keys.append(pubkey)
             A_sum = reduce(lambda x, y: x + y, input_pub_keys)
-            input_nonce = get_input_nonce(outpoints, A_sum)
+            input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
             pre_computed_labels = {
                 (generate_label(b_scan, label) * G).get_bytes(False).hex(): generate_label(b_scan, label).hex()
                 for label in given["labels"]
@@ -288,7 +292,7 @@ if __name__ == "__main__":
                 b_scan=b_scan,
                 B_spend=B_spend,
                 A_sum=A_sum,
-                input_nonce=input_nonce,
+                input_hash=input_hash,
                 outputs_to_check=outputs_to_check,
                 labels=pre_computed_labels,
             )

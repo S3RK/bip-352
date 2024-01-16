@@ -3,6 +3,7 @@
 import reference
 import json
 from secp256k1 import *
+from bitcoin_utils import deser_txid, hash160, COutPoint
 import bip32
 from copy import deepcopy
 from importlib import reload
@@ -35,7 +36,7 @@ def encode_hybrid_key(pub_key):
 
 def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
     msg = hashlib.sha256(b'message').digest()
-    sig = priv_key.sign_ecdsa(msg, False).hex()
+    sig = priv_key.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     s = len(sig) // 2
     if not hybrid:
         pubkey_bytes = bytes([0x21]) + pub_key.get_bytes(False)
@@ -152,7 +153,7 @@ def generate_labeled_output_tests():
         recipient['given']['labels'] = label_ints
 
         A_sum = sum(input_pub_keys)
-        deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+        deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
         outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [r[0] for r in outputs]
@@ -252,7 +253,7 @@ def generate_single_output_outpoint_tests():
         recipient['expected']['addresses'].extend([address])
 
         A_sum = sum(input_pub_keys)
-        deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+        deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
         outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [recipient[0] for recipient in outputs]
@@ -342,7 +343,7 @@ def generate_multiple_output_tests():
     recipient2['expected']['addresses'] = [address2]
 
     A_sum = sum(input_pub_keys)
-    deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses1, hrp=HRP)
     sender['expected']['outputs'] = outputs
     output_pub_keys = [recipient[0] for recipient in outputs]
@@ -445,7 +446,7 @@ def generate_paying_to_self_test():
     recipient['expected']['addresses'].extend([address])
 
     A_sum = sum(input_pub_keys)
-    deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
     sender['expected']['outputs'] = outputs
     output_pub_keys = [recipient[0] for recipient in outputs]
@@ -537,7 +538,7 @@ def generate_multiple_outputs_with_labels_tests():
         recipient['expected']['addresses'] = sp_addresses[i]
         recipient['given']['labels'] = labels[i]
         A_sum = sum(input_pub_keys)
-        deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+        deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
         outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addrs, hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [recipient[0] for recipient in outputs]
@@ -676,7 +677,7 @@ def generate_single_output_input_tests():
         recipient['expected']['addresses'].extend([address])
         
         A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(inputs[1])])
-        deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+        deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
         outputs = reference.create_outputs(inputs[0], deterministic_nonce, [(address, 1.0)], hrp=HRP)
         sender['expected']['outputs'] = outputs
@@ -768,7 +769,7 @@ def generate_change_tests():
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     A_sum = sum(input_pub_keys)
-    deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
 
@@ -854,7 +855,7 @@ def generate_all_inputs_test():
     # p2pk
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    sig = priv.sign_ecdsa(msg, False).hex()
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     x = len(sig) // 2
     inputs += [{
         'txid': outpoints[i][0],
@@ -910,7 +911,7 @@ def generate_all_inputs_test():
     # p2wpkh
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    sig = priv.sign_ecdsa(msg, False).hex()
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     inputs += [{
         'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()])],
         'scriptPubKey': "0014" + reference.hash160(input_pub_keys[i].get_bytes(False)).hex(),
@@ -922,7 +923,7 @@ def generate_all_inputs_test():
     # TODO: verify is this is even possible
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    sig = priv.sign_ecdsa(msg, False).hex()
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     inputs += [{
         'txid': outpoints[i][0],
         'vout': outpoints[i][1],
@@ -935,7 +936,7 @@ def generate_all_inputs_test():
 
     # p2sh-p2wpkh
     i = len(inputs)
-    sig = input_priv_keys[i][0].sign_ecdsa(msg, False).hex()
+    sig = input_priv_keys[i][0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     x = len(sig) // 2
     witnessProgramm = bytes([0x00, 0x14]) + reference.hash160(input_pub_keys[i].get_bytes(False))
     inputs += [{
@@ -999,7 +1000,7 @@ def generate_all_inputs_test():
 
     sender['given']['recipients'] = addresses
     A_sum = sum([p if not input_priv_keys[i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(input_pub_keys)])
-    deterministic_nonce = reference.get_input_nonce(outpoints, A_sum)
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
     sender['given']['inputs'] = add_private_keys(deepcopy(inputs), input_priv_keys)
@@ -1042,8 +1043,8 @@ def generate_all_inputs_test():
 def generate_unknown_segwit_ver_test():
     sender, recipient, test_case = new_test_case()
 
-    msg = reference.sha256(b'message')
-    aux = reference.sha256(b'random auxiliary data')
+    msg = hashlib.sha256(b'message').digest()
+    aux = hashlib.sha256(b'random auxiliary data').digest()
     outpoints = [
             ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
             ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
@@ -1075,10 +1076,10 @@ def generate_unknown_segwit_ver_test():
     # unknown segwit version 
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    sig = priv.sign_ecdsa(msg, False).hex()
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     inputs += [{
         'prevout': list(outpoints[i]) + ["", serialize_witness_stack([sig, pub.get_bytes(False).hex()])],
-        'scriptPubKey': "5214" + rmd160(pub.get_bytes(False)),
+        'scriptPubKey': "5214" + hash160(pub.get_bytes(False)),
     }]
     input_priv_keys += [(priv, False)]
     input_pub_keys += [pub]
