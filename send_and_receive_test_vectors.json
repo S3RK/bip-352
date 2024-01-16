@@ -4,25 +4,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022026f4ef66d063005c5dc6c2a35ffb02aed16c064dc2f1fb3da0fe8263513327610220493e8c1237ea752f20a7a02dce926f488074284b474a4550de8bd6ba95642f4521025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "46304402200154af1c50b25311614a334c42063991d11900b135893d59080fa25d9b23136102203da3b5ef5230132f162c08b44079cd9e9c30186a14eba585c50d9278f2734e4621025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402203611698ae6216ade1ac324e164f14a900d927019dc7d5ec24148b7b459e29e8102201dc6afa53903b3f52088cd6aece3d0ec996048199eec72a7c83bc09cbccaaeb42103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022049a285795ddb08016d1fb0af1b83ca30903167142df2766de459ff25aa83ea07022100c3f0747bb7cc04f437e6c3c64c14443467fae86721f056b8f78e4aeaacd40cb22103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            },
                             "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
                     ],
@@ -36,7 +40,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9",
+                            "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1",
                             1.0
                         ]
                     ]
@@ -46,28 +50,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022026f4ef66d063005c5dc6c2a35ffb02aed16c064dc2f1fb3da0fe8263513327610220493e8c1237ea752f20a7a02dce926f488074284b474a4550de8bd6ba95642f4521025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "46304402200154af1c50b25311614a334c42063991d11900b135893d59080fa25d9b23136102203da3b5ef5230132f162c08b44079cd9e9c30186a14eba585c50d9278f2734e4621025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402203611698ae6216ade1ac324e164f14a900d927019dc7d5ec24148b7b459e29e8102201dc6afa53903b3f52088cd6aece3d0ec996048199eec72a7c83bc09cbccaaeb42103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022049a285795ddb08016d1fb0af1b83ca30903167142df2766de459ff25aa83ea07022100c3f0747bb7cc04f437e6c3c64c14443467fae86721f056b8f78e4aeaacd40cb22103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9"
+                        "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -81,9 +89,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9",
-                            "priv_key_tweak": "8e4bbee712779f746337cadf39e8b1eab8e8869dd40f2e3a7281113e858ffc0b",
-                            "signature": "e18fe06280456ed533808606f73e0d46dea49f90751078d127379a8e176a6e56bb1e86f4ca3522a58e760a4ea68e6f3a26b24dcbcb9c614d4d5d2bce9bf956bf"
+                            "pub_key": "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1",
+                            "priv_key_tweak": "f438b40179a3c4262de12986c0e6cce0634007cdc79c1dcd3e20b9ebc2e7eef6",
+                            "signature": "74f85b856337fbe837643b86f462118159f93ac4acc2671522f27e8f67b079959195ccc7a5dbee396d2909f5d680d6e30cda7359aa2755822509b70d6b0687a1"
                         }
                     ]
                 }
@@ -95,25 +103,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "463044022025c9e77d45eef0bca3f5c432a91340017727cdd0d9588a0e9b7e46ea8aefba07022050566c69c1ffab349a00e850c4a68ff5c71dc482c19ff6d2208fdcb15ebbe59e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "47304502207225630c4feb30b5f48fad4a4d93c7b04dcfe594248237b2a7f7c597916adb18022100f335f1481ad578e18a39b91af6b6090b0cb88d66286155f421c75ce80a2bf3ab21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022038c088affbfa32cf51acc7c0553d13c1c29cef531bcf1d6fdaf8aa122ae3793d022100f04e8f65749adf0027466da6be82fdfae50504f912bf165013a5a33415ebf2292103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022007da9cd01d18203deb7d03700add511151640a442938a87800c8ceb65b73b779022100fff9b866a77f71c04029c327769a279c752c7ae9a97e41fe70f8435402bf2f3b2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            },
                             "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
                     ],
@@ -127,7 +139,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9",
+                            "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1",
                             1.0
                         ]
                     ]
@@ -137,28 +149,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "463044022025c9e77d45eef0bca3f5c432a91340017727cdd0d9588a0e9b7e46ea8aefba07022050566c69c1ffab349a00e850c4a68ff5c71dc482c19ff6d2208fdcb15ebbe59e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "47304502207225630c4feb30b5f48fad4a4d93c7b04dcfe594248237b2a7f7c597916adb18022100f335f1481ad578e18a39b91af6b6090b0cb88d66286155f421c75ce80a2bf3ab21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022038c088affbfa32cf51acc7c0553d13c1c29cef531bcf1d6fdaf8aa122ae3793d022100f04e8f65749adf0027466da6be82fdfae50504f912bf165013a5a33415ebf2292103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022007da9cd01d18203deb7d03700add511151640a442938a87800c8ceb65b73b779022100fff9b866a77f71c04029c327769a279c752c7ae9a97e41fe70f8435402bf2f3b2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9"
+                        "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -172,9 +188,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "39a1e5ff6206cd316151b9b34cee4f80bb48ce61adee0a12ce7ff05ea436a1d9",
-                            "priv_key_tweak": "8e4bbee712779f746337cadf39e8b1eab8e8869dd40f2e3a7281113e858ffc0b",
-                            "signature": "e18fe06280456ed533808606f73e0d46dea49f90751078d127379a8e176a6e56bb1e86f4ca3522a58e760a4ea68e6f3a26b24dcbcb9c614d4d5d2bce9bf956bf"
+                            "pub_key": "3e9fce73d4e77a4809908e3c3a2e54ee147b9312dc5044a193d1fc85de46e3c1",
+                            "priv_key_tweak": "f438b40179a3c4262de12986c0e6cce0634007cdc79c1dcd3e20b9ebc2e7eef6",
+                            "signature": "74f85b856337fbe837643b86f462118159f93ac4acc2671522f27e8f67b079959195ccc7a5dbee396d2909f5d680d6e30cda7359aa2755822509b70d6b0687a1"
                         }
                     ]
                 }
@@ -186,25 +202,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                3,
-                                "483046022100fb4ec9925e42682cb58a199020fc51aef9e43ad0d751d8c0f052cae9ad5422f3022100f2a666fc687ee37a972cb708c55f6a12995280e7a07992ee3b31404567d760a821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 3,
+                            "scriptSig": "46304402205e25c27d61caaf170eddca2f40fc8ff10671347529d20e8a9ca5513b0edc9fec0220752062d019b87aa05842e204cb1a4310a6d4680b18732fb1c30457a4d753ea5421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                7,
-                                "473045022100dc75f5a7234f336730c52cb8cd06ad4f6d8ed390003088a53f2c69c30eaaeb7e0220575f4fdd3eff4690654e5d68d3daf9791ab14d6b00dcc3c81708dcf6d9125fcc2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 7,
+                            "scriptSig": "463044022005a446a935c20df86ee87b22f2d3e3a169910a3521d45df0219a831aef717adb0220796a26026ccf7a88b470ac89ffab2454330fd2c7fbf5181d7bfcc98476f000ef2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            },
                             "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
                     ],
@@ -218,7 +238,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "162f2298705b3ddca01ce1d214eedff439df3927582938d08e29e464908db00b",
+                            "79e71baa2ba3fc66396de3a04f168c7bf24d6870ec88ca877754790c1db357b6",
                             1.0
                         ]
                     ]
@@ -228,28 +248,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                3,
-                                "483046022100fb4ec9925e42682cb58a199020fc51aef9e43ad0d751d8c0f052cae9ad5422f3022100f2a666fc687ee37a972cb708c55f6a12995280e7a07992ee3b31404567d760a821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 3,
+                            "scriptSig": "46304402205e25c27d61caaf170eddca2f40fc8ff10671347529d20e8a9ca5513b0edc9fec0220752062d019b87aa05842e204cb1a4310a6d4680b18732fb1c30457a4d753ea5421025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                7,
-                                "473045022100dc75f5a7234f336730c52cb8cd06ad4f6d8ed390003088a53f2c69c30eaaeb7e0220575f4fdd3eff4690654e5d68d3daf9791ab14d6b00dcc3c81708dcf6d9125fcc2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 7,
+                            "scriptSig": "463044022005a446a935c20df86ee87b22f2d3e3a169910a3521d45df0219a831aef717adb0220796a26026ccf7a88b470ac89ffab2454330fd2c7fbf5181d7bfcc98476f000ef2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "162f2298705b3ddca01ce1d214eedff439df3927582938d08e29e464908db00b"
+                        "79e71baa2ba3fc66396de3a04f168c7bf24d6870ec88ca877754790c1db357b6"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -263,9 +287,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "162f2298705b3ddca01ce1d214eedff439df3927582938d08e29e464908db00b",
-                            "priv_key_tweak": "f06d8d90561bdbc3e511c3bec7355ad3c858aaf38a132c772d6cd82ec04102ac",
-                            "signature": "4c900d573964d31953acdaedbcbb7866fedbdc215417adfd4173073f86179cad5903ae64490629fae610bf879263c3b9f5c7e6ec1b32a159e2d2e60a16d36597"
+                            "pub_key": "79e71baa2ba3fc66396de3a04f168c7bf24d6870ec88ca877754790c1db357b6",
+                            "priv_key_tweak": "4851455bfbe1ab4f80156570aa45063201aa5c9e1b1dcd29f0f8c33d10bf77ae",
+                            "signature": "10332eea808b6a13f70059a8a73195808db782012907f5ba32b6eae66a2f66b4f65147e2b968a1678c5f73d57d5d195dbaf667b606ff80c8490eac1f3b710657"
                         }
                     ]
                 }
@@ -277,25 +301,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "4630440220619f54cb7bc369a6e843337fdad35c766879caf229812c6555ce7ceba96ca78a0220401d70a61dbfc80024351ae088b72749dacfbf79342babd34940ba6df029fa7921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 7,
+                            "scriptSig": "473045022100dd136328ca4fa8aa29d55e7db064944b469dcbf00a3735b5ba9bc9faf51563c502205e5f52bb9a67daa486b9d173fe4aabd11ae37f1d8367a7a03f6bd9437620aa2e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "473045022100b5773a2036bc767dd5968eecc296b73da26d05e157a2a9a20ae77ac5be7f4349022037f886094d441a5e57c45404148f9e73733e0b8791d5e07aae98dfb0a2deab872103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 3,
+                            "scriptSig": "483046022100cb72732ff48f1905fc0630d68f3b2ba405a1867a714677d16d2856acfa11fb06022100c421ed18d26429224bfbd0b6d8cfc18b56bbd5a951bc047d578c7357d1ad90ce2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            },
                             "private_key": "93f5ed907ad5b2bdbbdcb5d9116ebc0a4e1f92f910d5260237fa45a9408aad16"
                         }
                     ],
@@ -309,7 +337,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "d9ede52f7e1e64e36ccf895ca0250daad96b174987079c903519b17852b21a3f",
+                            "f4c2da807f89cb1501f1a77322a895acfb93c28e08ed2724d2beb8e44539ba38",
                             1.0
                         ]
                     ]
@@ -319,28 +347,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "4630440220619f54cb7bc369a6e843337fdad35c766879caf229812c6555ce7ceba96ca78a0220401d70a61dbfc80024351ae088b72749dacfbf79342babd34940ba6df029fa7921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 7,
+                            "scriptSig": "473045022100dd136328ca4fa8aa29d55e7db064944b469dcbf00a3735b5ba9bc9faf51563c502205e5f52bb9a67daa486b9d173fe4aabd11ae37f1d8367a7a03f6bd9437620aa2e21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "473045022100b5773a2036bc767dd5968eecc296b73da26d05e157a2a9a20ae77ac5be7f4349022037f886094d441a5e57c45404148f9e73733e0b8791d5e07aae98dfb0a2deab872103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 3,
+                            "scriptSig": "483046022100cb72732ff48f1905fc0630d68f3b2ba405a1867a714677d16d2856acfa11fb06022100c421ed18d26429224bfbd0b6d8cfc18b56bbd5a951bc047d578c7357d1ad90ce2103bd85685d03d111699b15d046319febe77f8de5286e9e512703cdee1bf3be3792",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a914d9317c66f54ff0a152ec50b1d19c25be50c8e15988ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "d9ede52f7e1e64e36ccf895ca0250daad96b174987079c903519b17852b21a3f"
+                        "f4c2da807f89cb1501f1a77322a895acfb93c28e08ed2724d2beb8e44539ba38"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -354,9 +386,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "d9ede52f7e1e64e36ccf895ca0250daad96b174987079c903519b17852b21a3f",
-                            "priv_key_tweak": "44b827516c2128287b1d571add7cfeb42f122e86bc40b4eb2b21ac144607fdb2",
-                            "signature": "1bdb32461dd502ee9c19c7dff5f3801a26c2bc0ffe6f34671053ef7083ea0d5adca6036564252a76e427555deb17edd6f801d45cd7b830d7e3003eb3c8c85263"
+                            "pub_key": "f4c2da807f89cb1501f1a77322a895acfb93c28e08ed2724d2beb8e44539ba38",
+                            "priv_key_tweak": "ab0c9b87181bf527879f48db9f14a02233619b986f8e8f2d5d408ce68a709f51",
+                            "signature": "398a9790865791a9db41a8015afad3a47d60fec5086c50557806a49a1bc038808632b8fe679a7bb65fc6b455be994502eed849f1da3729cd948fc7be73d67295"
                         }
                     ]
                 }
@@ -368,25 +400,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022066227d6a2b2219e3f77719031cfc157f9d6a3383e7a2ed2fa1bd37959465f0b502203c09ccb856c8748337a736e0d7a1348874f5fc70dedea495f4c669844f3e8f3821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "47304502202d96a857596432638c04c90f371271ab10396c78c45890ab89ea403e9b5d0144022100f442e6802565e401d1f16c4732e6a7928f0a16cbca834c79996fc4309e46992221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100b55cf670ce7799b75d6fb527eaba83d29f68f3aa7d9e13e9d088a4832fdc3742022100c445d3e22730fff54ae83b329cf3e4f81fb3065eadd68c52da089f086c60d3b221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "46304402206191694d7280de3010bfa5f2ac342569fb2d17232beaa93fcb3ff3fe19443f9b0220436ab3e61a6f8143dc92e749fa35018b42d5d41ff3ae3eb30c05c9b0e369240921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         }
                     ],
@@ -400,7 +436,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "0aafdcdb5893ae813299b16eea75f34ec16653ac39171da04d7c4e6d2e09ab8e",
+                            "548ae55c8eec1e736e8d3e520f011f1f42a56d166116ad210b3937599f87f566",
                             1.0
                         ]
                     ]
@@ -410,28 +446,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022066227d6a2b2219e3f77719031cfc157f9d6a3383e7a2ed2fa1bd37959465f0b502203c09ccb856c8748337a736e0d7a1348874f5fc70dedea495f4c669844f3e8f3821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "47304502202d96a857596432638c04c90f371271ab10396c78c45890ab89ea403e9b5d0144022100f442e6802565e401d1f16c4732e6a7928f0a16cbca834c79996fc4309e46992221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100b55cf670ce7799b75d6fb527eaba83d29f68f3aa7d9e13e9d088a4832fdc3742022100c445d3e22730fff54ae83b329cf3e4f81fb3065eadd68c52da089f086c60d3b221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "46304402206191694d7280de3010bfa5f2ac342569fb2d17232beaa93fcb3ff3fe19443f9b0220436ab3e61a6f8143dc92e749fa35018b42d5d41ff3ae3eb30c05c9b0e369240921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "0aafdcdb5893ae813299b16eea75f34ec16653ac39171da04d7c4e6d2e09ab8e"
+                        "548ae55c8eec1e736e8d3e520f011f1f42a56d166116ad210b3937599f87f566"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -445,9 +485,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "0aafdcdb5893ae813299b16eea75f34ec16653ac39171da04d7c4e6d2e09ab8e",
-                            "priv_key_tweak": "bf7336bdc02f624715aab385cc62b71f6f494bf8a7dd0fd621cfd365039c39d1",
-                            "signature": "e00ba3406cea12127896fbc198a9da889a4afcf3d66e46b3df0e7bb36de400a109442e5bbd005c3cc5ae30ae7d235ea111475ad621e1e2c27374fda906521c69"
+                            "pub_key": "548ae55c8eec1e736e8d3e520f011f1f42a56d166116ad210b3937599f87f566",
+                            "priv_key_tweak": "f032695e2636619efa523fffaa9ef93c8802299181fd0461913c1b8daf9784cd",
+                            "signature": "f238386c5d5e5444f8d2c75aabbcb28c346f208c76f60823f5de3b67b79e0ec72ea5de2d7caec314e0971d3454f122dda342b3eede01b3857e83654e36b25f76"
                         }
                     ]
                 }
@@ -459,25 +499,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "",
-                                "0140bd1e708f92dbeaf24a6b8dd22e59c6274355424d62baea976b449e220fd75b13578e262ab11b7aa58e037f0c6b0519b66803b7d9decaa1906dedebfb531c56c1"
-                            ],
-                            "scriptPubKey": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140bd1e708f92dbeaf24a6b8dd22e59c6274355424d62baea976b449e220fd75b13578e262ab11b7aa58e037f0c6b0519b66803b7d9decaa1906dedebfb531c56c1",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
+                                }
+                            },
                             "private_key": "fc8716a97a48ba9a05a98ae47b5cd201a25a7fd5d8b73c203c5f7b6b6b3b6ad7"
                         }
                     ],
@@ -491,7 +535,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "15d1dfe4403791509cf47f073be2eb3277decabe90da395e63b1f49a09fe965e",
+                            "de88bea8e7ffc9ce1af30d1132f910323c505185aec8eae361670421e749a1fb",
                             1.0
                         ]
                     ]
@@ -501,28 +545,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "",
-                                "0140bd1e708f92dbeaf24a6b8dd22e59c6274355424d62baea976b449e220fd75b13578e262ab11b7aa58e037f0c6b0519b66803b7d9decaa1906dedebfb531c56c1"
-                            ],
-                            "scriptPubKey": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140bd1e708f92dbeaf24a6b8dd22e59c6274355424d62baea976b449e220fd75b13578e262ab11b7aa58e037f0c6b0519b66803b7d9decaa1906dedebfb531c56c1",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "5120782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "15d1dfe4403791509cf47f073be2eb3277decabe90da395e63b1f49a09fe965e"
+                        "de88bea8e7ffc9ce1af30d1132f910323c505185aec8eae361670421e749a1fb"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -536,9 +584,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "15d1dfe4403791509cf47f073be2eb3277decabe90da395e63b1f49a09fe965e",
-                            "priv_key_tweak": "0734de077e436e8f6f125e16287cb60dead8ebddc8532be3589ba27156f1add2",
-                            "signature": "d743170ded6bc695f2997caed9886deb7ddc2e0e11d5f1493d6d7e498e8686f94c393c5d20eceb700a4c2035271196897a83fe1658414c38da07e0e4af00fd0a"
+                            "pub_key": "de88bea8e7ffc9ce1af30d1132f910323c505185aec8eae361670421e749a1fb",
+                            "priv_key_tweak": "3fb9ce5ce1746ced103c8ed254e81f6690764637ddbc876ec1f9b3ddab776b03",
+                            "signature": "c5acd25a8f021a4192f93bc34403fd8b76484613466336fb259c72d04c169824f2690ca34e96cee86b69f376c8377003268fda56feeb1b873e5783d7e19bcca5"
                         }
                     ]
                 }
@@ -550,25 +598,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "",
-                                "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5"
-                            ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                                }
+                            },
                             "private_key": "1d37787c2b7116ee983e9f9c13269df29091b391c04db94239e0d2bc2182c3bf"
                         }
                     ],
@@ -582,7 +634,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "7433936e33db73c3fce68735ca81127ed75f2c1ec127d2245fd7bf68df8214c3",
+                            "77cab7dd12b10259ee82c6ea4b509774e33e7078e7138f568092241bf26b99f1",
                             1.0
                         ]
                     ]
@@ -592,28 +644,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "",
-                                "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5"
-                            ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "7433936e33db73c3fce68735ca81127ed75f2c1ec127d2245fd7bf68df8214c3"
+                        "77cab7dd12b10259ee82c6ea4b509774e33e7078e7138f568092241bf26b99f1"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -627,9 +683,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "7433936e33db73c3fce68735ca81127ed75f2c1ec127d2245fd7bf68df8214c3",
-                            "priv_key_tweak": "4dde498163e8e31648d3b5198b3dc34bad0e72292e4a72df70394cfaf63d5d03",
-                            "signature": "741c9985c6cd575d154add328a15a6cb665866e7f4f891b3835ad6427ca284e3297d8a288db420c3c170f111049cc9b1529f5cb8c2e49429854626dea5a4d631"
+                            "pub_key": "77cab7dd12b10259ee82c6ea4b509774e33e7078e7138f568092241bf26b99f1",
+                            "priv_key_tweak": "f5382508609771068ed079b24e1f72e4a17ee6d1c979066bf1d4e2a5676f09d4",
+                            "signature": "ff65833b8fd1ed3ef9d0443b4f702b45a3f2dd457ba247687e8207745c3be9d2bdad0ab3f07118f8b2efc6a04b95f7b3e218daf8a64137ec91bd2fc67fc137a5"
                         }
                     ]
                 }
@@ -641,25 +697,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "47304502203c48109596ff5a8492995992502acaa77ad2152e4cc719964f61d91f748dfa1a0221009174cc745032ddd536318b8a4f2333fc664d640e328819510b8cd2cd5671f1c62103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100ab7fda2ecbf0908765e65af3628cad3c0c8901fa502fad078ecb119c6bff5a6f02200a6dcaf3112238203e53e9d2eb64e5373260e3c3d03053ebdda7c684034e7e192103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                                }
+                            },
                             "private_key": "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                         }
                     ],
@@ -673,7 +733,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "2b4ff8e5bc608cbdd12117171e7d265b6882ad597559caf67b5ecfaf15301dd0",
+                            "30523cca96b2a9ae3c98beb5e60f7d190ec5bc79b2d11a0b2d4d09a608c448f0",
                             1.0
                         ]
                     ]
@@ -683,28 +743,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b"
-                            ],
-                            "scriptPubKey": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "0140c459b671370d12cfb5acee76da7e3ba7cc29b0b4653e3af8388591082660137d087fdc8e89a612cd5d15be0febe61fc7cdcf3161a26e599a4514aa5c3e86f47b",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51205a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "47304502203c48109596ff5a8492995992502acaa77ad2152e4cc719964f61d91f748dfa1a0221009174cc745032ddd536318b8a4f2333fc664d640e328819510b8cd2cd5671f1c62103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100ab7fda2ecbf0908765e65af3628cad3c0c8901fa502fad078ecb119c6bff5a6f02200a6dcaf3112238203e53e9d2eb64e5373260e3c3d03053ebdda7c684034e7e192103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "2b4ff8e5bc608cbdd12117171e7d265b6882ad597559caf67b5ecfaf15301dd0"
+                        "30523cca96b2a9ae3c98beb5e60f7d190ec5bc79b2d11a0b2d4d09a608c448f0"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -718,9 +782,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "2b4ff8e5bc608cbdd12117171e7d265b6882ad597559caf67b5ecfaf15301dd0",
-                            "priv_key_tweak": "17d93733d2acd8388279c24dc4413483802378c99f266f5961ac3338c5146861",
-                            "signature": "7f8f909460c0357a2c1c784e92967e888c6b63ff799db3ce22e8acc715a42ab9177b9db2237d76db60e72bc30c827008266062506cd57f93f9b872529bd50376"
+                            "pub_key": "30523cca96b2a9ae3c98beb5e60f7d190ec5bc79b2d11a0b2d4d09a608c448f0",
+                            "priv_key_tweak": "b40017865c79b1fcbed68896791be93186d08f47e416b289b8c063777e14e8df",
+                            "signature": "d1edeea28cf1033bcb3d89376cabaaaa2886cbd8fda112b5c61cc90a4e7f1878bdd62180b07d1dfc8ffee1863c525a0c7b5bcd413183282cfda756cb65787266"
                         }
                     ]
                 }
@@ -732,25 +796,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5"
-                            ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                                }
+                            },
                             "private_key": "1d37787c2b7116ee983e9f9c13269df29091b391c04db94239e0d2bc2182c3bf"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022100b761f8901b75a52fa2c400f43cc5de819630d013a378b30d02b8be6f62459ca20220430de87f8f154348f26dca90f337c3b1b224c703f17191826408b8ac4c64bd182103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "483046022100e734dc3a2d97a1dece9ba9bb08062fd90db1508f8273b2f15738043966b6e267022100d89eeee97f65b06305627db165a1917a46debfb00332e1fd0a285bdb266210ce2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                                }
+                            },
                             "private_key": "8d4751f6e8a3586880fb66c19ae277969bd5aa06f61c4ee2f1e2486efdf666d3"
                         }
                     ],
@@ -764,7 +832,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "991e25fa7c84eb28bf5d2770a9e3814cbf513809168fc6ba266634d64a336238",
+                            "359358f59ee9e9eec3f00bdf4882570fd5c182e451aa2650b788544aff012a3a",
                             1.0
                         ]
                     ]
@@ -774,28 +842,32 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "",
-                                "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5"
-                            ],
-                            "scriptPubKey": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "",
+                            "txinwitness": "01400a4d0dca6293f40499394d7eefe14a1de11e0e3454f51de2e802592abf5ee549042a1b1a8fb2e149ee9dd3f086c1b69b2f182565ab6ecf599b1ec9ebadfda6c5",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "51208c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022100b761f8901b75a52fa2c400f43cc5de819630d013a378b30d02b8be6f62459ca20220430de87f8f154348f26dca90f337c3b1b224c703f17191826408b8ac4c64bd182103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "483046022100e734dc3a2d97a1dece9ba9bb08062fd90db1508f8273b2f15738043966b6e267022100d89eeee97f65b06305627db165a1917a46debfb00332e1fd0a285bdb266210ce2103e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9148cbc7dfe44f1579bff3340bbef1eddeaeb1fc97788ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "991e25fa7c84eb28bf5d2770a9e3814cbf513809168fc6ba266634d64a336238"
+                        "359358f59ee9e9eec3f00bdf4882570fd5c182e451aa2650b788544aff012a3a"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -809,9 +881,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "991e25fa7c84eb28bf5d2770a9e3814cbf513809168fc6ba266634d64a336238",
-                            "priv_key_tweak": "b576b35fa1aa68e11ba7adc18624a49d984efe49539630523171031f3092c71b",
-                            "signature": "08430c9bf7aceee2383b5f22e7733b65dec674fc6c9ee866c9fa17fea99d087ce7f0fe135ae0b06c9db5c68c156132d70b12bea1d78fe7e52588efa3277554c6"
+                            "pub_key": "359358f59ee9e9eec3f00bdf4882570fd5c182e451aa2650b788544aff012a3a",
+                            "priv_key_tweak": "a2f9dd05d1d398347c885d9c61a64d18a264de6d49cea4326bafc2791d627fa7",
+                            "signature": "96038ad233d8befe342573a6e54828d863471fb2afbad575cc65271a2a649480ea14912b6abbd3fbf92efc1928c036f6e3eef927105af4ec1dd57cb909f360b8"
                         }
                     ]
                 }
@@ -823,25 +895,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100b8ae06c5c777620a17a071d0f6a7852525f881f6f5e0e0f259d6a544ddbbbc6f022078e597d88cd635cb8ff5746fe6269daa286056e04697c40c3f4999a7a8aade7f21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100c7522f9d720b9de1624f140664a66635054015855f8534aa68b837de9119dd12022100faef0b8198755324334b6e6145ba5b3789a5bd00349c3c4132135f740d95e0e121025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022062a9058225ab3a3ea0dd307a3ea2bcbf27e58651bacceec8e6909213121350da022100c0d4dc85282fe48476c40345927a9d43130743a2e186ea76ae6c84ab056f3bdb2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100e3e0fb793597bdc92788456930bac26b5c517cccca359bba6ecc35a334117db502204926992a07c6356522e21bbb409837773ad24dc516358fc4040716ac13e0544d2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
@@ -859,11 +935,11 @@
                 "expected": {
                     "outputs": [
                         [
-                            "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
+                            "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
                             2.0
                         ],
                         [
-                            "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
+                            "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
                             3.0
                         ]
                     ]
@@ -873,31 +949,35 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100b8ae06c5c777620a17a071d0f6a7852525f881f6f5e0e0f259d6a544ddbbbc6f022078e597d88cd635cb8ff5746fe6269daa286056e04697c40c3f4999a7a8aade7f21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100c7522f9d720b9de1624f140664a66635054015855f8534aa68b837de9119dd12022100faef0b8198755324334b6e6145ba5b3789a5bd00349c3c4132135f740d95e0e121025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022062a9058225ab3a3ea0dd307a3ea2bcbf27e58651bacceec8e6909213121350da022100c0d4dc85282fe48476c40345927a9d43130743a2e186ea76ae6c84ab056f3bdb2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100e3e0fb793597bdc92788456930bac26b5c517cccca359bba6ecc35a334117db502204926992a07c6356522e21bbb409837773ad24dc516358fc4040716ac13e0544d2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
-                        "c58e121044b23cba9b4695052229a9fd9e044b579f92864eb886ae7c99b021c9",
-                        "4b15b75f3f184328c4a2f7c79357481ed06cf3b6f95512d5ed946fdc0b60d62b"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
+                        "841792c33c9dc6193e76744134125d40add8f2f4a96475f28ba150be032d64e8",
+                        "2e847bb01d1b491da512ddd760b8509617ee38057003d6115d00ba562451323a"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -911,14 +991,14 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
-                            "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
+                            "pub_key": "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                            "priv_key_tweak": "33ce085c3c11eaad13694aae3c20301a6c83382ec89a7cde96c6799e2f88805a",
+                            "signature": "335667ca6cae7a26438f5cfdd73b3d48fa832fa9768521d7d5445f22c203ab0d74ed85088f27d29959ba627a4509996676f47df8ff284d292567b1beef0e3912"
                         },
                         {
-                            "pub_key": "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
-                            "priv_key_tweak": "d39df91bd0e7825bfa1d30096febc5bf6fa7da79d7f25b7b4bea9538cc9a9f7f",
-                            "signature": "be5f139f6eaad2d5eb75c6e307defb29925e16d55dbbc12872b0ab6aca38959c0c6a8f3f72bf82e3deb226cb539e117f9db4b04a5efb4e2eb01a86374f5baa12"
+                            "pub_key": "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
+                            "priv_key_tweak": "d97e442d110c0bdd31161a7bb6e7862e038d02a09b1484dfbb463f2e0f7c9230",
+                            "signature": "29bd25d0f808d7fcd2aa6d5ed206053899198397506c301b218a9e47a3d7070af03e903ff718978d50d1b6b9af8cc0e313d84eda5d5b1e8e85e5516d630bbeb9"
                         }
                     ]
                 }
@@ -930,25 +1010,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100b8ae06c5c777620a17a071d0f6a7852525f881f6f5e0e0f259d6a544ddbbbc6f022078e597d88cd635cb8ff5746fe6269daa286056e04697c40c3f4999a7a8aade7f21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100c7522f9d720b9de1624f140664a66635054015855f8534aa68b837de9119dd12022100faef0b8198755324334b6e6145ba5b3789a5bd00349c3c4132135f740d95e0e121025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022062a9058225ab3a3ea0dd307a3ea2bcbf27e58651bacceec8e6909213121350da022100c0d4dc85282fe48476c40345927a9d43130743a2e186ea76ae6c84ab056f3bdb2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100e3e0fb793597bdc92788456930bac26b5c517cccca359bba6ecc35a334117db502204926992a07c6356522e21bbb409837773ad24dc516358fc4040716ac13e0544d2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
@@ -974,19 +1058,19 @@
                 "expected": {
                     "outputs": [
                         [
-                            "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
+                            "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
                             2.0
                         ],
                         [
-                            "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
+                            "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
                             3.0
                         ],
                         [
-                            "c58e121044b23cba9b4695052229a9fd9e044b579f92864eb886ae7c99b021c9",
+                            "841792c33c9dc6193e76744134125d40add8f2f4a96475f28ba150be032d64e8",
                             4.0
                         ],
                         [
-                            "4b15b75f3f184328c4a2f7c79357481ed06cf3b6f95512d5ed946fdc0b60d62b",
+                            "2e847bb01d1b491da512ddd760b8509617ee38057003d6115d00ba562451323a",
                             5.0
                         ]
                     ]
@@ -996,31 +1080,35 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100b8ae06c5c777620a17a071d0f6a7852525f881f6f5e0e0f259d6a544ddbbbc6f022078e597d88cd635cb8ff5746fe6269daa286056e04697c40c3f4999a7a8aade7f21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100c7522f9d720b9de1624f140664a66635054015855f8534aa68b837de9119dd12022100faef0b8198755324334b6e6145ba5b3789a5bd00349c3c4132135f740d95e0e121025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022062a9058225ab3a3ea0dd307a3ea2bcbf27e58651bacceec8e6909213121350da022100c0d4dc85282fe48476c40345927a9d43130743a2e186ea76ae6c84ab056f3bdb2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100e3e0fb793597bdc92788456930bac26b5c517cccca359bba6ecc35a334117db502204926992a07c6356522e21bbb409837773ad24dc516358fc4040716ac13e0544d2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
-                        "c58e121044b23cba9b4695052229a9fd9e044b579f92864eb886ae7c99b021c9",
-                        "4b15b75f3f184328c4a2f7c79357481ed06cf3b6f95512d5ed946fdc0b60d62b"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
+                        "841792c33c9dc6193e76744134125d40add8f2f4a96475f28ba150be032d64e8",
+                        "2e847bb01d1b491da512ddd760b8509617ee38057003d6115d00ba562451323a"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -1034,45 +1122,49 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
-                            "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
+                            "pub_key": "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                            "priv_key_tweak": "33ce085c3c11eaad13694aae3c20301a6c83382ec89a7cde96c6799e2f88805a",
+                            "signature": "335667ca6cae7a26438f5cfdd73b3d48fa832fa9768521d7d5445f22c203ab0d74ed85088f27d29959ba627a4509996676f47df8ff284d292567b1beef0e3912"
                         },
                         {
-                            "pub_key": "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
-                            "priv_key_tweak": "d39df91bd0e7825bfa1d30096febc5bf6fa7da79d7f25b7b4bea9538cc9a9f7f",
-                            "signature": "be5f139f6eaad2d5eb75c6e307defb29925e16d55dbbc12872b0ab6aca38959c0c6a8f3f72bf82e3deb226cb539e117f9db4b04a5efb4e2eb01a86374f5baa12"
+                            "pub_key": "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
+                            "priv_key_tweak": "d97e442d110c0bdd31161a7bb6e7862e038d02a09b1484dfbb463f2e0f7c9230",
+                            "signature": "29bd25d0f808d7fcd2aa6d5ed206053899198397506c301b218a9e47a3d7070af03e903ff718978d50d1b6b9af8cc0e313d84eda5d5b1e8e85e5516d630bbeb9"
                         }
                     ]
                 }
             },
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100b8ae06c5c777620a17a071d0f6a7852525f881f6f5e0e0f259d6a544ddbbbc6f022078e597d88cd635cb8ff5746fe6269daa286056e04697c40c3f4999a7a8aade7f21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100c7522f9d720b9de1624f140664a66635054015855f8534aa68b837de9119dd12022100faef0b8198755324334b6e6145ba5b3789a5bd00349c3c4132135f740d95e0e121025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022062a9058225ab3a3ea0dd307a3ea2bcbf27e58651bacceec8e6909213121350da022100c0d4dc85282fe48476c40345927a9d43130743a2e186ea76ae6c84ab056f3bdb2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022100e3e0fb793597bdc92788456930bac26b5c517cccca359bba6ecc35a334117db502204926992a07c6356522e21bbb409837773ad24dc516358fc4040716ac13e0544d2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "0a48c6ccc1d516e8244dc0153dc88db45f8f264357667c2057a29ca3c2445d09",
-                        "c58e121044b23cba9b4695052229a9fd9e044b579f92864eb886ae7c99b021c9",
-                        "4b15b75f3f184328c4a2f7c79357481ed06cf3b6f95512d5ed946fdc0b60d62b"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "e976a58fbd38aeb4e6093d4df02e9c1de0c4513ae0c588cef68cda5b2f8834ca",
+                        "841792c33c9dc6193e76744134125d40add8f2f4a96475f28ba150be032d64e8",
+                        "2e847bb01d1b491da512ddd760b8509617ee38057003d6115d00ba562451323a"
                     ],
                     "key_material": {
                         "spend_priv_key": "9902c3c56e84002a7cd410113a9ab21d142be7f53cf5200720bb01314c5eb920",
@@ -1086,14 +1178,14 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "c58e121044b23cba9b4695052229a9fd9e044b579f92864eb886ae7c99b021c9",
-                            "priv_key_tweak": "567710d07bdaacc8de3f1cec467bcb162ed7daa6b901b59af257bcd7e39dffcf",
-                            "signature": "d675fd6f55f42b61c8797c80d46048cfca5125bcef06e3a0ff555ace0e8f6d84da9b6f473b559376afd5ee11dc63c4415dc565f8272d2b673d39759f29c0d56a"
+                            "pub_key": "841792c33c9dc6193e76744134125d40add8f2f4a96475f28ba150be032d64e8",
+                            "priv_key_tweak": "2f17ea873a0047fc01ba8010fef0969e76d0e4283f600d48f735098b1fee6eb9",
+                            "signature": "c26f4e3cf371b90b840f48ea0e761b5ec31883ed55719f9ef06a90e282d85f565790ab780a3f491bc2668cc64e944dca849d1022a878cdadb8d168b8da4a6da3"
                         },
                         {
-                            "pub_key": "4b15b75f3f184328c4a2f7c79357481ed06cf3b6f95512d5ed946fdc0b60d62b",
-                            "priv_key_tweak": "25dd11163a9a2853709c4c837aafb3347e2eaa875cf4c5170e2a3663879f4c58",
-                            "signature": "ab872ee64623cf1ddb646c65159c09bc69cd64c6b60767a94934e12ec074f0fa7c9e4cc6a9bca2ec6592e4d64636a07fcfd71c622619c3bf46c5a2816aeb3456"
+                            "pub_key": "2e847bb01d1b491da512ddd760b8509617ee38057003d6115d00ba562451323a",
+                            "priv_key_tweak": "72cd082cccb633bf85240a83494b32dc943a4d05647a6686d23ad4ca59c0ebe4",
+                            "signature": "38745f3d9f5eef0b1cfb17ca314efa8c521efab28a23aa20ec5e3abb561d42804d539906dce60c4ee7977966184e6f2cab1faa0e5377ceb7148ec5218b4e7878"
                         }
                     ]
                 }
@@ -1105,31 +1197,35 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100c5a91081c388f4506703f42a4113f1404e62165582f041e0b9eff2123843d32b02206239066f8d91a4e25d892d83c8e295f90b0d1322cc49e68893e533b7294893fd21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022100b523454b02843344a8bcd337cefe52bc10c954009bb454a8a8633aca61a8dfb702206944729dcfa5b5a436b7ca90fe4675271be20b8adda63bff43652fba0b97d18221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100ce313e6b1fb998cec1fad707373aaa373287c78ffe3bc03cd948d77a54380bac022100c1c59b96671eebe96276623eaf0519cee408dbbc4192d0ab7f0b2eed16cb5d902103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4730450220727ef4cc1dc06147fa39274343be7e6ad7cf8546f958396362671925bb0b57c9022100e2f7b37b75a86b062d2bbc285c2f3cd22c3332defc55acc6dd9eff0bcad9c2502103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
                     "recipients": [
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqhmem6grvs4nacsu0v5v5mjs934j7qfgkdkj8c95gyuru3tjpulvcwky2dz",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjex54dmqmmv6rw353tsuqhs99ydvadxzrsy9nuvk74epvee55drs734pqq",
                             1.0
                         ]
                     ]
@@ -1137,7 +1233,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "2cbceeab2a4982841eb7dc34b8b4f19c04bf3bc083ebf984f5664366778eb50f",
+                            "d014d4860f67d607d60b1af70e0ee236b99658b61bb769832acbbe87c374439a",
                             1.0
                         ]
                     ]
@@ -1147,60 +1243,55 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100c5a91081c388f4506703f42a4113f1404e62165582f041e0b9eff2123843d32b02206239066f8d91a4e25d892d83c8e295f90b0d1322cc49e68893e533b7294893fd21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022100b523454b02843344a8bcd337cefe52bc10c954009bb454a8a8633aca61a8dfb702206944729dcfa5b5a436b7ca90fe4675271be20b8adda63bff43652fba0b97d18221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100ce313e6b1fb998cec1fad707373aaa373287c78ffe3bc03cd948d77a54380bac022100c1c59b96671eebe96276623eaf0519cee408dbbc4192d0ab7f0b2eed16cb5d902103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4730450220727ef4cc1dc06147fa39274343be7e6ad7cf8546f958396362671925bb0b57c9022100e2f7b37b75a86b062d2bbc285c2f3cd22c3332defc55acc6dd9eff0bcad9c2502103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "2cbceeab2a4982841eb7dc34b8b4f19c04bf3bc083ebf984f5664366778eb50f"
+                        "d014d4860f67d607d60b1af70e0ee236b99658b61bb769832acbbe87c374439a"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
-                            "0000000000000000000000000000000000000000000000000000000000000002"
-                        ],
-                        [
-                            "02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9",
-                            "0000000000000000000000000000000000000000000000000000000000000003"
-                        ],
-                        [
-                            "03348b4f5feb64b557dac8cfa10044bdc2094fca9147163bf514f68687e0d1dba6",
-                            "00000000000000000000000000000000000000000000000000000000000f4779"
-                        ]
+                        2,
+                        3,
+                        1001337
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqhmem6grvs4nacsu0v5v5mjs934j7qfgkdkj8c95gyuru3tjpulvcwky2dz",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqc389f45lq7jyqt8jxq6fkskfukr2tlruf6w8cpcx2krntwe4fr9ykagp3j",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq4umqa5feskydh9xadc9jlc22c89tu0apcv72u2vkuwtsrgzf0uesq45zq9"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjex54dmqmmv6rw353tsuqhs99ydvadxzrsy9nuvk74epvee55drs734pqq",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqsg59z2rppn4qlkx0yz9sdltmjv3j8zgcqadjn4ug98m3t6plujsq9qvu5n",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq7c2zfthc6x3a5yecwc52nxa0kfd20xuz08zyrjpfw4l2j257yq6qgnkdh5"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "2cbceeab2a4982841eb7dc34b8b4f19c04bf3bc083ebf984f5664366778eb50f",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e32",
-                            "signature": "0fa1b43afde9a03901dda91a0bd66fc82b6452c14a20718dc87dc70d4cedd9aeadf7c4c96116b8053c4aa113e26cea2fb64f8c408a8e8bc6e4fc9f6a06672b95"
+                            "pub_key": "d014d4860f67d607d60b1af70e0ee236b99658b61bb769832acbbe87c374439a",
+                            "priv_key_tweak": "51d4e9d0d482b5700109b4b2e16ff508269b03d800192a043d61dca4a0a72a52",
+                            "signature": "c30fa63bad6f0a317f39a773a5cbf0b0f8193c71dfebba05ee6ae4ed28e3775e6e04c3ea70a83703bb888122855dc894cab61692e7fd10c9b3494d479a60785e"
                         }
                     ]
                 }
@@ -1212,31 +1303,35 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "4730450221008d7e7951570eabe1dd3eedfca2f1f372fd0e334b3ef711af5cad159636b20d6102207c73d6d93290aea1d61daa5c57b3cf26831a4e21f647472a3a83fbf1944b1c5621025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100ca692da59cf2f8efe341a5aa476263241fe5a8cc90e7ecf545f865ed0034b289022100b3926f244b09fe05836b47eed006df39bef0ab364bfeffba4df19b82f0b4317b21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "4730450220659cba3386ddec051cc6bd02c2a21a3a2ff58ffb6615dd27e27b2e602fd00cda0221008db5fbdf15a5ddeced0b0189d978704a69a4f210963ae82816e9b156ff7bbd132103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022048a6a6c6d9f5fac417c5222b11b185a99bceff256cd1d309604817c808145129022100bc4dd76ee06afa7873e2f97557e460bcc16c9347e51ce94c63107bc0ab9cc8f92103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
                     "recipients": [
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqc389f45lq7jyqt8jxq6fkskfukr2tlruf6w8cpcx2krntwe4fr9ykagp3j",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqsg59z2rppn4qlkx0yz9sdltmjv3j8zgcqadjn4ug98m3t6plujsq9qvu5n",
                             1.0
                         ]
                     ]
@@ -1244,7 +1339,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "6b4455de119f51bf4d4a12dea555f14a5dc2c1369af5fba4871c5367264c028d",
+                            "67626aebb3c4307cf0f6c39ca23247598fabf675ab783292eb2f81ae75ad1f8c",
                             1.0
                         ]
                     ]
@@ -1254,60 +1349,55 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "4730450221008d7e7951570eabe1dd3eedfca2f1f372fd0e334b3ef711af5cad159636b20d6102207c73d6d93290aea1d61daa5c57b3cf26831a4e21f647472a3a83fbf1944b1c5621025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100ca692da59cf2f8efe341a5aa476263241fe5a8cc90e7ecf545f865ed0034b289022100b3926f244b09fe05836b47eed006df39bef0ab364bfeffba4df19b82f0b4317b21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "4730450220659cba3386ddec051cc6bd02c2a21a3a2ff58ffb6615dd27e27b2e602fd00cda0221008db5fbdf15a5ddeced0b0189d978704a69a4f210963ae82816e9b156ff7bbd132103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "473045022048a6a6c6d9f5fac417c5222b11b185a99bceff256cd1d309604817c808145129022100bc4dd76ee06afa7873e2f97557e460bcc16c9347e51ce94c63107bc0ab9cc8f92103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "6b4455de119f51bf4d4a12dea555f14a5dc2c1369af5fba4871c5367264c028d"
+                        "67626aebb3c4307cf0f6c39ca23247598fabf675ab783292eb2f81ae75ad1f8c"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
-                            "0000000000000000000000000000000000000000000000000000000000000002"
-                        ],
-                        [
-                            "02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9",
-                            "0000000000000000000000000000000000000000000000000000000000000003"
-                        ],
-                        [
-                            "03348b4f5feb64b557dac8cfa10044bdc2094fca9147163bf514f68687e0d1dba6",
-                            "00000000000000000000000000000000000000000000000000000000000f4779"
-                        ]
+                        2,
+                        3,
+                        1001337
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqhmem6grvs4nacsu0v5v5mjs934j7qfgkdkj8c95gyuru3tjpulvcwky2dz",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqc389f45lq7jyqt8jxq6fkskfukr2tlruf6w8cpcx2krntwe4fr9ykagp3j",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq4umqa5feskydh9xadc9jlc22c89tu0apcv72u2vkuwtsrgzf0uesq45zq9"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjex54dmqmmv6rw353tsuqhs99ydvadxzrsy9nuvk74epvee55drs734pqq",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqsg59z2rppn4qlkx0yz9sdltmjv3j8zgcqadjn4ug98m3t6plujsq9qvu5n",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq7c2zfthc6x3a5yecwc52nxa0kfd20xuz08zyrjpfw4l2j257yq6qgnkdh5"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "6b4455de119f51bf4d4a12dea555f14a5dc2c1369af5fba4871c5367264c028d",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e33",
-                            "signature": "b4ea01f7f47bcdf131b5a3aa3a1c848faae75e661d63bfff84c230bcc96313d0b443b9b3a76718a7474d51994395739bc6041caabe98133e3697412e07e19c0a"
+                            "pub_key": "67626aebb3c4307cf0f6c39ca23247598fabf675ab783292eb2f81ae75ad1f8c",
+                            "priv_key_tweak": "6024ae214876356b8d917716e7707d267ae16a0fdb07de2a786b74a7bbcddead",
+                            "signature": "a86d554d0d6b7aa0907155f7e0b47f0182752472fffaeddd68da90e99b9402f166fd9b33039c302c7115098d971c1399e67c19e9e4de180b10ea0b9d6f0db832"
                         }
                     ]
                 }
@@ -1319,31 +1409,35 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022005bec9e77dfc25611fea12fbde3ad8144a20d8a037125e71be37e9da566d3fe8022008a4fbfb4c0af2df8098ae5801266954cdb25db9bfb159b7db811bddb914458c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "47304502200bc5921e439e95cfa2ad15570a49101c025f5fb52553c41070cd63e3476f9a7a0221008ef04d4771d7ab9049c1bb793760c54ecc886f9548181e8d00a0c208f65a45c321025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100e1137e5254a15103250b99dbb8e7c91958f1c20b8ba89c12bd9599892b23a88f022100eaa5b33ba1d64b536e9a5a5376f6d51e209e1903637c0e784d01ec170d61468b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "463044022052b8146f207bd2cd7e7171a6973bd89cbc0e28516022bf20d9518f7c1bdf5a3f02203f906d9359843ad28c41abd1f7e756c35aa84b608589c232b7098bb49d3735f42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
                     "recipients": [
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq4umqa5feskydh9xadc9jlc22c89tu0apcv72u2vkuwtsrgzf0uesq45zq9",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq7c2zfthc6x3a5yecwc52nxa0kfd20xuz08zyrjpfw4l2j257yq6qgnkdh5",
                             1.0
                         ]
                     ]
@@ -1351,7 +1445,7 @@
                 "expected": {
                     "outputs": [
                         [
-                            "c3473bfcbe5e4d20d0790ae91f1b339bc15b46de64ca068d140118d0e325b849",
+                            "7efa60ce78ac343df8a013a2027c6c5ef29f9502edcbd769d2c21717fecc5951",
                             1.0
                         ]
                     ]
@@ -1361,60 +1455,55 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "463044022005bec9e77dfc25611fea12fbde3ad8144a20d8a037125e71be37e9da566d3fe8022008a4fbfb4c0af2df8098ae5801266954cdb25db9bfb159b7db811bddb914458c21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "47304502200bc5921e439e95cfa2ad15570a49101c025f5fb52553c41070cd63e3476f9a7a0221008ef04d4771d7ab9049c1bb793760c54ecc886f9548181e8d00a0c208f65a45c321025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100e1137e5254a15103250b99dbb8e7c91958f1c20b8ba89c12bd9599892b23a88f022100eaa5b33ba1d64b536e9a5a5376f6d51e209e1903637c0e784d01ec170d61468b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "463044022052b8146f207bd2cd7e7171a6973bd89cbc0e28516022bf20d9518f7c1bdf5a3f02203f906d9359843ad28c41abd1f7e756c35aa84b608589c232b7098bb49d3735f42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "c3473bfcbe5e4d20d0790ae91f1b339bc15b46de64ca068d140118d0e325b849"
+                        "7efa60ce78ac343df8a013a2027c6c5ef29f9502edcbd769d2c21717fecc5951"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
-                            "0000000000000000000000000000000000000000000000000000000000000002"
-                        ],
-                        [
-                            "02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9",
-                            "0000000000000000000000000000000000000000000000000000000000000003"
-                        ],
-                        [
-                            "03348b4f5feb64b557dac8cfa10044bdc2094fca9147163bf514f68687e0d1dba6",
-                            "00000000000000000000000000000000000000000000000000000000000f4779"
-                        ]
+                        2,
+                        3,
+                        1001337
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqhmem6grvs4nacsu0v5v5mjs934j7qfgkdkj8c95gyuru3tjpulvcwky2dz",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqc389f45lq7jyqt8jxq6fkskfukr2tlruf6w8cpcx2krntwe4fr9ykagp3j",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq4umqa5feskydh9xadc9jlc22c89tu0apcv72u2vkuwtsrgzf0uesq45zq9"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjex54dmqmmv6rw353tsuqhs99ydvadxzrsy9nuvk74epvee55drs734pqq",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqsg59z2rppn4qlkx0yz9sdltmjv3j8zgcqadjn4ug98m3t6plujsq9qvu5n",
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq7c2zfthc6x3a5yecwc52nxa0kfd20xuz08zyrjpfw4l2j257yq6qgnkdh5"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "c3473bfcbe5e4d20d0790ae91f1b339bc15b46de64ca068d140118d0e325b849",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc1175a9",
-                            "signature": "ab9f3684cb497951fd013444d35909ed10669691d9fa3ac0be57f874a4df9f43c67647c9f17528110d2df0ce41dd3c05c04f4624629f8758fff1060049dc7d6b"
+                            "pub_key": "7efa60ce78ac343df8a013a2027c6c5ef29f9502edcbd769d2c21717fecc5951",
+                            "priv_key_tweak": "e336b92330c33030285ce42e4115ad92d5197913c88e06b9072b4a9b47c664a2",
+                            "signature": "c9e80dd3bdd25ca2d352ce77510f1aed37ba3509dc8cc0677f2d7c2dd04090707950ce9dd6c83d2a428063063aff5c04f1744e334f661f2fc01b4ef80b50f739"
                         }
                     ]
                 }
@@ -1426,25 +1515,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100aac1f6aac490b465509998bc378b733b53b168e48fc1dd4d84e3826982042795022100fd0bd550bdf14e79f74803af9b7b2f87dbef3d1f617c05e44130b8f6a624580721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022100fce980d0fa17e94938d910c2cb66f511224883c7ff3e25e115e2d5812c6f241f0220286ce7e291d4bfdc369d54dc9b7e79ff10efcd3f36d7ba58d2eda5a375f69f2521025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402210092547761a2e4a68fe48ee4ae49aa84c89d20713782ec03cc0b342171a1cb5238021f56a66ee244470ce3006eb411577e8e567ea6c2105147fa9b0bc9701d3cf6b32103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4630440220474a3bcc2475d59bc6e0ac382f5106ddf1e55b0665c6c64b3167e9029273da06022074f1fc2c164bdc324aa355958e316d44a75fc495ef0e79141c26d262ca46f3c82103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
@@ -1454,7 +1547,7 @@
                             1.0
                         ],
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj",
                             2.0
                         ]
                     ]
@@ -1462,11 +1555,11 @@
                 "expected": {
                     "outputs": [
                         [
-                            "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
+                            "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
                             1.0
                         ],
                         [
-                            "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
+                            "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
                             2.0
                         ]
                     ]
@@ -1476,56 +1569,57 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100aac1f6aac490b465509998bc378b733b53b168e48fc1dd4d84e3826982042795022100fd0bd550bdf14e79f74803af9b7b2f87dbef3d1f617c05e44130b8f6a624580721025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "473045022100fce980d0fa17e94938d910c2cb66f511224883c7ff3e25e115e2d5812c6f241f0220286ce7e291d4bfdc369d54dc9b7e79ff10efcd3f36d7ba58d2eda5a375f69f2521025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402210092547761a2e4a68fe48ee4ae49aa84c89d20713782ec03cc0b342171a1cb5238021f56a66ee244470ce3006eb411577e8e567ea6c2105147fa9b0bc9701d3cf6b32103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4630440220474a3bcc2475d59bc6e0ac382f5106ddf1e55b0665c6c64b3167e9029273da06022074f1fc2c164bdc324aa355958e316d44a75fc495ef0e79141c26d262ca46f3c82103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
-                            "0000000000000000000000000000000000000000000000000000000000000001"
-                        ]
+                        1
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
-                            "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
+                            "pub_key": "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                            "priv_key_tweak": "33ce085c3c11eaad13694aae3c20301a6c83382ec89a7cde96c6799e2f88805a",
+                            "signature": "335667ca6cae7a26438f5cfdd73b3d48fa832fa9768521d7d5445f22c203ab0d74ed85088f27d29959ba627a4509996676f47df8ff284d292567b1beef0e3912"
                         },
                         {
-                            "pub_key": "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
-                            "priv_key_tweak": "d39df91bd0e7825bfa1d30096febc5bf6fa7da79d7f25b7b4bea9538cc9a9f80",
-                            "signature": "567f0d4d914456141ca83fe89e99f008c1f7ab9e9a65d4a60162840824737407acbaa61d7efa1a6af5d6439d213187e2f76696bb657dc709a0077bbf3b40e2f2"
+                            "pub_key": "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
+                            "priv_key_tweak": "43100f89f1a6bf10081c92b473ffc57ceac7dbed600b6aba9bb3976f17dbb914",
+                            "signature": "15c92509b67a6c211ebb4a51b7528d0666e6720de2343b2e92cfb97942ca14693c1f1fdc8451acfdb2644039f8f5c76114807fdc3d3a002d8a46afab6756bd75"
                         }
                     ]
                 }
@@ -1537,35 +1631,39 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100c919549b6ee48a0c78470d0b011eb7b3d31ef381c32f59118e8562c4042bb89502201134fa0e1468572f61ba44ba100d90f695e60359baf5c101f6625abdc004b67221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "4730450220048571714620a23223da78a0c4609125ca09f959960a59b13b5040c17e7bb41b022100ae3264601189699d18af253b3bdf5385e293318759ab3c311b47045ebca446dc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "47304502204dd1a44973b9dace36fd2696ccd93716b68a2a69d49ae9b3233ed67fe6e5d897022100a2092959057d23d198fd9a135b327718d35ff0bffee9da3166c76d79319bdf5b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "483046022100cb95f0bd059426489311503b054526ca781f47086acfb1ff29a0fa32b33e5e2c022100b6df6bfb638728f01654b6989a0ae3455d3180c377bc3e3aedf996efe59230812103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
                     "recipients": [
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj",
                             3.0
                         ],
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj",
                             4.0
                         ]
                     ]
@@ -1573,11 +1671,11 @@
                 "expected": {
                     "outputs": [
                         [
-                            "8890c19f005d6f6add5fef92d37ac6b161b7fdd5c1aef6eed1d32be3f216ac4c",
+                            "83dc944e61603137294829aed56c74c9b087d80f2c021b98a7fae5799000696c",
                             3.0
                         ],
                         [
-                            "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
+                            "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
                             4.0
                         ]
                     ]
@@ -1587,56 +1685,57 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100c919549b6ee48a0c78470d0b011eb7b3d31ef381c32f59118e8562c4042bb89502201134fa0e1468572f61ba44ba100d90f695e60359baf5c101f6625abdc004b67221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "4730450220048571714620a23223da78a0c4609125ca09f959960a59b13b5040c17e7bb41b022100ae3264601189699d18af253b3bdf5385e293318759ab3c311b47045ebca446dc21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "47304502204dd1a44973b9dace36fd2696ccd93716b68a2a69d49ae9b3233ed67fe6e5d897022100a2092959057d23d198fd9a135b327718d35ff0bffee9da3166c76d79319bdf5b2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "483046022100cb95f0bd059426489311503b054526ca781f47086acfb1ff29a0fa32b33e5e2c022100b6df6bfb638728f01654b6989a0ae3455d3180c377bc3e3aedf996efe59230812103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "8890c19f005d6f6add5fef92d37ac6b161b7fdd5c1aef6eed1d32be3f216ac4c",
-                        "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e"
+                        "83dc944e61603137294829aed56c74c9b087d80f2c021b98a7fae5799000696c",
+                        "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
-                            "0000000000000000000000000000000000000000000000000000000000000001"
-                        ]
+                        1
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "8890c19f005d6f6add5fef92d37ac6b161b7fdd5c1aef6eed1d32be3f216ac4c",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e31",
-                            "signature": "f0eb3b826553709356c351e1ced49a72900f261be18e64914c3c694af94595a4a80417ecbf5e86fde8b08e451fb42ec36b7a9d733eb42f92206f4f6c78da66bb"
+                            "pub_key": "83dc944e61603137294829aed56c74c9b087d80f2c021b98a7fae5799000696c",
+                            "priv_key_tweak": "9d5fd3b91cac9ddfea6fc2e6f9386f680e6cee623cda02f53706306c081de87f",
+                            "signature": "db0dfacc98b6a6fcc67cc4631f080b1ca38c60d8c397f2f19843f8f95ec91594b24e47c5bd39480a861c1209f7e3145c440371f9191fb96e324690101eac8e8e"
                         },
                         {
-                            "pub_key": "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
-                            "priv_key_tweak": "d39df91bd0e7825bfa1d30096febc5bf6fa7da79d7f25b7b4bea9538cc9a9f80",
-                            "signature": "567f0d4d914456141ca83fe89e99f008c1f7ab9e9a65d4a60162840824737407acbaa61d7efa1a6af5d6439d213187e2f76696bb657dc709a0077bbf3b40e2f2"
+                            "pub_key": "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
+                            "priv_key_tweak": "43100f89f1a6bf10081c92b473ffc57ceac7dbed600b6aba9bb3976f17dbb914",
+                            "signature": "15c92509b67a6c211ebb4a51b7528d0666e6720de2343b2e92cfb97942ca14693c1f1fdc8451acfdb2644039f8f5c76114807fdc3d3a002d8a46afab6756bd75"
                         }
                     ]
                 }
@@ -1648,25 +1747,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100d3bab55350ad6b29fbd6e80f729b8a936668916ab437e3c8393ebcdaeb020645022100b0ded2c8093dbcfec4b566d16f737fd1b4005968ed4dfc54a43484a93e990b9921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "46304402202694ddce946ff9b2214a575e0ed80128153926be3bcfffc16d1dad8e61a23d87022053ecbb8363a6f03d20aa4dbcbbf9edbb0fafed3a6d977e8ee587b52640d6fb3821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402205306d84ddb847777444ed512fdcc1710094d02c19175b3a174b2e874cd1a028d022046a0de9decfbd02f9e613355f0b3f119afeab3febd001987778edd0a678f04f42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "463044022065421d39d90057ba75dfe35084df2ffaa10a387037170d13c0417cf6fd2a8ed2022030aa1896d926cff34173851a8c74e62afaa442584fad977e69ff236d6dfd30fe2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
@@ -1676,15 +1779,15 @@
                             5.0
                         ],
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj",
                             6.0
                         ],
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq562yg7htxyg8eq60rl37uul37jy62apnf5ru62uef0eajpdfrnp5cmqndj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjyh2ju7hd5gj57jg5r9lev3pckk4n2shtzaq34467erzzdfajfggty6aa5",
                             7.0
                         ],
                         [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgq562yg7htxyg8eq60rl37uul37jy62apnf5ru62uef0eajpdfrnp5cmqndj",
+                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjyh2ju7hd5gj57jg5r9lev3pckk4n2shtzaq34467erzzdfajfggty6aa5",
                             8.0
                         ]
                     ]
@@ -1692,19 +1795,19 @@
                 "expected": {
                     "outputs": [
                         [
-                            "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
+                            "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
                             5.0
                         ],
                         [
-                            "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
+                            "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
                             6.0
                         ],
                         [
-                            "1b90a42136fef9ff2ca192abffc7be4536dc83d4e61cf18ae078f7e92b297cce",
+                            "ae1a780c04237bd577283c3ddb2e499767c3214160d5a6b0767e6b8c278bd701",
                             7.0
                         ],
                         [
-                            "87a82600c08a255bc97d172e10816e322967eed6a77c9f37dd926492d7fdc106",
+                            "f4569fc5f69c10f0082cfbb8e072e6266ec55f69fba8cffca4cbb4c144b7e59b",
                             8.0
                         ]
                     ]
@@ -1714,58 +1817,59 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100d3bab55350ad6b29fbd6e80f729b8a936668916ab437e3c8393ebcdaeb020645022100b0ded2c8093dbcfec4b566d16f737fd1b4005968ed4dfc54a43484a93e990b9921025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "46304402202694ddce946ff9b2214a575e0ed80128153926be3bcfffc16d1dad8e61a23d87022053ecbb8363a6f03d20aa4dbcbbf9edbb0fafed3a6d977e8ee587b52640d6fb3821025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "46304402205306d84ddb847777444ed512fdcc1710094d02c19175b3a174b2e874cd1a028d022046a0de9decfbd02f9e613355f0b3f119afeab3febd001987778edd0a678f04f42103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "463044022065421d39d90057ba75dfe35084df2ffaa10a387037170d13c0417cf6fd2a8ed2022030aa1896d926cff34173851a8c74e62afaa442584fad977e69ff236d6dfd30fe2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
-                        "1b90a42136fef9ff2ca192abffc7be4536dc83d4e61cf18ae078f7e92b297cce",
-                        "87a82600c08a255bc97d172e10816e322967eed6a77c9f37dd926492d7fdc106"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
+                        "ae1a780c04237bd577283c3ddb2e499767c3214160d5a6b0767e6b8c278bd701",
+                        "f4569fc5f69c10f0082cfbb8e072e6266ec55f69fba8cffca4cbb4c144b7e59b"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
                         "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
                     },
                     "labels": [
-                        [
-                            "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
-                            "0000000000000000000000000000000000000000000000000000000000000001"
-                        ]
+                        1
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqah4hxfsjdwyaeel4g8x2npkj7qlvf2692l5760z5ut0ggnlrhdzsy3cvsj"
+                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqaxww2fnhrx05cghth75n0qcj59e3e2anscr0q9wyknjxtxycg07y3pevyj"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
-                            "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
+                            "pub_key": "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                            "priv_key_tweak": "33ce085c3c11eaad13694aae3c20301a6c83382ec89a7cde96c6799e2f88805a",
+                            "signature": "335667ca6cae7a26438f5cfdd73b3d48fa832fa9768521d7d5445f22c203ab0d74ed85088f27d29959ba627a4509996676f47df8ff284d292567b1beef0e3912"
                         },
                         {
-                            "pub_key": "7956317130124c32afd07b3f2432a3e92c1447cf58da95491a307ae3d564535e",
-                            "priv_key_tweak": "d39df91bd0e7825bfa1d30096febc5bf6fa7da79d7f25b7b4bea9538cc9a9f80",
-                            "signature": "567f0d4d914456141ca83fe89e99f008c1f7ab9e9a65d4a60162840824737407acbaa61d7efa1a6af5d6439d213187e2f76696bb657dc709a0077bbf3b40e2f2"
+                            "pub_key": "39f42624d5c32a77fda80ff0acee269afec601d3791803e80252ae04e4ffcf4c",
+                            "priv_key_tweak": "43100f89f1a6bf10081c92b473ffc57ceac7dbed600b6aba9bb3976f17dbb914",
+                            "signature": "15c92509b67a6c211ebb4a51b7528d0666e6720de2343b2e92cfb97942ca14693c1f1fdc8451acfdb2644039f8f5c76114807fdc3d3a002d8a46afab6756bd75"
                         }
                     ]
                 }
@@ -1777,25 +1881,29 @@
         "sending": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100e5756003c7023e41851176cfd1834cdc07dbbd42b52425b247b5db05ea939149022025fa29e932902b5cdad8f66c5792a5a9802400697fca81315d46f50578a2c07321025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac",
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100f590044abb79f1b07de9ad6470c79a4d07096d20c96bee5c1416492a437ccc6a022100f233e3c37631102eed83e08d77a2b3534e130547141d20316c293bd305eccb5221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            },
                             "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022100cea72120150f3bfd98971779e975d1ca449188feff0863eec6e528e95c9e448102205049fcf3b6fe1da46ff1a37232a3e972189e9284c47d000e4401f027c96163712103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4830460221008641c5aaff39d1a57df6a42741f6c2f0f4d7c90407c7ce537a1d2bfbf35ea9f1022100b19b11cb0a08bbbdcab1beed431434e66af18c4bc3449f09e92f2301af1e96aa2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            },
                             "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
                         }
                     ],
@@ -1805,7 +1913,7 @@
                             1.0
                         ],
                         [
-                            "sp1qqw6vczcfpdh5nf5y2ky99kmqae0tr30hgdfg88parz50cp80wd2wqqll5497pp2gcr4cmq0v5nv07x8u5jswmf8ap2q0kxmx8628mkqanyu63ck8",
+                            "sp1qqw6vczcfpdh5nf5y2ky99kmqae0tr30hgdfg88parz50cp80wd2wqqlv6saelkk5snl4wfutyxrchpzzwm8rjp3z6q7apna59z9huq4x754e5atr",
                             2.0
                         ]
                     ]
@@ -1813,11 +1921,11 @@
                 "expected": {
                     "outputs": [
                         [
-                            "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
+                            "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
                             1.0
                         ],
                         [
-                            "0050c52a32566c0dfb517e473c68fedce4bd4543d219348d3bbdceeeb5755e34",
+                            "be368e28979d950245d742891ae6064020ba548c1e2e65a639a8bb0675d95cff",
                             2.0
                         ]
                     ]
@@ -1827,80 +1935,85 @@
         "receiving": [
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100e5756003c7023e41851176cfd1834cdc07dbbd42b52425b247b5db05ea939149022025fa29e932902b5cdad8f66c5792a5a9802400697fca81315d46f50578a2c07321025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100f590044abb79f1b07de9ad6470c79a4d07096d20c96bee5c1416492a437ccc6a022100f233e3c37631102eed83e08d77a2b3534e130547141d20316c293bd305eccb5221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022100cea72120150f3bfd98971779e975d1ca449188feff0863eec6e528e95c9e448102205049fcf3b6fe1da46ff1a37232a3e972189e9284c47d000e4401f027c96163712103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4830460221008641c5aaff39d1a57df6a42741f6c2f0f4d7c90407c7ce537a1d2bfbf35ea9f1022100b19b11cb0a08bbbdcab1beed431434e66af18c4bc3449f09e92f2301af1e96aa2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "0050c52a32566c0dfb517e473c68fedce4bd4543d219348d3bbdceeeb5755e34"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "be368e28979d950245d742891ae6064020ba548c1e2e65a639a8bb0675d95cff"
                     ],
                     "key_material": {
                         "spend_priv_key": "b8f87388cbb41934c50daca018901b00070a5ff6cc25a7e9e716a9d5b9e4d664",
                         "scan_priv_key": "11b7a82e06ca2648d5fded2366478078ec4fc9dc1d8ff487518226f229d768fd"
                     },
                     "labels": [
-                        [
-                            "02295dc38e877b754c0d0ed767434f1572cf34a82ccc06ffea1d9e04f1f7878e1a",
-                            "91cb04398a508c9d995ff4a18e5eae24d5e9488309f189120a3fdbb977978c46"
-                        ]
+                        0
                     ]
                 },
                 "expected": {
                     "addresses": [
                         "sp1qqw6vczcfpdh5nf5y2ky99kmqae0tr30hgdfg88parz50cp80wd2wqqauj52ymtc4xdkmx3tgyhrsemg2g3303xk2gtzfy8h8ejet8fz8jcw23zua",
-                        "sp1qqw6vczcfpdh5nf5y2ky99kmqae0tr30hgdfg88parz50cp80wd2wqqll5497pp2gcr4cmq0v5nv07x8u5jswmf8ap2q0kxmx8628mkqanyu63ck8"
+                        "sp1qqw6vczcfpdh5nf5y2ky99kmqae0tr30hgdfg88parz50cp80wd2wqqlv6saelkk5snl4wfutyxrchpzzwm8rjp3z6q7apna59z9huq4x754e5atr"
                     ],
                     "outputs": [
                         {
-                            "pub_key": "0050c52a32566c0dfb517e473c68fedce4bd4543d219348d3bbdceeeb5755e34",
-                            "priv_key_tweak": "2e9c2a37cfa7827907d36357f0632d258dbd14b3a7854937ecf732fb6acefdc8",
-                            "signature": "6ba068ee36454c5ff002082578e234917de9e384df739c43a8b7c4cce58724cba4479191cf972b235bc4bb6c2a8d6081650d1d5ba043b59bd51d6ac15d55b396"
+                            "pub_key": "be368e28979d950245d742891ae6064020ba548c1e2e65a639a8bb0675d95cff",
+                            "priv_key_tweak": "80cd767ed20bd0bb7d8ea5e803f8c381293a62e8a073cf46fb0081da46e64e1f",
+                            "signature": "7fbd5074cf1377273155eefafc7c330cb61b31da252f22206ac27530d2b2567040d9af7808342ed4a09598c26d8307446e4ed77079e6a2e61fea736e44da5f5a"
                         }
                     ]
                 }
             },
             {
                 "given": {
-                    "inputs": [
+                    "vin": [
                         {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "473045022100e5756003c7023e41851176cfd1834cdc07dbbd42b52425b247b5db05ea939149022025fa29e932902b5cdad8f66c5792a5a9802400697fca81315d46f50578a2c07321025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
-                                ""
-                            ],
-                            "scriptPubKey": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                            "txid": "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
+                            "vout": 0,
+                            "scriptSig": "483046022100f590044abb79f1b07de9ad6470c79a4d07096d20c96bee5c1416492a437ccc6a022100f233e3c37631102eed83e08d77a2b3534e130547141d20316c293bd305eccb5221025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a91419c2f3ae0ca3b642bd3e49598b8da89f50c1416188ac"
+                                }
+                            }
                         },
                         {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "473045022100cea72120150f3bfd98971779e975d1ca449188feff0863eec6e528e95c9e448102205049fcf3b6fe1da46ff1a37232a3e972189e9284c47d000e4401f027c96163712103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                            "txid": "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
+                            "vout": 0,
+                            "scriptSig": "4830460221008641c5aaff39d1a57df6a42741f6c2f0f4d7c90407c7ce537a1d2bfbf35ea9f1022100b19b11cb0a08bbbdcab1beed431434e66af18c4bc3449f09e92f2301af1e96aa2103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
+                            "txinwitness": "",
+                            "prevout": {
+                                "scriptPubKey": {
+                                    "hex": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
+                                }
+                            }
                         }
                     ],
                     "outputs": [
-                        "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                        "0050c52a32566c0dfb517e473c68fedce4bd4543d219348d3bbdceeeb5755e34"
+                        "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                        "be368e28979d950245d742891ae6064020ba548c1e2e65a639a8bb0675d95cff"
                     ],
                     "key_material": {
                         "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
@@ -1914,347 +2027,9 @@
                     ],
                     "outputs": [
                         {
-                            "pub_key": "64f1c7e8992352d18cdbca600b9e1c3a6025050d56a3e1cc833222e4f3b59e18",
-                            "priv_key_tweak": "96439446f13ddaab2c5bc5a59a08992fd9d33bf8563c8a1b362730f4dc022e30",
-                            "signature": "3f6226feb9e4cafc0bdab8c9cfe085885308f3708c222bcec6cf26467685d897f51597abe39d1d279708e63513c7be23daed78607a98837060950493de188645"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "comment": "Pubkey extraction",
-        "sending": [
-            {
-                "given": {
-                    "inputs": [
-                        {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100d5ca10a7a6707e9ee4f8448bb74ccb2a565f4fed9f8e26df809525ae39aecb150221009928bb4c92861badf61161e74386dae5135d8b3bd6fd711eec28288d5d074263",
-                                ""
-                            ],
-                            "scriptPubKey": "21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5ac",
-                            "private_key": "eadc78165ff1f8ea94ad7cfdc54990738a4c53f6e0507b42154201b8e5dff3b1"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100c724f32aee9106c573a1a00e9ccabaf05d1f9d96ebf425b93fbacb6e50c0f5ef0221008b20b0cd0915b221ded695f6f13ad05ac13066eae532f6a5db9c6c790f0c13c02103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac",
-                            "private_key": "0378e95685b74565fa56751b84a32dfd18545d10d691641b8372e32164fad66a"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                1,
-                                "0075483046022100abfd011ed66942b98d1260b2df8b0eb7d62ed5c1d7cfe90661c4a3b871bafeac022100c46200e06c3d87aeb0e1ddffdad03e495db347d528dce4f0ab13a02d93cbeec32102e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914c82c5ec473cbc6c86e5ef410e36f9495adcf979988ac",
-                            "private_key": "72b8ae09175ca7977f04993e651d88681ed932dfb92c5158cdf0161dd23fda6e"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                2,
-                                "483046022100d892f5d4ccc85ef86c379ef5ecc5777ee51c65a89ec2525580d05789f8f151a7022100898a45c66fc0510e885c8e73ad787a4de5533e2762f4860b2565f4c0b98ed79241068c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4d877284cb52e509c724deedf40fe0340ae6133ae0df952d4f415419223e70564",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914b6cad1e098b16106fc66f91e58e90b3b031572ce88ac",
-                            "private_key": "e2c88783d48ee91167c16063ecd9620c2a1d2954eefae6f985f18bd0aeb37d82"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "",
-                                "02483046022100ceb5b3a373db37ccb9d0b85284e42ae1e3358ca94ac8f584bff927b2edc9b9a7022100b5a4c800519c72dfb2d13db7395c3e498dea30c9e78851e9d8123a27e780c4cf2103b284ea9c19824e3f231205571b712f865e43f5ef33046dd9153e60b4cc40b583"
-                            ],
-                            "scriptPubKey": "001408915aa1b8c265c9c7b9db6e746723f059c5a8eb",
-                            "private_key": "c1adba911ff05860a151bdf59cccfcf04568d08d665475e28409db4cb5257519"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                4,
-                                "",
-                                "02483046022100d56ac3ce79a27eac6e3243f2b856a7fe1df69228ad040d8a6ecbc3ff95619a7d0221008b86f23e1d25c13aa10c7ad5fc857a656b9736a357d1dd97f0e1e39fee3530a0410691f3ebd8ff9c9fa9a7534f7f61e7363b967238f9978ce71ebfd8fd6881a8d720d6519f12b30418a27753668d3bd02f2a02111ae946e58ee7efaf77e9aa8163c6"
-                            ],
-                            "scriptPubKey": "0014c122f223d1afa2cff014c80f315724e2aab5274a",
-                            "private_key": "5058e858fe743c86975287b8b68071e13db15b6354d12e6c361141a03a36d7a6"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                5,
-                                "1600149e5a50fd400b3f9f7478f139920699ea77ee20ab",
-                                "02473045022048ba6a8f8c009e38e436f214c9c6a04834eaad4a2bf5046b3aa43e65fd26ede7022100830ff5de6a2b1602ddfe8689f002c2f238ff623e03100aa11adccacec254521821038b7040a481ce2ff98a72505f1343afb2abccd365f1a104b3223add0790034f61"
-                            ],
-                            "scriptPubKey": "a914bc79e1eac78dc04165dc24828d48cd47f5289c6687",
-                            "private_key": "c2fa0421634f7989ae29e91d37ef6d1d298e8cc40d034171f41f68067f0781a9"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                6,
-                                "",
-                                "01400462227164c9f9c972324c3cce6b73f0ae0c16081f1d028e3edae25c197ec95627589c4077f7a37a87424ac9004c37bb87a7225e2bc435ec2654d373bcf30302"
-                            ],
-                            "scriptPubKey": "51206fa0aebacf51a367eebcc1db5611ab5044bd306dbddb4bffa4d87bec58e848cc",
-                            "private_key": "fb4117dddc49a7923bdb2fd78c5c6443b5f6a30d879c5162573755466eed4425"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "",
-                                "02015121c0ae0554b17264a231ec94407263897a6294a92f8f1f587e56c1d4e9a1bad0d571"
-                            ],
-                            "scriptPubKey": "5120827f96ce0a802efbd928dd55414c770e19ad64024a5645c3c7c3952ec33022d1",
-                            "private_key": "03a52df153f6212ff4ac8e8481e921192b997589b522176b14bd6f3df778db2a"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                8,
-                                "",
-                                "02015121c150929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac0"
-                            ],
-                            "scriptPubKey": "5120f855ca43402fb99cde0e3e634b175642561ff584fe76d1686630d8fd2ea93b36",
-                            "private_key": "b9e24efd3707d65e70a80d0c3f83885f9d10355af0711a99d637e9426740ea03"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                9,
-                                "473045022100b3964a67cd4830f72dfa645e48a596681143624246cc364693a1d0f07282ffc80220682d1fc4eb7005e72a4d7f642db013fb657b7119422365b5a865959d4c5915f7210240e138d57abef28d8623526d32bd271f72cd3fded2d1f3bf4d70b7ad4ffadfc71976a914dbc307b83c806a0000d495e72aa5961e4092cda088ac",
-                                ""
-                            ],
-                            "scriptPubKey": "a914b96ce4305423dfb25f20ddb7487848bebf29460487",
-                            "private_key": "42e4df2be2bd088e359c83cd3cd23e2f2bd8440675cb60099d57b3bee8eff482"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                10,
-                                "",
-                                "0348304602210093144795742a2da67b9cc9c3498196a411ade58f17b26c246c0781fb468961d3022100d37c4caf0454f3c946846bd96320f4f71d0f447c568f6756acf7b874ff57e86021032292cd46c6d513c4821ce5c4990f483cfd0747e82a2420f52feeaced8fb41ab21976a914b94abd2087fa5eb9e4ab09bdbfef51069e83771688ac"
-                            ],
-                            "scriptPubKey": "0020b37f2bb44e79d7e35a97ca10b661ca28c95afc7b3b80335994b9402193a8a45c",
-                            "private_key": "6b0526fbcf409018be844f602dab8eba04d43894e331248eed51704fa1d5ff3b"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                11,
-                                "220020911757ec8c69bd73d520b43bc92feed1c453c80d0cd4e14ea5a686bd91d5510b",
-                                "03473045022100e95919f5d82e234369c27c380e68b8e6aa68c952e6e190ba5efb7fec3f81510202207b4fd2400c9734777b1b01740959af9144dc439984fc588bba29a806ad421c7221022e2f0ef7c5eb43042d92b5da83072870eeadbd425d0a7b21755f03685aa368fe1976a914c6618e9a2512291ca03a5165bdd74d8b51b8bffe88ac"
-                            ],
-                            "scriptPubKey": "a914a7d00a8c176e2ee1fc798ef0451a20bada5eb24387",
-                            "private_key": "e4cafd0c02f0bdae32f3d95cd11ed08da9b1f12ecad77d2f8d29a552d59b38bf"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                12,
-                                "00473045022068a1c620c9de736f8a97901e02860be6e52101764afe738a2e22b99aa3fd99c8022100f792d240d0fd8a6ed13992dd2d47ae7da6c444ebdb205dbceb108ec158d99eeb",
-                                ""
-                            ],
-                            "scriptPubKey": "5121028c01b0a189d2afd942f0eae44d73bc0f7fc1a86e72bb65e863b93833a6a42d4051ae",
-                            "private_key": "240b57afbd975f9a546dedb92891104e9ff0f682df189f3bb21402c48f863cbc"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                13,
-                                "483046022100af936aa742b1095962c4685bf1ce772853e8fdf76ecce9c263dc843fde1ecc1e02210090a350d378806bb1a19177a8413b731bc9714eceab0b12df3b968773972536a92102ab0cebf35975a90ea79616d45721f5ea0f4838954364c2eb5460801ed2a938a1",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914fc04ed982f196e25db94d4d5186e8bc79bb03a118875",
-                            "private_key": "f2585cd197dc8d09cdb2dadc7510005d36b8cde661ead5e19764ab482da1e949"
-                        }
-                    ],
-                    "recipients": [
-                        [
-                            "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv",
-                            1.0
-                        ]
-                    ]
-                },
-                "expected": {
-                    "outputs": [
-                        [
-                            "a76d8e52ee3e4fec0eaaaa24d86d9ba3ffd9dd32c78505c3658edb7524f26fdf",
-                            1.0
-                        ]
-                    ]
-                }
-            }
-        ],
-        "receiving": [
-            {
-                "given": {
-                    "inputs": [
-                        {
-                            "prevout": [
-                                "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16",
-                                0,
-                                "483046022100d5ca10a7a6707e9ee4f8448bb74ccb2a565f4fed9f8e26df809525ae39aecb150221009928bb4c92861badf61161e74386dae5135d8b3bd6fd711eec28288d5d074263",
-                                ""
-                            ],
-                            "scriptPubKey": "21025a1e61f898173040e20616d43e9f496fba90338a39faa1ed98fcbaeee4dd9be5ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                0,
-                                "483046022100c724f32aee9106c573a1a00e9ccabaf05d1f9d96ebf425b93fbacb6e50c0f5ef0221008b20b0cd0915b221ded695f6f13ad05ac13066eae532f6a5db9c6c790f0c13c02103782eeb913431ca6e9b8c2fd80a5f72ed2024ef72a3c6fb10263c379937323338",
-                                ""
-                            ],
-                            "scriptPubKey": "76a9147cdd63cc408564188e8e472640e921c7c90e651d88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                1,
-                                "0075483046022100abfd011ed66942b98d1260b2df8b0eb7d62ed5c1d7cfe90661c4a3b871bafeac022100c46200e06c3d87aeb0e1ddffdad03e495db347d528dce4f0ab13a02d93cbeec32102e0ec4f64b3fa2e463ccfcf4e856e37d5e1e20275bc89ec1def9eb098eff1f85d",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914c82c5ec473cbc6c86e5ef410e36f9495adcf979988ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                2,
-                                "483046022100d892f5d4ccc85ef86c379ef5ecc5777ee51c65a89ec2525580d05789f8f151a7022100898a45c66fc0510e885c8e73ad787a4de5533e2762f4860b2565f4c0b98ed79241068c8d23d4764feffcd5e72e380802540fa0f88e3d62ad5e0b47955f74d7b283c4d877284cb52e509c724deedf40fe0340ae6133ae0df952d4f415419223e70564",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914b6cad1e098b16106fc66f91e58e90b3b031572ce88ac"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                3,
-                                "",
-                                "02483046022100ceb5b3a373db37ccb9d0b85284e42ae1e3358ca94ac8f584bff927b2edc9b9a7022100b5a4c800519c72dfb2d13db7395c3e498dea30c9e78851e9d8123a27e780c4cf2103b284ea9c19824e3f231205571b712f865e43f5ef33046dd9153e60b4cc40b583"
-                            ],
-                            "scriptPubKey": "001408915aa1b8c265c9c7b9db6e746723f059c5a8eb"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                4,
-                                "",
-                                "02483046022100d56ac3ce79a27eac6e3243f2b856a7fe1df69228ad040d8a6ecbc3ff95619a7d0221008b86f23e1d25c13aa10c7ad5fc857a656b9736a357d1dd97f0e1e39fee3530a0410691f3ebd8ff9c9fa9a7534f7f61e7363b967238f9978ce71ebfd8fd6881a8d720d6519f12b30418a27753668d3bd02f2a02111ae946e58ee7efaf77e9aa8163c6"
-                            ],
-                            "scriptPubKey": "0014c122f223d1afa2cff014c80f315724e2aab5274a"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                5,
-                                "1600149e5a50fd400b3f9f7478f139920699ea77ee20ab",
-                                "02473045022048ba6a8f8c009e38e436f214c9c6a04834eaad4a2bf5046b3aa43e65fd26ede7022100830ff5de6a2b1602ddfe8689f002c2f238ff623e03100aa11adccacec254521821038b7040a481ce2ff98a72505f1343afb2abccd365f1a104b3223add0790034f61"
-                            ],
-                            "scriptPubKey": "a914bc79e1eac78dc04165dc24828d48cd47f5289c6687"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                6,
-                                "",
-                                "01400462227164c9f9c972324c3cce6b73f0ae0c16081f1d028e3edae25c197ec95627589c4077f7a37a87424ac9004c37bb87a7225e2bc435ec2654d373bcf30302"
-                            ],
-                            "scriptPubKey": "51206fa0aebacf51a367eebcc1db5611ab5044bd306dbddb4bffa4d87bec58e848cc"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                7,
-                                "",
-                                "02015121c0ae0554b17264a231ec94407263897a6294a92f8f1f587e56c1d4e9a1bad0d571"
-                            ],
-                            "scriptPubKey": "5120827f96ce0a802efbd928dd55414c770e19ad64024a5645c3c7c3952ec33022d1"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                8,
-                                "",
-                                "02015121c150929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac0"
-                            ],
-                            "scriptPubKey": "5120f855ca43402fb99cde0e3e634b175642561ff584fe76d1686630d8fd2ea93b36"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                9,
-                                "473045022100b3964a67cd4830f72dfa645e48a596681143624246cc364693a1d0f07282ffc80220682d1fc4eb7005e72a4d7f642db013fb657b7119422365b5a865959d4c5915f7210240e138d57abef28d8623526d32bd271f72cd3fded2d1f3bf4d70b7ad4ffadfc71976a914dbc307b83c806a0000d495e72aa5961e4092cda088ac",
-                                ""
-                            ],
-                            "scriptPubKey": "a914b96ce4305423dfb25f20ddb7487848bebf29460487"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                10,
-                                "",
-                                "0348304602210093144795742a2da67b9cc9c3498196a411ade58f17b26c246c0781fb468961d3022100d37c4caf0454f3c946846bd96320f4f71d0f447c568f6756acf7b874ff57e86021032292cd46c6d513c4821ce5c4990f483cfd0747e82a2420f52feeaced8fb41ab21976a914b94abd2087fa5eb9e4ab09bdbfef51069e83771688ac"
-                            ],
-                            "scriptPubKey": "0020b37f2bb44e79d7e35a97ca10b661ca28c95afc7b3b80335994b9402193a8a45c"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                11,
-                                "220020911757ec8c69bd73d520b43bc92feed1c453c80d0cd4e14ea5a686bd91d5510b",
-                                "03473045022100e95919f5d82e234369c27c380e68b8e6aa68c952e6e190ba5efb7fec3f81510202207b4fd2400c9734777b1b01740959af9144dc439984fc588bba29a806ad421c7221022e2f0ef7c5eb43042d92b5da83072870eeadbd425d0a7b21755f03685aa368fe1976a914c6618e9a2512291ca03a5165bdd74d8b51b8bffe88ac"
-                            ],
-                            "scriptPubKey": "a914a7d00a8c176e2ee1fc798ef0451a20bada5eb24387"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                12,
-                                "00473045022068a1c620c9de736f8a97901e02860be6e52101764afe738a2e22b99aa3fd99c8022100f792d240d0fd8a6ed13992dd2d47ae7da6c444ebdb205dbceb108ec158d99eeb",
-                                ""
-                            ],
-                            "scriptPubKey": "5121028c01b0a189d2afd942f0eae44d73bc0f7fc1a86e72bb65e863b93833a6a42d4051ae"
-                        },
-                        {
-                            "prevout": [
-                                "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d",
-                                13,
-                                "483046022100af936aa742b1095962c4685bf1ce772853e8fdf76ecce9c263dc843fde1ecc1e02210090a350d378806bb1a19177a8413b731bc9714eceab0b12df3b968773972536a92102ab0cebf35975a90ea79616d45721f5ea0f4838954364c2eb5460801ed2a938a1",
-                                ""
-                            ],
-                            "scriptPubKey": "76a914fc04ed982f196e25db94d4d5186e8bc79bb03a118875"
-                        }
-                    ],
-                    "outputs": [
-                        "a76d8e52ee3e4fec0eaaaa24d86d9ba3ffd9dd32c78505c3658edb7524f26fdf"
-                    ],
-                    "key_material": {
-                        "spend_priv_key": "9d6ad855ce3417ef84e836892e5a56392bfba05fa5d97ccea30e266f540e08b3",
-                        "scan_priv_key": "0f694e068028a717f8af6b9411f9a133dd3565258714cc226594b34db90c1f2c"
-                    },
-                    "labels": []
-                },
-                "expected": {
-                    "addresses": [
-                        "sp1qqgste7k9hx0qftg6qmwlkqtwuy6cycyavzmzj85c6qdfhjdpdjtdgqjuexzk6murw56suy3e0rd2cgqvycxttddwsvgxe2usfpxumr70xc9pkqwv"
-                    ],
-                    "outputs": [
-                        {
-                            "pub_key": "a76d8e52ee3e4fec0eaaaa24d86d9ba3ffd9dd32c78505c3658edb7524f26fdf",
-                            "priv_key_tweak": "9f12e6807b5919c3e9eaf44db47861994c2f019bd582e810a625242c05fb3889",
-                            "signature": "38091c7f1b611eeef48c638e5dee6f41b6463b25501112cf65e5b40885fa36fb3930a716f22b1bd7b48d4415cb8e208052cad44d2a72fc6dee286ce9a4648d5d"
+                            "pub_key": "f207162b1a7abc51c42017bef055e9ec1efc3d3567cb720357e2b84325db33ac",
+                            "priv_key_tweak": "33ce085c3c11eaad13694aae3c20301a6c83382ec89a7cde96c6799e2f88805a",
+                            "signature": "335667ca6cae7a26438f5cfdd73b3d48fa832fa9768521d7d5445f22c203ab0d74ed85088f27d29959ba627a4509996676f47df8ff284d292567b1beef0e3912"
                         }
                     ]
                 }
