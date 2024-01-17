@@ -64,8 +64,13 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
         witnessStack = vin.txinwitness.scriptWitness.stack
         if (len(witnessStack) > 1):
             # Script spend
+
+            if (len(witnessStack) > 2 and witnessStack[-1][0] == 0x50):
+                # Last item is annex
+                witnessStack.pop()
+            
             control_block = witnessStack[-1]
-            #  control block is <control byte> <32 byte internal key> or more <32 byte hash>
+            #  control block is <control byte> <32 byte internal key> and 1 or more <32 byte hash>
             internal_key = control_block[1:33]
             if (internal_key == NUMS_H.to_bytes(32, 'big')):
                 # Skip if NUMS_H
