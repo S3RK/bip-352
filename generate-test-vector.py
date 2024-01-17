@@ -62,7 +62,7 @@ def get_leafp2tr_witness(priv_key, internal_key):
     sig = priv_key.sign_schnorr(msg).hex()
     leaf_script = (0x20 << 264) | (int.from_bytes(priv_key.get_pubkey().get_bytes(True), 'big') << 8) | 0xac
     control = (0xc1 << 512) | (internal_key << 256) | int.from_bytes(hashlib.sha256(b'leafhash').digest(), 'big')
-    return serialize_witness_stack([sig, leaf_script.to_bytes(34, 'big').hex(), control.to_bytes(65, 'big').hex()])
+    return serialize_witness_stack([sig, leaf_script.to_bytes(34, 'big').hex(), control.to_bytes(65, 'big').hex(), '50'])
 
 def get_p2tr_scriptPubKey(pub_key):
     return "5120" + pub_key.get_bytes(True).hex()
