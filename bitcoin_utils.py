@@ -30,7 +30,13 @@ def deser_txid(txid: str):
     return bytes.fromhex(dixt)
 
 
-def deser_compact_size(f):
+def deser_compact_size(f: BytesIO):
+    view = f.getbuffer()
+    nbytes = view.nbytes;
+    view.release()
+    if (nbytes == 0):
+        return 0 # end of stream
+
     nit = struct.unpack("<B", f.read(1))[0]
     if nit == 253:
         nit = struct.unpack("<H", f.read(2))[0]
@@ -41,12 +47,12 @@ def deser_compact_size(f):
     return nit
 
 
-def deser_string(f):
+def deser_string(f: BytesIO):
     nit = deser_compact_size(f)
     return f.read(nit)
 
 
-def deser_string_vector(f):
+def deser_string_vector(f: BytesIO):
     nit = deser_compact_size(f)
     r = []
     for _ in range(nit):
@@ -112,11 +118,9 @@ class CTxInWitness:
     def __init__(self):
         self.scriptWitness = CScriptWitness()
 
-    def deserialize(self, f):
-        if isinstance(f, list):
-            self.scriptWitness.stack = [deser_string(item) for item in f]
-        elif isinstance(f, str):
-            self.scriptWitness.stack = deser_string_vector(f)
+    def deserialize(self, f: BytesIO):
+        self.scriptWitness.stack = deser_string_vector(f)
+        return self
 
     def is_null(self):
         return self.scriptWitness.is_null()
