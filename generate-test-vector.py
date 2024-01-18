@@ -57,12 +57,15 @@ def get_p2tr_witness(priv_key):
     sig = priv_key.sign_schnorr(msg).hex()
     return serialize_witness_stack([sig])
 
-def get_leafp2tr_witness(priv_key, internal_key):
+def get_leafp2tr_witness(priv_key, internal_key, add_annex=True):
     msg = hashlib.sha256(b'message').digest()
     sig = priv_key.sign_schnorr(msg).hex()
     leaf_script = (0x20 << 264) | (int.from_bytes(priv_key.get_pubkey().get_bytes(True), 'big') << 8) | 0xac
     control = (0xc1 << 512) | (internal_key << 256) | int.from_bytes(hashlib.sha256(b'leafhash').digest(), 'big')
-    return serialize_witness_stack([sig, leaf_script.to_bytes(34, 'big').hex(), control.to_bytes(65, 'big').hex(), '50'])
+    witness_stack = [sig, leaf_script.to_bytes(34, 'big').hex(), control.to_bytes(65, 'big').hex()]
+    if (add_annex):
+        witness_stack.append('50')
+    return serialize_witness_stack(witness_stack)
 
 def get_p2tr_scriptPubKey(pub_key):
     return "5120" + pub_key.get_bytes(True).hex()
@@ -1119,13 +1122,15 @@ def generate_taproot_with_nums_point_test():
     G = ECKey().set(1).get_pubkey()
     outpoints = [
         ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
-        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0)
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 1)
     ]
 
     sender_bip32_seed = 'deadbeef'
     recipient_bip32_seed = 'f00dbabe'
     i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
     i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+    i3, I3 = get_key_pair(2, seed=bytes.fromhex(sender_bip32_seed))
 
     if I1.get_y()%2 != 0:
         i1.negate()
@@ -1134,10 +1139,14 @@ def generate_taproot_with_nums_point_test():
     if I2.get_y()%2 != 0:
         i2.negate()
         I2.negate()
+    
+    if I3.get_y()%2 == 0:
+        i3.negate()
+        I3.negate()
 
     nums_point = [
-        [(i1, True, NUMS_H), (i2, True, None)],
-        [I1, I2]
+        [(i1, True, NUMS_H, True), (i2, True, None, False), (i3, True, NUMS_H, False)],
+        [I1, I2, I3]
     ]
 
     test_cases = []
@@ -1148,7 +1157,7 @@ def generate_taproot_with_nums_point_test():
         sender, recipient, test_case = new_test_case()
 
         inp = []
-        for x, (key, is_taproot, internal_key) in enumerate(inputs[0]):
+        for x, (key, is_taproot, internal_key, add_annex) in enumerate(inputs[0]):
             pub_key = inputs[1][x]
             if is_taproot:
                 if (internal_key == None):
@@ -1164,7 +1173,7 @@ def generate_taproot_with_nums_point_test():
                         "txid": outpoints[x][0],
                         "vout": outpoints[x][1],
                         "scriptSig": "",
-                        "txinwitness": get_leafp2tr_witness(key, internal_key),
+                        "txinwitness": get_leafp2tr_witness(key, internal_key, add_annex = add_annex),
                         "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
                     }]
             else:
@@ -1177,7 +1186,7 @@ def generate_taproot_with_nums_point_test():
                 }]
 
         priv_keys = []
-        for (priv_key, is_taproot, internal_key) in inputs[0]:
+        for (priv_key, is_taproot, internal_key, add_annex) in inputs[0]:
             priv_keys += [priv_key.get_bytes().hex()]
             
 
