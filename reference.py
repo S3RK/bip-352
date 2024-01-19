@@ -11,7 +11,7 @@ from functools import reduce
 
 # local files
 from bech32m import convertbits, bech32_encode, decode, Encoding
-from secp256k1 import ECKey, ECPubKey, TaggedHash
+from secp256k1 import ECKey, ECPubKey, TaggedHash, NUMS_H
 from bitcoin_utils import (
         deser_txid,
         from_hex,
@@ -61,9 +61,26 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
         if (pubkey.valid) & (pubkey.compressed):
             return pubkey
     if is_p2tr(vin.prevout):
+        witnessStack = vin.txinwitness.scriptWitness.stack
+        if (len(witnessStack) > 1):
+            # Script spend
+
+            if (len(witnessStack) > 2 and witnessStack[-1][0] == 0x50):
+                # Last item is annex
+                witnessStack.pop()
+            
+            control_block = witnessStack[-1]
+            #  control block is <control byte> <32 byte internal key> and 1 or more <32 byte hash>
+            internal_key = control_block[1:33]
+            if (internal_key == NUMS_H.to_bytes(32, 'big')):
+                # Skip if NUMS_H
+                return ECPubKey()
+               
         pubkey = ECPubKey().set(vin.prevout[2:])
         if (pubkey.valid) & (pubkey.compressed):
-            return pubkey
+            return pubkey 
+        
+        
     return ECPubKey()
 
 

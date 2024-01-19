@@ -57,6 +57,16 @@ def get_p2tr_witness(priv_key):
     sig = priv_key.sign_schnorr(msg).hex()
     return serialize_witness_stack([sig])
 
+def get_leafp2tr_witness(priv_key, internal_key, add_annex=True):
+    msg = hashlib.sha256(b'message').digest()
+    sig = priv_key.sign_schnorr(msg).hex()
+    leaf_script = (0x20 << 264) | (int.from_bytes(priv_key.get_pubkey().get_bytes(True), 'big') << 8) | 0xac
+    control = (0xc1 << 512) | (internal_key << 256) | int.from_bytes(hashlib.sha256(b'leafhash').digest(), 'big')
+    witness_stack = [sig, leaf_script.to_bytes(34, 'big').hex(), control.to_bytes(65, 'big').hex()]
+    if (add_annex):
+        witness_stack.append('50')
+    return serialize_witness_stack(witness_stack)
+
 def get_p2tr_scriptPubKey(pub_key):
     return "5120" + pub_key.get_bytes(True).hex()
 
@@ -1105,6 +1115,132 @@ def generate_unknown_segwit_ver_test():
     # TODO: scanning no taproot output
     # TODO: scanning no inputs for ECDH
 
+def generate_taproot_with_nums_point_test():
+
+    msg = hashlib.sha256(b'message').digest()
+    aux = hashlib.sha256(b'random auxiliary data').digest()
+    G = ECKey().set(1).get_pubkey()
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 1)
+    ]
+
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+    i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
+    i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+    i3, I3 = get_key_pair(2, seed=bytes.fromhex(sender_bip32_seed))
+
+    if I1.get_y()%2 != 0:
+        i1.negate()
+        I1.negate()
+
+    if I2.get_y()%2 != 0:
+        i2.negate()
+        I2.negate()
+    
+    if I3.get_y()%2 == 0:
+        i3.negate()
+        I3.negate()
+
+    nums_point = [
+        [(i1, True, NUMS_H, True), (i2, True, None, False), (i3, True, NUMS_H, False)],
+        [I1, I2, I3]
+    ]
+
+    test_cases = []
+    comments = [
+        "Single receipient: taproot input with NUMS point"
+    ]
+    for i, inputs in enumerate([nums_point]):
+        sender, recipient, test_case = new_test_case()
+
+        inp = []
+        for x, (key, is_taproot, internal_key, add_annex) in enumerate(inputs[0]):
+            pub_key = inputs[1][x]
+            if is_taproot:
+                if (internal_key == None):
+                    inp += [{
+                        "txid": outpoints[x][0],
+                        "vout": outpoints[x][1],
+                        "scriptSig": "",
+                        "txinwitness": get_p2tr_witness(key),
+                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
+                    }]
+                else:
+                    inp += [{
+                        "txid": outpoints[x][0],
+                        "vout": outpoints[x][1],
+                        "scriptSig": "",
+                        "txinwitness": get_leafp2tr_witness(key, internal_key, add_annex = add_annex),
+                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
+                    }]
+            else:
+                inp += [{
+                    "txid": outpoints[x][0],
+                    "vout": outpoints[x][1],
+                    "scriptSig": get_p2pkh_scriptsig(pub_key, key),
+                    "txinwitness": "",
+                    "prevout": {"scriptPubKey": {"hex": get_p2pkh_scriptPubKey(pub_key)}},
+                }]
+
+        priv_keys = []
+        for (priv_key, is_taproot, internal_key, add_annex) in inputs[0]:
+            priv_keys += [priv_key.get_bytes().hex()]
+            
+
+        sender['given']['vin'] = add_private_keys(deepcopy(inp), inputs[0])
+        recipient['given']['vin'] = inp
+
+        b_scan, b_spend, B_scan, B_spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+        recipient['given']['key_material']['scan_priv_key'] = b_scan.get_bytes().hex()
+        recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
+        address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
+
+        sender['given']['recipients'].extend([(address, 1.0)])
+        recipient['expected']['addresses'].extend([address])
+
+        # Excluded inputs with NUMS point internal key
+        included_keys = [inp for i, inp in enumerate(inputs[0]) if inp[2] == None]
+        included_pubkeys = [pubkey for i, pubkey in enumerate(inputs[1]) if inputs[0][i][2] == None]
+        
+        A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(included_pubkeys)])
+        deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
+
+        outputs = reference.create_outputs([(inp[0], inp[1]) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        sender['expected']['outputs'] = outputs
+        output_pub_keys = [recipient[0] for recipient in outputs]
+        recipient['given']['outputs'] = output_pub_keys
+
+        add_to_wallet = reference.scanning(
+            b_scan,
+            B_spend,
+            A_sum,
+            deterministic_nonce,
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        )
+        for o in add_to_wallet:
+
+            pubkey = ECPubKey().set(bytes.fromhex(o['pub_key']))
+            full_private_key = b_spend.add(
+                bytes.fromhex(o['priv_key_tweak'])
+            )
+            if full_private_key.get_pubkey().get_y()%2 != 0:
+                full_private_key.negate()
+
+            sig = full_private_key.sign_schnorr(msg, aux)
+            assert pubkey.verify_schnorr(sig, msg)
+            o['signature'] = sig.hex()
+
+        recipient['expected']['outputs'] = add_to_wallet
+        test_case['sending'].extend([sender])
+        test_case['receiving'].extend([recipient])
+        test_case["comment"] = comments[i]
+        test_cases.append(test_case)
+
+    return test_cases
+
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
@@ -1112,7 +1248,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_multiple_output_tests() +
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
-        generate_change_tests(),
+        generate_change_tests() +
+        generate_taproot_with_nums_point_test(),
         # generate_all_inputs_test(),
 
         f,
