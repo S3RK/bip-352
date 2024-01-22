@@ -1088,7 +1088,7 @@ def generate_taproot_with_nums_point_test():
         I3.negate()
 
     nums_point = [
-        [(i1, True, NUMS_H, True), (i2, True, None, False), (i3, True, NUMS_H, False)],
+        [(i1, NUMS_H, True), (i2, None, False), (i3, NUMS_H, False)],
         [I1, I2, I3]
     ]
 
@@ -1100,36 +1100,28 @@ def generate_taproot_with_nums_point_test():
         sender, recipient, test_case = new_test_case()
 
         inp = []
-        for x, (key, is_taproot, internal_key, add_annex) in enumerate(inputs[0]):
+        for x, (key, internal_key, add_annex) in enumerate(inputs[0]):
             pub_key = inputs[1][x]
-            if is_taproot:
-                if (internal_key == None):
-                    inp += [{
-                        "txid": outpoints[x][0],
-                        "vout": outpoints[x][1],
-                        "scriptSig": "",
-                        "txinwitness": get_p2tr_witness(key),
-                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
-                    }]
-                else:
-                    inp += [{
-                        "txid": outpoints[x][0],
-                        "vout": outpoints[x][1],
-                        "scriptSig": "",
-                        "txinwitness": get_leafp2tr_witness(key, internal_key, add_annex = add_annex),
-                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
-                    }]
+
+            if (internal_key == None):
+                inp += [{
+                    "txid": outpoints[x][0],
+                    "vout": outpoints[x][1],
+                    "scriptSig": "",
+                    "txinwitness": get_p2tr_witness(key),
+                    "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
+                }]
             else:
                 inp += [{
                     "txid": outpoints[x][0],
                     "vout": outpoints[x][1],
-                    "scriptSig": get_p2pkh_scriptsig(pub_key, key),
-                    "txinwitness": "",
-                    "prevout": {"scriptPubKey": {"hex": get_p2pkh_scriptPubKey(pub_key)}},
+                    "scriptSig": "",
+                    "txinwitness": get_leafp2tr_witness(key, internal_key, add_annex = add_annex),
+                    "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
                 }]
 
         priv_keys = []
-        for (priv_key, is_taproot, internal_key, add_annex) in inputs[0]:
+        for (priv_key, internal_key, add_annex) in inputs[0]:
             priv_keys += [priv_key.get_bytes().hex()]
             
 
@@ -1145,13 +1137,13 @@ def generate_taproot_with_nums_point_test():
         recipient['expected']['addresses'].extend([address])
 
         # Excluded inputs with NUMS point internal key
-        included_keys = [inp for i, inp in enumerate(inputs[0]) if inp[2] == None]
-        included_pubkeys = [pubkey for i, pubkey in enumerate(inputs[1]) if inputs[0][i][2] == None]
+        included_keys = [inp for inp in inputs[0] if inp[1] == None]
+        included_pubkeys = [pubkey for i, pubkey in enumerate(inputs[1]) if inputs[0][i][1] == None]
         
-        A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(included_pubkeys)])
+        A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in included_pubkeys])
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
-        outputs = reference.create_outputs([(inp[0], inp[1]) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs([(inp[0], True) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [recipient[0] for recipient in outputs]
         recipient['given']['outputs'] = output_pub_keys
