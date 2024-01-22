@@ -1234,6 +1234,7 @@ def generate_malleated_p2pkh_test():
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
     addresses = [(address, 1.0)]
 
+    sender['given']['recipients'] = addresses
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
     recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
     recipient['expected']['addresses'] = [address]
@@ -1419,6 +1420,125 @@ def generate_uncompressed_keys_tests():
     test_case["comment"] = "P2PKH and P2WPKH Uncompressed Keys are skipped"
     return [test_case]
 
+def generate_p2sh_tests():
+    sender, recipient, test_case = new_test_case()
+    msg = hashlib.sha256(b'message').digest()
+    aux = hashlib.sha256(b'random auxiliary data').digest()
+
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 1),
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 2)
+    ]
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    sender['given']['recipients'] = addresses
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+
+    inputs = []
+    input_priv_keys = []
+    input_pub_keys = []
+        
+    # p2sh(p2wpkh) compressed
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
+    p2wpkh = "0014"+reference.hash160(pub.get_bytes(False)).hex()
+    p2sh = f"a914{hash160(bytes.fromhex(p2wpkh)).hex()}87"
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': f'{(len(p2wpkh)//2):0x}'+p2wpkh,
+        'txinwitness': serialize_witness_stack([sig, pub.get_bytes(False).hex()]),
+        'prevout': { 'scriptPubKey': { 'hex': p2sh } }
+    }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
+    # p2sh(p2wpkh) uncompressed
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    pub.compressed = False
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
+    p2wpkh = "0014"+reference.hash160(pub.get_bytes(False)).hex()
+    p2sh = f"a914{hash160(bytes.fromhex(p2wpkh)).hex()}87"
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': f'{(len(p2wpkh)//2):0x}'+p2wpkh,
+        'txinwitness': serialize_witness_stack([sig, pub.get_bytes(False).hex()]),
+        'prevout': { 'scriptPubKey': { 'hex': p2sh } }
+    }]
+    input_priv_keys += [(priv, False)]
+
+    # p2sh(p2ms)
+    keys = [
+        get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed)),
+        get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+    ]
+    # OP_2 pub1 pub2 OP_3 OP_EQUAL
+    multisig_script = "52" + ''.join(["21"+key[1].get_bytes(False).hex() for key in keys]) + "53ae"
+    p2sh = f"a914{hash160(bytes.fromhex(multisig_script)).hex()}87"
+
+    sigs = [key[0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex() for key in keys]
+    sigs = [ f'{(len(sig)//2):0x}' + sig + "01" for sig in sigs]
+
+    i = len(inputs)
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': f"00{''.join(sigs)}4c{(len(multisig_script)//2):0x}{multisig_script}",
+        'txinwitness': '',
+        'prevout': { 'scriptPubKey': { 'hex': p2sh } }
+    }]
+    input_priv_keys += [(keys[0][0], False)]
+
+    A_sum = sum([p for p in input_pub_keys])
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
+    outputs = reference.create_outputs(input_priv_keys[:1], deterministic_nonce, addresses, hrp=HRP)
+    sender['expected']['outputs'] = outputs
+    sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+    sender['given']['recipients'] = addresses
+
+    output_pub_keys = [recipient[0] for recipient in outputs]
+
+    test_case['sending'].extend([sender])
+    recipient['given']['vin'] = inputs
+    recipient['given']['outputs'] = output_pub_keys
+
+    add_to_wallet = reference.scanning(
+        scan,
+        Spend,
+        A_sum,
+        deterministic_nonce,
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        labels={},
+    )
+    for o in add_to_wallet:
+
+        pubkey = ECPubKey().set(bytes.fromhex(o['pub_key']))
+        full_private_key = spend.add(
+            bytes.fromhex(o['priv_key_tweak'])
+        )
+        if full_private_key.get_pubkey().get_y()%2 != 0:
+            full_private_key.negate()
+
+        sig = full_private_key.sign_schnorr(msg, aux)
+        assert pubkey.verify_schnorr(sig, msg)
+        o['signature'] = sig.hex()
+
+    recipient['expected']['outputs'] = add_to_wallet
+
+    test_case['sending'].extend([sender])
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "Skip invalid P2SH inputs"
+    return [test_case]
 
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
@@ -1430,7 +1550,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_change_tests() +
         generate_taproot_with_nums_point_test() +
         generate_malleated_p2pkh_test() +
-        generate_uncompressed_keys_tests(),
+        generate_uncompressed_keys_tests() +
+        generate_p2sh_tests(),
         # generate_all_inputs_test(),
 
         f,
