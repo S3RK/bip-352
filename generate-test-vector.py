@@ -1241,6 +1241,99 @@ def generate_taproot_with_nums_point_test():
 
     return test_cases
 
+def generate_malleated_p2pkh_test():
+    sender, recipient, test_case = new_test_case()
+
+    msg = hashlib.sha256(b'message').digest()
+    aux = hashlib.sha256(b'random auxiliary data').digest()
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 1),
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 2),
+    ]
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+
+    inputs = []
+    input_priv_keys = []
+    input_pub_keys = []
+
+    def add_input(inputs, input_priv_keys, input_pub_keys, get_script_sig):
+        i = len(inputs)
+        priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+        inputs += [{
+            'txid': outpoints[i][0],
+            'vout': outpoints[i][1],
+            'scriptSig': get_script_sig(pub, priv),
+            'txinwitness': '',
+            'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}},
+        }]
+        input_priv_keys += [(priv, False)]
+        input_pub_keys += [pub]
+
+    ## All inputs should be included
+        
+    # p2pkh
+    add_input(inputs, input_priv_keys, input_pub_keys, get_p2pkh_scriptsig)
+
+    # Malleated p2pkh
+    # Test OP_O OP_DROP <normal script sig>
+    add_input(inputs, input_priv_keys, input_pub_keys, lambda pub, priv: "0075" + get_p2pkh_scriptsig(pub, priv))
+    # Test make dummy key look like private key
+    # Ensures that reference implementation p2pkh can extract correct key
+    # 0P_1 OP_IF <real_script> ELSE <fake_script> ENDIF
+    fake_priv, fake_pub = get_key_pair(0, seed=bytes.fromhex("faecaa"))
+    fake_script = get_p2pkh_scriptsig(fake_pub, fake_priv)
+    add_input(inputs, input_priv_keys, input_pub_keys, lambda pub, priv: "5163" + get_p2pkh_scriptsig(pub, priv) + "67" + fake_script + "68")
+
+    sender['given']['recipients'] = addresses
+    A_sum = sum([p if not input_priv_keys[i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(input_pub_keys)])
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
+    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
+    sender['expected']['outputs'] = outputs
+    sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+
+    output_pub_keys = [recipient[0] for recipient in outputs]
+    recipient['given']['vin'] = inputs
+    recipient['given']['outputs'] = output_pub_keys
+
+    add_to_wallet = reference.scanning(
+        scan,
+        Spend,
+        A_sum,
+        deterministic_nonce,
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        labels={},
+    )
+    for o in add_to_wallet:
+
+        pubkey = ECPubKey().set(bytes.fromhex(o['pub_key']))
+        full_private_key = spend.add(
+            bytes.fromhex(o['priv_key_tweak'])
+        )
+        if full_private_key.get_pubkey().get_y()%2 != 0:
+            full_private_key.negate()
+
+        sig = full_private_key.sign_schnorr(msg, aux)
+        assert pubkey.verify_schnorr(sig, msg)
+        o['signature'] = sig.hex()
+
+    recipient['expected']['outputs'] = add_to_wallet
+
+    test_case['sending'].extend([sender])
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "Pubkey extraction from malleated p2pkh"
+    test_cases = []
+    test_cases.append(test_case)
+    return test_cases
+
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
@@ -1249,7 +1342,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_labeled_output_tests() +
         generate_multiple_outputs_with_labels_tests() +
         generate_change_tests() +
-        generate_taproot_with_nums_point_test(),
+        generate_taproot_with_nums_point_test() +
+        generate_malleated_p2pkh_test(),
         # generate_all_inputs_test(),
 
         f,
