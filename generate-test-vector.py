@@ -890,20 +890,6 @@ def generate_all_inputs_test():
     input_priv_keys += [(priv, False)]
     input_pub_keys += [pub]
 
-    # p2pkh maleated
-    # TODO: make dummy look like public key, wrap in OP_IF <real_script> <fake_key> 
-    i = len(inputs)
-    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    inputs += [{
-        'txid': outpoints[i][0],
-        'vout': outpoints[i][1],
-        'scriptSig': "0075" + get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0]),
-        'txinwitness': '',
-        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(input_pub_keys[i])}},
-    }]
-    input_priv_keys += [(priv, False)]
-    input_pub_keys += [pub]
-
     # p2pkh hybrid key
     # TODO: uncompressed key
     i = len(inputs)
