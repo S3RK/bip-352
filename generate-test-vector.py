@@ -890,10 +890,6 @@ def generate_all_inputs_test():
     input_priv_keys += [(priv, False)]
     input_pub_keys += [pub]
 
-    # p2pkh hybrid key
-    # TODO: uncompressed key
-    
-
     # p2wpkh
     i = len(inputs)
     priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
@@ -905,35 +901,6 @@ def generate_all_inputs_test():
     input_priv_keys += [(priv, False)]
     input_pub_keys += [pub]
 
-    # p2wpkh hybrid key
-    # TODO: verify is this is even possible
-    i = len(inputs)
-    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
-    inputs += [{
-        'txid': outpoints[i][0],
-        'vout': outpoints[i][1],
-        'scriptSig': '', 
-        'txinwitness': serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()]),
-        'prevout': {'scriptPubKey': {'hex': "0014" + reference.hash160(encode_hybrid_key(input_pub_keys[i])).hex()}},
-    }]
-    input_priv_keys += [(priv, False)]
-    input_pub_keys += [pub]
-
-    # p2sh-p2wpkh
-    i = len(inputs)
-    sig = input_priv_keys[i][0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
-    x = len(sig) // 2
-    witnessProgramm = bytes([0x00, 0x14]) + reference.hash160(input_pub_keys[i].get_bytes(False))
-    inputs += [{
-        'txid': outpoints[i][0],
-        'vout': outpoints[i][1],
-        'scriptSig': "16" + witnessProgramm.hex(), 
-        'txinwitness': serialize_witness_stack([sig, input_pub_keys[i].get_bytes(False).hex()]),
-        'prevout': {'scriptPubKey': {'hex': "a914" + reference.hash160(witnessProgramm).hex() + "87"}},
-    }]
-    input_priv_keys += [(priv, False)]
-    input_pub_keys += [pub]
 
     # p2tr key path
     i = len(inputs)
