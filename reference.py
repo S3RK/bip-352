@@ -51,8 +51,7 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
     if is_p2sh(vin.prevout):
         redeem_script = vin.scriptSig[1:]
         if is_p2wpkh(redeem_script):
-            txin = CTxInWitness().deserialize(redeem_script)
-            pubkey = ECPubKey().set(txin.scriptWitness.stack[-1])
+            pubkey = ECPubKey().set(vin.txinwitness.scriptWitness.stack[-1])
             if (pubkey.valid) & (pubkey.compressed):
                 return pubkey
     if is_p2wpkh(vin.prevout):
