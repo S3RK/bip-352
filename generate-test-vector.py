@@ -1343,7 +1343,7 @@ def generate_uncompressed_keys_tests():
         'vout': outpoints[i][1],
         'scriptSig': '', 
         'txinwitness': serialize_witness_stack([sig, pub.get_bytes(False).hex()]),
-        'prevout': {'scriptPubKey': {'hex': "0014" + reference.hash160(pub.get_bytes()).hex()}},
+        'prevout': {'scriptPubKey': {'hex': "0014" + reference.hash160(pub.get_bytes(False)).hex()}},
     }]
     input_priv_keys += [(priv, False)]
 
