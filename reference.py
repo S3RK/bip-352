@@ -56,7 +56,7 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
             if (pubkey.valid) & (pubkey.compressed):
                 return pubkey
     if is_p2wpkh(vin.prevout):
-        txin = CTxInWitness().deserialize(vin.txinwitness)
+        txin = vin.txinwitness
         pubkey = ECPubKey().set(txin.scriptWitness.stack[-1])
         if (pubkey.valid) & (pubkey.compressed):
             return pubkey

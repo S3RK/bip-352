@@ -892,17 +892,7 @@ def generate_all_inputs_test():
 
     # p2pkh hybrid key
     # TODO: uncompressed key
-    i = len(inputs)
-    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
-    inputs += [{
-        'txid': outpoints[i][0],
-        'vout': outpoints[i][1],
-        'scriptSig': get_p2pkh_scriptsig(input_pub_keys[i], input_priv_keys[i][0], hybrid=True),
-        'txinwitness': '',
-        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(input_pub_keys[i], hybrid=True)}},
-    }]
-    input_priv_keys += [(priv, False)]
-    input_pub_keys += [pub]
+    
 
     # p2wpkh
     i = len(inputs)
@@ -1232,6 +1222,7 @@ def generate_malleated_p2pkh_test():
 
     msg = hashlib.sha256(b'message').digest()
     aux = hashlib.sha256(b'random auxiliary data').digest()
+
     outpoints = [
         ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
         ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 1),
@@ -1287,6 +1278,117 @@ def generate_malleated_p2pkh_test():
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
 
     output_pub_keys = [recipient[0] for recipient in outputs]
+
+    recipient['given']['vin'] = inputs
+    recipient['given']['outputs'] = output_pub_keys
+
+    add_to_wallet = reference.scanning(
+        scan,
+        Spend,
+        A_sum,
+        deterministic_nonce,
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        labels={},
+    )
+    for o in add_to_wallet:
+
+        pubkey = ECPubKey().set(bytes.fromhex(o['pub_key']))
+        full_private_key = spend.add(
+            bytes.fromhex(o['priv_key_tweak'])
+        )
+        if full_private_key.get_pubkey().get_y()%2 != 0:
+            full_private_key.negate()
+
+        sig = full_private_key.sign_schnorr(msg, aux)
+        assert pubkey.verify_schnorr(sig, msg)
+        o['signature'] = sig.hex()
+
+    recipient['expected']['outputs'] = add_to_wallet
+    
+    test_case['sending'].extend([sender])
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "Pubkey extraction from malleated p2pkh"
+    test_cases = []
+    test_cases.append(test_case)
+    return test_cases
+
+def generate_uncompressed_keys_tests():
+    sender, recipient, test_case = new_test_case()
+
+    msg = hashlib.sha256(b'message').digest()
+    aux = hashlib.sha256(b'random auxiliary data').digest()
+
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 1),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 2),
+    ]
+
+    sender_bip32_seed = 'deadbeef'
+    inputs = []
+    input_priv_keys = []
+    input_pub_keys = []
+
+    recipient_bip32_seed = 'f00dbabe'
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+    addresses = [(address, 1.0)]
+
+    # p2pkh compressed Key
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': get_p2pkh_scriptsig(pub, priv),
+        'txinwitness': '',
+        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}},
+    }]
+    input_priv_keys += [(priv, False)]
+    input_pub_keys += [pub]
+
+    # p2pkh Uncompressed Key
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    pub.compressed = False
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': get_p2pkh_scriptsig(pub, priv),
+        'txinwitness': '',
+        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}},
+    }]
+    input_priv_keys += [(priv, False)]
+
+    # p2wpkh Uncompressed Key
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    pub.compressed = False
+    sig = priv.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': '', 
+        'txinwitness': serialize_witness_stack([sig, pub.get_bytes(False).hex()]),
+        'prevout': {'scriptPubKey': {'hex': "0014" + reference.hash160(pub.get_bytes()).hex()}},
+    }]
+    input_priv_keys += [(priv, False)]
+
+    A_sum = sum([p for p in input_pub_keys])
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
+    outputs = reference.create_outputs(input_priv_keys[:1], deterministic_nonce, addresses, hrp=HRP)
+    sender['expected']['outputs'] = outputs
+    sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+    sender['given']['recipients'] = addresses
+
+    output_pub_keys = [recipient[0] for recipient in outputs]
+
+    test_case['sending'].extend([sender])
     recipient['given']['vin'] = inputs
     recipient['given']['outputs'] = output_pub_keys
 
@@ -1313,12 +1415,10 @@ def generate_malleated_p2pkh_test():
 
     recipient['expected']['outputs'] = add_to_wallet
 
-    test_case['sending'].extend([sender])
     test_case['receiving'].extend([recipient])
-    test_case["comment"] = "Pubkey extraction from malleated p2pkh"
-    test_cases = []
-    test_cases.append(test_case)
-    return test_cases
+    test_case["comment"] = "P2PKH and P2WPKH Uncompressed Keys are skipped"
+    return [test_case]
+
 
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
@@ -1329,7 +1429,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_multiple_outputs_with_labels_tests() +
         generate_change_tests() +
         generate_taproot_with_nums_point_test() +
-        generate_malleated_p2pkh_test(),
+        generate_malleated_p2pkh_test() +
+        generate_uncompressed_keys_tests(),
         # generate_all_inputs_test(),
 
         f,
