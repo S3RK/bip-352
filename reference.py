@@ -51,8 +51,7 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
     if is_p2sh(vin.prevout):
         redeem_script = vin.scriptSig[1:]
         if is_p2wpkh(redeem_script):
-            txin = CTxInWitness().deserialize(redeem_script)
-            pubkey = ECPubKey().set(txin.scriptWitness.stack[-1])
+            pubkey = ECPubKey().set(vin.txinwitness.scriptWitness.stack[-1])
             if (pubkey.valid) & (pubkey.compressed):
                 return pubkey
     if is_p2wpkh(vin.prevout):
@@ -244,14 +243,17 @@ if __name__ == "__main__":
                     is_p2tr(vin.prevout),
                 ))
                 input_pub_keys.append(pubkey)
-            A_sum = reduce(lambda x, y: x + y, input_pub_keys)
-            input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
-            sending_outputs = [
-                list(t)
-                for t in create_outputs(input_priv_keys, input_hash, given["recipients"], hrp="sp")
-            ]
-            # Check that for a given set of inputs, we were able to generate the expected outputs for the receiver
-            sending_outputs.sort(key=lambda x: cast(float, x[1]))
+            
+            sending_outputs = []
+            if (len(input_pub_keys) > 0):
+                A_sum = reduce(lambda x, y: x + y, input_pub_keys)
+                input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
+                sending_outputs = [
+                    list(t)
+                    for t in create_outputs(input_priv_keys, input_hash, given["recipients"], hrp="sp")
+                ]
+                # Check that for a given set of inputs, we were able to generate the expected outputs for the receiver
+                sending_outputs.sort(key=lambda x: cast(float, x[1]))
             assert sending_outputs == expected["outputs"], "Sending test failed"
 
         # Test receiving
@@ -299,20 +301,23 @@ if __name__ == "__main__":
                 if not pubkey.valid:
                     continue
                 input_pub_keys.append(pubkey)
-            A_sum = reduce(lambda x, y: x + y, input_pub_keys)
-            input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
-            pre_computed_labels = {
-                (generate_label(b_scan, label) * G).get_bytes(False).hex(): generate_label(b_scan, label).hex()
-                for label in given["labels"]
-            }
-            add_to_wallet = scanning(
-                b_scan=b_scan,
-                B_spend=B_spend,
-                A_sum=A_sum,
-                input_hash=input_hash,
-                outputs_to_check=outputs_to_check,
-                labels=pre_computed_labels,
-            )
+
+            add_to_wallet = []
+            if (len(input_pub_keys) > 0):
+                A_sum = reduce(lambda x, y: x + y, input_pub_keys)
+                input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
+                pre_computed_labels = {
+                    (generate_label(b_scan, label) * G).get_bytes(False).hex(): generate_label(b_scan, label).hex()
+                    for label in given["labels"]
+                }
+                add_to_wallet = scanning(
+                    b_scan=b_scan,
+                    B_spend=B_spend,
+                    A_sum=A_sum,
+                    input_hash=input_hash,
+                    outputs_to_check=outputs_to_check,
+                    labels=pre_computed_labels,
+                )
 
             # Check that the private key is correct for the found output public key
             for output in add_to_wallet:
