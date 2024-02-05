@@ -1455,7 +1455,7 @@ def generate_p2sh_tests():
     p2sh = f"a914{hash160(bytes.fromhex(multisig_script)).hex()}87"
 
     sigs = [key[0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex() for key in keys][:2]
-    sigs = [ f'{(len(sig)//2):0x}' + sig + "01" for sig in sigs]
+    sigs = [ f'{(len(sig)//2)+1:0x}' + sig + "01" for sig in sigs]
 
     i = len(inputs)
     inputs += [{
