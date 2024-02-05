@@ -1447,13 +1447,14 @@ def generate_p2sh_tests():
     # p2sh(p2ms)
     keys = [
         get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed)),
-        get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+        get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed)),
+        get_key_pair(2, seed=bytes.fromhex(sender_bip32_seed))
     ]
-    # OP_2 pub1 pub2 OP_3 OP_EQUAL
+    # OP_2 pub1 pub2 pub3 OP_3 OP_EQUAL
     multisig_script = "52" + ''.join(["21"+key[1].get_bytes(False).hex() for key in keys]) + "53ae"
     p2sh = f"a914{hash160(bytes.fromhex(multisig_script)).hex()}87"
 
-    sigs = [key[0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex() for key in keys]
+    sigs = [key[0].sign_ecdsa(msg, low_s=False, rfc6979=True).hex() for key in keys][:2]
     sigs = [ f'{(len(sig)//2):0x}' + sig + "01" for sig in sigs]
 
     i = len(inputs)
