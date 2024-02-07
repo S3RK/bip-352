@@ -1088,7 +1088,7 @@ def generate_taproot_with_nums_point_test():
         I3.negate()
 
     nums_point = [
-        [(i1, True, NUMS_H, True), (i2, True, None, False), (i3, True, NUMS_H, False)],
+        [(i1, NUMS_H, True), (i2, None, False), (i3, NUMS_H, False)],
         [I1, I2, I3]
     ]
 
@@ -1096,42 +1096,46 @@ def generate_taproot_with_nums_point_test():
     comments = [
         "Single receipient: taproot input with NUMS point"
     ]
+    included_keys = []
+    included_pubkeys = []
     for i, inputs in enumerate([nums_point]):
         sender, recipient, test_case = new_test_case()
 
         inp = []
-        for x, (key, is_taproot, internal_key, add_annex) in enumerate(inputs[0]):
+        for x, (key, internal_key, add_annex) in enumerate(inputs[0]):
             pub_key = inputs[1][x]
-            if is_taproot:
-                if (internal_key == None):
-                    inp += [{
-                        "txid": outpoints[x][0],
-                        "vout": outpoints[x][1],
-                        "scriptSig": "",
-                        "txinwitness": get_p2tr_witness(key),
-                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
-                    }]
-                else:
-                    inp += [{
-                        "txid": outpoints[x][0],
-                        "vout": outpoints[x][1],
-                        "scriptSig": "",
-                        "txinwitness": get_leafp2tr_witness(key, internal_key, add_annex = add_annex),
-                        "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
-                    }]
-            else:
+
+            if (internal_key == None):
                 inp += [{
                     "txid": outpoints[x][0],
                     "vout": outpoints[x][1],
-                    "scriptSig": get_p2pkh_scriptsig(pub_key, key),
-                    "txinwitness": "",
-                    "prevout": {"scriptPubKey": {"hex": get_p2pkh_scriptPubKey(pub_key)}},
+                    "scriptSig": "",
+                    "txinwitness": get_p2tr_witness(key),
+                    "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(pub_key)}},
                 }]
-
-        priv_keys = []
-        for (priv_key, is_taproot, internal_key, add_annex) in inputs[0]:
-            priv_keys += [priv_key.get_bytes().hex()]
-            
+                included_keys += [(key, True)]
+                included_pubkeys += [pub_key]
+            else:
+                script = "20" + pub_key.get_bytes(True).hex() + "ac"
+                leaf_version = "c0"
+                annex = "50"
+                internal_key_bytes = internal_key.to_bytes(32, 'big')
+                leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + f'{len(script)//2:0x}' + script))
+                tap_tweak = TaggedHash("TapTweak", internal_key_bytes + leaf_hash)
+                tweaked_key = ECPubKey().set(internal_key_bytes).tweak_add(tap_tweak)
+                control_block = "c1" + internal_key_bytes.hex()
+                sig = key.sign_schnorr(msg).hex()
+                stack = [sig, script, control_block]
+                if (add_annex):
+                    stack.append(annex)
+                inp += [{
+                    "txid": outpoints[x][0],
+                    "vout": outpoints[x][1],
+                    "scriptSig": "",
+                    "txinwitness": serialize_witness_stack(stack),
+                    "prevout": {"scriptPubKey": {"hex": get_p2tr_scriptPubKey(tweaked_key)}},
+                }]
+                # Notice that the keys are not added to included list because they should be skipped since they use NUMS_POINT
 
         sender['given']['vin'] = add_private_keys(deepcopy(inp), inputs[0])
         recipient['given']['vin'] = inp
@@ -1143,15 +1147,11 @@ def generate_taproot_with_nums_point_test():
 
         sender['given']['recipients'].extend([(address, 1.0)])
         recipient['expected']['addresses'].extend([address])
-
-        # Excluded inputs with NUMS point internal key
-        included_keys = [inp for i, inp in enumerate(inputs[0]) if inp[2] == None]
-        included_pubkeys = [pubkey for i, pubkey in enumerate(inputs[1]) if inputs[0][i][2] == None]
         
-        A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(included_pubkeys)])
+        A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in included_pubkeys])
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
-        outputs = reference.create_outputs([(inp[0], inp[1]) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs([(inp[0], True) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
         sender['expected']['outputs'] = outputs
         output_pub_keys = [recipient[0] for recipient in outputs]
         recipient['given']['outputs'] = output_pub_keys
