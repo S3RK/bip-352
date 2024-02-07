@@ -1120,7 +1120,7 @@ def generate_taproot_with_nums_point_test():
                 leaf_version = "c0"
                 annex = "50"
                 internal_key_bytes = internal_key.to_bytes(32, 'big')
-                leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + script))
+                leaf_hash = TaggedHash("TapLeaf", bytes.fromhex(leaf_version + f'{len(script)//2:0x}' + script))
                 tap_tweak = TaggedHash("TapTweak", internal_key_bytes + leaf_hash)
                 tweaked_key = ECPubKey().set(internal_key_bytes).tweak_add(tap_tweak)
                 control_block = "c1" + internal_key_bytes.hex()
