@@ -29,27 +29,19 @@ def add_private_keys(inputs, input_priv_keys):
 
     return inputs
 
-def encode_hybrid_key(pub_key):
-    x = pub_key.get_x()
-    y = pub_key.get_y()
-    return bytes([0x06 if y % 2 == 0 else 0x07]) + x.to_bytes(32, 'big') + y.to_bytes(32, 'big')
-
-def get_p2pkh_scriptsig(pub_key, priv_key, hybrid=False):
+def get_p2pkh_scriptsig(pub_key, priv_key):
     msg = hashlib.sha256(b'message').digest()
     sig = priv_key.sign_ecdsa(msg, low_s=False, rfc6979=True).hex()
     s = len(sig) // 2
-    if not hybrid:
+    if pub_key.compressed:
         pubkey_bytes = bytes([0x21]) + pub_key.get_bytes(False)
     else:
-        pubkey_bytes = bytes([0x41]) + encode_hybrid_key(pub_key)
+        pubkey_bytes = bytes([0x41]) + pub_key.get_bytes(False)
 
     return f'{s:0x}' + sig + pubkey_bytes.hex()
 
-def get_p2pkh_scriptPubKey(pub_key, hybrid=False):
-    if not hybrid:
-        pubkey_bytes = pub_key.get_bytes(False)
-    else:
-        pubkey_bytes = encode_hybrid_key(pub_key)
+def get_p2pkh_scriptPubKey(pub_key):
+    pubkey_bytes = pub_key.get_bytes(False)
     return "76a914" + reference.hash160(pubkey_bytes).hex() + "88ac"
 
 def get_p2tr_witness(priv_key):
