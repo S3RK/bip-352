@@ -1500,6 +1500,76 @@ def generate_p2sh_tests():
     test_case["comment"] = "Skip invalid P2SH inputs"
     return [test_case]
 
+def generate_no_outputs_tests():
+    sender, recipient, test_case = new_test_case()
+
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 1)
+    ]
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+    i1, I1 = get_key_pair(0, seed=bytes.fromhex(sender_bip32_seed))
+    i2, I2 = get_key_pair(1, seed=bytes.fromhex(sender_bip32_seed))
+
+    if I1.get_y()%2 != 0:
+        i1.negate()
+        I1.negate()
+
+    if I2.get_y()%2 != 0:
+        i2.negate()
+        I2.negate()
+
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    sender['given']['recipients'] = addresses
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+
+    inputs = []
+    input_priv_keys = []
+    input_pub_keys = []
+
+    i = len(inputs)
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': "",
+        'txinwitness': get_p2tr_witness(i1),
+        'prevout': { "scriptPubKey": { "hex": get_p2tr_scriptPubKey(I1) } }
+    }]
+    input_priv_keys += [(i1, True)]
+    input_pub_keys += [I1]
+
+    sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+    sender['given']['recipients'] = addresses
+    recipient['given']['vin'] = inputs
+
+    A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in input_pub_keys])
+    deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
+
+    # Regular taproot scriptpubkey
+    regular_p2tr = I2.get_bytes(True).hex()
+
+    # Decoy scriptpubkey
+    scan_decoy, spend_decoy, Scan_decoy, Spend_decoy = reference.derive_silent_payment_key_pair(bytes.fromhex("decafbad"))
+    decoy_address = reference.encode_silent_payment_address(Scan_decoy, Spend_decoy, hrp=HRP)
+    decoy_outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(decoy_address, 1.0)], hrp=HRP)
+
+    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
+    sender['expected']['outputs'] = outputs
+    recipient['given']['outputs'] = [regular_p2tr] + [d[0] for d in decoy_outputs]
+    recipient['expected']['outputs'] = []
+
+    test_case['sending'].extend([sender])
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "Ignore unrelated outputs"
+    return [test_case]
+
 with open("send_and_receive_test_vectors.json", "w") as f:
     json.dump(
         generate_single_output_outpoint_tests() +
@@ -1511,9 +1581,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_taproot_with_nums_point_test() +
         generate_malleated_p2pkh_test() +
         generate_uncompressed_keys_tests() +
-        generate_p2sh_tests(),
-        # generate_all_inputs_test(),
-
+        generate_p2sh_tests() +
+        generate_no_outputs_tests(),
         f,
         indent=4,
     )
