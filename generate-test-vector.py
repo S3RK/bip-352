@@ -1352,7 +1352,8 @@ def generate_no_outputs_tests():
 
     inputs = []
     input_priv_keys = []
-    input_pub_keys = []
+    tr_input_pub_keys = []
+    pkpkh_input_pub_keys = []
 
     i = len(inputs)
     inputs += [{
@@ -1363,13 +1364,25 @@ def generate_no_outputs_tests():
         'prevout': { "scriptPubKey": { "hex": get_p2tr_scriptPubKey(I1) } }
     }]
     input_priv_keys += [(i1, True)]
-    input_pub_keys += [I1]
+    tr_input_pub_keys += [I1]
+
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': get_p2pkh_scriptsig(pub, priv),
+        'txinwitness': '',
+        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}},
+    }]
+    input_priv_keys += [(priv, False)]
+    pkpkh_input_pub_keys += [pub]
 
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
     recipient['given']['vin'] = inputs
 
-    A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in input_pub_keys])
+    A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in tr_input_pub_keys] + pkpkh_input_pub_keys)
     deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
     # Regular taproot scriptpubkey
@@ -1387,7 +1400,70 @@ def generate_no_outputs_tests():
 
     test_case['sending'].extend([sender])
     test_case['receiving'].extend([recipient])
-    test_case["comment"] = "Ignore unrelated outputs"
+    test_case["comment"] = "Recipient ignores unrelated outputs"
+    return [test_case]
+
+def generate_no_valid_inputs_tests():
+    sender, recipient, test_case = new_test_case()
+
+    outpoints = [
+        ("f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16", 0),
+        ("a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d", 0)
+    ]
+    sender_bip32_seed = 'deadbeef'
+    recipient_bip32_seed = 'f00dbabe'
+
+    scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
+    address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
+    addresses = [(address, 1.0)]
+
+    sender['given']['recipients'] = addresses
+    recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
+    recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
+    recipient['expected']['addresses'] = [address]
+
+    inputs = []
+    input_priv_keys = []
+
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    pub.compressed = False
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': get_p2pkh_scriptsig(pub, priv),
+        'txinwitness': '',
+        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}}
+    }]
+    input_priv_keys += [(priv, False)]
+
+    i = len(inputs)
+    priv, pub = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))
+    pub.compressed = False
+    inputs += [{
+        'txid': outpoints[i][0],
+        'vout': outpoints[i][1],
+        'scriptSig': get_p2pkh_scriptsig(pub, priv),
+        'txinwitness': '',
+        'prevout': {'scriptPubKey': {'hex': get_p2pkh_scriptPubKey(pub)}}
+    }]
+    input_priv_keys += [(priv, False)]
+
+    sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
+    sender['given']['recipients'] = addresses
+    recipient['given']['vin'] = inputs
+
+    # Regular taproot pubkeys
+    regular_p2tr1 = get_key_pair(i, seed=bytes.fromhex(sender_bip32_seed))[1].get_bytes(True).hex()
+    regular_p2tr2 = get_key_pair(i+1, seed=bytes.fromhex(sender_bip32_seed))[1].get_bytes(True).hex()
+
+    sender['expected']['outputs'] = []
+    recipient['given']['outputs'] = [regular_p2tr1, regular_p2tr2]
+    recipient['expected']['outputs'] = []
+
+    test_case['sending'].extend([sender])
+    test_case['receiving'].extend([recipient])
+    test_case["comment"] = "No valid inputs, sender generates no outputs"
     return [test_case]
 
 with open("send_and_receive_test_vectors.json", "w") as f:
@@ -1402,7 +1478,8 @@ with open("send_and_receive_test_vectors.json", "w") as f:
         generate_malleated_p2pkh_test() +
         generate_uncompressed_keys_tests() +
         generate_p2sh_tests() +
-        generate_no_outputs_tests(),
+        generate_no_outputs_tests() +
+        generate_no_valid_inputs_tests(),
         f,
         indent=4,
     )
