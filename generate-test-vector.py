@@ -866,10 +866,6 @@ def generate_unknown_segwit_ver_test():
     test_case["comment"] = "Skipped tx: unknown segwit version input"
     return [test_case]
 
-    # scanning negative cases
-    # TODO: scanning no taproot output
-    # TODO: scanning no inputs for ECDH
-
 def generate_taproot_with_nums_point_test():
 
     msg = hashlib.sha256(b'message').digest()
