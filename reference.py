@@ -129,7 +129,7 @@ def decode_silent_payment_address(address: str, hrp: str = "tsp") -> Tuple[ECPub
     return B_scan, B_spend
 
 
-def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_hash: bytes, recipients: List[Tuple[str, float]], hrp="tsp") -> List[Tuple[str, float]]:
+def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_hash: bytes, recipients: List[str], hrp="tsp") -> List[str]:
     G = ECKey().set(1).get_pubkey()
     negated_keys = []
     for key, is_xonly in input_priv_keys:
@@ -139,28 +139,26 @@ def create_outputs(input_priv_keys: List[Tuple[ECKey, bool]], input_hash: bytes,
         negated_keys.append(k)
 
     a_sum = sum(negated_keys)
-    silent_payment_groups: Dict[ECPubKey, List[Tuple[ECPubKey, float]]] = {}
+    silent_payment_groups: Dict[ECPubKey, List[ECPubKey]] = {}
     for recipient in recipients:
-        addr, amount = recipient
-        B_scan, B_m = decode_silent_payment_address(addr, hrp=hrp)
+        B_scan, B_m = decode_silent_payment_address(recipient, hrp=hrp)
         if B_scan in silent_payment_groups:
-            silent_payment_groups[B_scan].append((B_m, amount))
+            silent_payment_groups[B_scan].append(B_m)
         else:
-            silent_payment_groups[B_scan] = [(B_m, amount)]
+            silent_payment_groups[B_scan] = [B_m]
 
     outputs = []
     for B_scan, B_m_values in silent_payment_groups.items():
         k = 0
         ecdh_shared_secret = input_hash * a_sum * B_scan
 
-        # Sort B_m_values by amount to ensure determinism in the tests
-        # Note: the receiver can find the outputs regardless of the ordering, this
-        # sorting step is only for testing
-        B_m_values.sort(key=lambda x: x[1])
-        for B_m, amount in B_m_values:
+        # Order doesn't matter for creating/finding the outputs. However, different orderings
+        # may produce different generated outputs, if sending to multiple silent payment addresses belong to the
+        # same sender but different labels
+        for B_m in B_m_values:
             t_k = TaggedHash("BIP0352/SharedSecret", ecdh_shared_secret.get_bytes(False) + ser_uint32(k))
             P_km = B_m + t_k * G
-            outputs.append((P_km.get_bytes().hex(), amount))
+            outputs.append(P_km.get_bytes().hex())
             k += 1
     return outputs
 
@@ -245,17 +243,13 @@ if __name__ == "__main__":
                     is_p2tr(vin.prevout),
                 ))
                 input_pub_keys.append(pubkey)
-            
+
             sending_outputs = []
             if (len(input_pub_keys) > 0):
                 A_sum = reduce(lambda x, y: x + y, input_pub_keys)
                 input_hash = get_input_hash([vin.outpoint for vin in vins], A_sum)
-                sending_outputs = [
-                    list(t)
-                    for t in create_outputs(input_priv_keys, input_hash, given["recipients"], hrp="sp")
-                ]
+                sending_outputs = create_outputs(input_priv_keys, input_hash, given["recipients"], hrp="sp")
                 # Check that for a given set of inputs, we were able to generate the expected outputs for the receiver
-                sending_outputs.sort(key=lambda x: cast(float, x[1]))
             assert sending_outputs == expected["outputs"], "Sending test failed"
 
         # Test receiving

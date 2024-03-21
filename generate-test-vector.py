@@ -124,7 +124,7 @@ def generate_labeled_output_tests():
     for i, case in enumerate(label_ints):
         sender, recipient, test_case = new_test_case()
         address = reference.create_labeled_silent_payment_address(b_scan, B_spend, case, hrp=HRP)
-        addresses = [(address, 1.0)]
+        addresses = [address]
 
         inputs = []
         for i, outpoint in enumerate(outpoints):
@@ -148,15 +148,14 @@ def generate_labeled_output_tests():
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
         outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
         sender['expected']['outputs'] = outputs
-        output_pub_keys = [r[0] for r in outputs]
-        recipient['given']['outputs'] = output_pub_keys
+        recipient['given']['outputs'] = outputs
 
         add_to_wallet = reference.scanning(
             b_scan,
             B_spend,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
             labels={(reference.generate_label(b_scan, l)*G).get_bytes(False).hex():reference.generate_label(b_scan, l).hex() for l in label_ints},
         )
         for o in add_to_wallet:
@@ -241,22 +240,21 @@ def generate_single_output_outpoint_tests():
         recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
-        sender['given']['recipients'].extend([(address, 1.0)])
+        sender['given']['recipients'].extend([address])
         recipient['expected']['addresses'].extend([address])
 
         A_sum = sum(input_pub_keys)
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
-        outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [address], hrp=HRP)
         sender['expected']['outputs'] = outputs
-        output_pub_keys = [recipient[0] for recipient in outputs]
-        recipient['given']['outputs'] = output_pub_keys
+        recipient['given']['outputs'] = outputs
 
         add_to_wallet = reference.scanning(
             b_scan,
             B_spend,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         )
         for o in add_to_wallet:
 
@@ -300,11 +298,11 @@ def generate_multiple_output_tests():
 
     scan1, spend1, Scan1, Spend1 = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_one_bip32_seed))
     address1 = reference.encode_silent_payment_address(Scan1, Spend1, hrp=HRP)
-    addresses1 = [(address1, amount) for amount in [2.0, 3.0]]
+    addresses1 = [address1, address1]
 
     scan2, spend2, Scan2, Spend2 = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_two_bip32_seed))
     address2 = reference.encode_silent_payment_address(Scan2, Spend2, hrp=HRP)
-    addresses2 = [(address2, amount) for amount in [4.0, 5.0]]
+    addresses2 = [address2, address2]
 
     test_cases = []
 
@@ -338,15 +336,14 @@ def generate_multiple_output_tests():
     deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses1, hrp=HRP)
     sender['expected']['outputs'] = outputs
-    output_pub_keys = [recipient[0] for recipient in outputs]
-    recipient1['given']['outputs'] = output_pub_keys
+    recipient1['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         scan1,
         Spend1,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
     )
     for o in add_to_wallet:
 
@@ -370,16 +367,15 @@ def generate_multiple_output_tests():
     sender1['given']['recipients'] = addresses1 + addresses2
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses1 + addresses2, hrp=HRP)
     sender1['expected']['outputs'] = outputs
-    output_pub_keys = [recipient[0] for recipient in outputs]
-    recipient1['given']['outputs'] = output_pub_keys
-    recipient2['given']['outputs'] = output_pub_keys
+    recipient1['given']['outputs'] = outputs
+    recipient2['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         scan2,
         Spend2,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
     )
     for o in add_to_wallet:
 
@@ -434,22 +430,21 @@ def generate_paying_to_self_test():
     recipient['given']['spend_priv_key'] = b_spend.get_bytes().hex()
     address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
-    sender['given']['recipients'].extend([(address, 1.0)])
+    sender['given']['recipients'].extend([address])
     recipient['expected']['addresses'].extend([address])
 
     A_sum = sum(input_pub_keys)
     deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
-    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
+    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [address], hrp=HRP)
     sender['expected']['outputs'] = outputs
-    output_pub_keys = [recipient[0] for recipient in outputs]
-    recipient['given']['outputs'] = output_pub_keys
+    recipient['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         b_scan,
         B_spend,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
     )
     for o in add_to_wallet:
 
@@ -496,9 +491,9 @@ def generate_multiple_outputs_with_labels_tests():
     labels_three = [l1, l2]
     label_address_one = reference.create_labeled_silent_payment_address(scan1, Spend1, m=l1, hrp=HRP)
     label_address_two = reference.create_labeled_silent_payment_address(scan1, Spend1, m=l2, hrp=HRP)
-    addresses1 = [(address, 1.0), (label_address_one, 2.0)]
-    addresses2 = [(label_address_one, 3.0), (label_address_one, 4.0)]
-    addresses3 = [(address, 5.0), (label_address_one, 6.0), (label_address_two, 7.0), (label_address_two, 8.0)]
+    addresses1 = [label_address_one, address]
+    addresses2 = [label_address_one, label_address_one]
+    addresses3 = [address, label_address_one, label_address_two, label_address_two]
 
     test_cases = []
     labels = [labels_one, labels_one, labels_three]
@@ -533,15 +528,14 @@ def generate_multiple_outputs_with_labels_tests():
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
         outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addrs, hrp=HRP)
         sender['expected']['outputs'] = outputs
-        output_pub_keys = [recipient[0] for recipient in outputs]
-        recipient['given']['outputs'] = output_pub_keys
+        recipient['given']['outputs'] = outputs
 
         add_to_wallet = reference.scanning(
             scan1,
             Spend1,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
             labels={(reference.generate_label(scan1, l)*G).get_bytes(False).hex():reference.generate_label(scan1, l).hex() for l in labels[i]},
         )
         for o in add_to_wallet:
@@ -665,23 +659,22 @@ def generate_single_output_input_tests():
         recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
-        sender['given']['recipients'].extend([(address, 1.0)])
+        sender['given']['recipients'].extend([address])
         recipient['expected']['addresses'].extend([address])
         
         A_sum = sum([p if not inputs[0][i][1] or p.get_y()%2==0 else p * -1  for i, p in enumerate(inputs[1])])
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
-        outputs = reference.create_outputs(inputs[0], deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs(inputs[0], deterministic_nonce, [address], hrp=HRP)
         sender['expected']['outputs'] = outputs
-        output_pub_keys = [recipient[0] for recipient in outputs]
-        recipient['given']['outputs'] = output_pub_keys
+        recipient['given']['outputs'] = outputs
 
         add_to_wallet = reference.scanning(
             b_scan,
             B_spend,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         )
         for o in add_to_wallet:
 
@@ -733,7 +726,7 @@ def generate_change_tests():
     seeds = [sender_bip32_seed, recipient_bip32_seed]
     scan1, spend1, Scan1, Spend1 = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan1, Spend1, hrp=HRP)
-    addresses = [(address, 1.0), (change_address, 2.0)]
+    addresses = [address, change_address]
 
     test_cases = []
     sp_recipients = [[address, change_address]]
@@ -765,13 +758,12 @@ def generate_change_tests():
     outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, addresses, hrp=HRP)
     sender['expected']['outputs'] = outputs
 
-    output_pub_keys = [recipient[0] for recipient in outputs]
 
     test_case['sending'].extend([sender])
     labels = [change_labels, []]
     for i, rec in enumerate([rec1, rec2]):
         rec['given']['vin'] = inputs
-        rec['given']['outputs'] = output_pub_keys
+        rec['given']['outputs'] = outputs
 
         scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(seeds[i]))
         add_to_wallet = reference.scanning(
@@ -779,7 +771,7 @@ def generate_change_tests():
             Spend,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
             labels={(reference.generate_label(scan, l)*G).get_bytes(False).hex():reference.generate_label(scan, l).hex() for l in labels[i]},
         )
         for o in add_to_wallet:
@@ -818,7 +810,7 @@ def generate_unknown_segwit_ver_test():
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
     recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
@@ -953,23 +945,22 @@ def generate_taproot_with_nums_point_test():
         recipient['given']['key_material']['spend_priv_key'] = b_spend.get_bytes().hex()
         address = reference.encode_silent_payment_address(B_scan, B_spend, hrp=HRP)
 
-        sender['given']['recipients'].extend([(address, 1.0)])
+        sender['given']['recipients'].extend([address])
         recipient['expected']['addresses'].extend([address])
         
         A_sum = sum([p if p.get_y()%2==0 else p * -1  for p in included_pubkeys])
         deterministic_nonce = reference.get_input_hash([COutPoint(deser_txid(o[0]), o[1]) for o in outpoints], A_sum)
 
-        outputs = reference.create_outputs([(inp[0], True) for inp in included_keys], deterministic_nonce, [(address, 1.0)], hrp=HRP)
+        outputs = reference.create_outputs([(inp[0], True) for inp in included_keys], deterministic_nonce, [address], hrp=HRP)
         sender['expected']['outputs'] = outputs
-        output_pub_keys = [recipient[0] for recipient in outputs]
-        recipient['given']['outputs'] = output_pub_keys
+        recipient['given']['outputs'] = outputs
 
         add_to_wallet = reference.scanning(
             b_scan,
             B_spend,
             A_sum,
             deterministic_nonce,
-            [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+            [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         )
         for o in add_to_wallet:
 
@@ -1007,7 +998,7 @@ def generate_malleated_p2pkh_test():
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     sender['given']['recipients'] = addresses
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
@@ -1053,17 +1044,16 @@ def generate_malleated_p2pkh_test():
     sender['expected']['outputs'] = outputs
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
 
-    output_pub_keys = [recipient[0] for recipient in outputs]
 
     recipient['given']['vin'] = inputs
-    recipient['given']['outputs'] = output_pub_keys
+    recipient['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         scan,
         Spend,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         labels={},
     )
     for o in add_to_wallet:
@@ -1113,7 +1103,7 @@ def generate_uncompressed_keys_tests():
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
     recipient['given']['key_material']['spend_priv_key'] = spend.get_bytes().hex()
     recipient['expected']['addresses'] = [address]
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     # p2pkh compressed Key
     i = len(inputs)
@@ -1162,18 +1152,17 @@ def generate_uncompressed_keys_tests():
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
 
-    output_pub_keys = [recipient[0] for recipient in outputs]
 
     test_case['sending'].extend([sender])
     recipient['given']['vin'] = inputs
-    recipient['given']['outputs'] = output_pub_keys
+    recipient['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         scan,
         Spend,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         labels={},
     )
     for o in add_to_wallet:
@@ -1209,7 +1198,7 @@ def generate_p2sh_tests():
     recipient_bip32_seed = 'f00dbabe'
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     sender['given']['recipients'] = addresses
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
@@ -1282,18 +1271,17 @@ def generate_p2sh_tests():
     sender['given']['vin'] = add_private_keys(deepcopy(inputs), input_priv_keys)
     sender['given']['recipients'] = addresses
 
-    output_pub_keys = [recipient[0] for recipient in outputs]
 
     test_case['sending'].extend([sender])
     recipient['given']['vin'] = inputs
-    recipient['given']['outputs'] = output_pub_keys
+    recipient['given']['outputs'] = outputs
 
     add_to_wallet = reference.scanning(
         scan,
         Spend,
         A_sum,
         deterministic_nonce,
-        [ECPubKey().set(bytes.fromhex(pub)) for pub in output_pub_keys],
+        [ECPubKey().set(bytes.fromhex(pub)) for pub in outputs],
         labels={},
     )
     for o in add_to_wallet:
@@ -1339,7 +1327,7 @@ def generate_no_outputs_tests():
 
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     sender['given']['recipients'] = addresses
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
@@ -1387,11 +1375,11 @@ def generate_no_outputs_tests():
     # Decoy scriptpubkey
     scan_decoy, spend_decoy, Scan_decoy, Spend_decoy = reference.derive_silent_payment_key_pair(bytes.fromhex("decafbad"))
     decoy_address = reference.encode_silent_payment_address(Scan_decoy, Spend_decoy, hrp=HRP)
-    decoy_outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(decoy_address, 1.0)], hrp=HRP)
+    decoy_outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [decoy_address], hrp=HRP)
 
-    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [(address, 1.0)], hrp=HRP)
+    outputs = reference.create_outputs(input_priv_keys, deterministic_nonce, [address], hrp=HRP)
     sender['expected']['outputs'] = outputs
-    recipient['given']['outputs'] = [regular_p2tr] + [d[0] for d in decoy_outputs]
+    recipient['given']['outputs'] = [regular_p2tr] + decoy_outputs
     recipient['expected']['outputs'] = []
 
     test_case['sending'].extend([sender])
@@ -1411,7 +1399,7 @@ def generate_no_valid_inputs_tests():
 
     scan, spend, Scan, Spend = reference.derive_silent_payment_key_pair(bytes.fromhex(recipient_bip32_seed))
     address = reference.encode_silent_payment_address(Scan, Spend, hrp=HRP)
-    addresses = [(address, 1.0)]
+    addresses = [address]
 
     sender['given']['recipients'] = addresses
     recipient['given']['key_material']['scan_priv_key'] = scan.get_bytes().hex()
