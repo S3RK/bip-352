@@ -74,12 +74,12 @@ def get_pubkey_from_input(vin: VinInfo) -> ECPubKey:
                 if (internal_key == NUMS_H.to_bytes(32, 'big')):
                     # Skip if NUMS_H
                     return ECPubKey()
-               
+
             pubkey = ECPubKey().set(vin.prevout[2:])
             if (pubkey.valid) & (pubkey.compressed):
-                return pubkey 
-        
-        
+                return pubkey
+
+
     return ECPubKey()
 
 
@@ -102,8 +102,8 @@ def derive_silent_payment_key_pair(seed: bytes) -> Tuple[ECKey, ECKey, ECPubKey,
 
 
 def encode_silent_payment_address(B_scan: ECPubKey, B_m: ECPubKey, hrp: str = "tsp", version: int = 0) -> str:
-    data = convertbits(B_scan.get_bytes(False) + B_m.get_bytes(False), 8, 5)
-    return bech32_encode(hrp, [version] + data, Encoding.BECH32M)
+    data = convertbits(cast(bytes, B_scan.get_bytes(False)) + cast(bytes, B_m.get_bytes(False)), 8, 5)
+    return bech32_encode(hrp, [version] + cast(List[int], data), Encoding.BECH32M)
 
 
 def generate_label(b_scan: ECKey, m: int) -> bytes:
@@ -120,7 +120,9 @@ def create_labeled_silent_payment_address(b_scan: ECKey, B_spend: ECPubKey, m: i
 
 
 def decode_silent_payment_address(address: str, hrp: str = "tsp") -> Tuple[ECPubKey, ECPubKey]:
-    version, data = decode(hrp, address)
+    _, data = decode(hrp, address)
+    if data is None:
+        return ECPubKey(), ECPubKey()
     B_scan = ECPubKey().set(data[:33])
     B_spend = ECPubKey().set(data[33:])
 
