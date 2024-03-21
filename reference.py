@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-import bip32  # type: ignore
 import hashlib
 import json
-import struct
-from io import BytesIO
-from typing import List, Tuple, Dict, Union, cast
+from typing import List, Tuple, Dict, cast
 from sys import argv
 from functools import reduce
 
@@ -87,18 +84,6 @@ def get_input_hash(outpoints: List[COutPoint], sum_input_pubkeys: ECPubKey) -> b
     lowest_outpoint = sorted(outpoints, key=lambda outpoint: (outpoint.hash, outpoint.n))[0]
     return TaggedHash("BIP0352/Inputs", lowest_outpoint.serialize() + cast(bytes, sum_input_pubkeys.get_bytes(False)))
 
-
-def derive_silent_payment_key_pair(seed: bytes) -> Tuple[ECKey, ECKey, ECPubKey, ECPubKey]:
-    SCAN_KEY = "m/352h/0h/0h/1h/0"
-    SPEND_KEY = "m/352h/0h/0h/0h/0"
-
-    master = bip32.BIP32.from_seed(seed)
-    scan = ECKey().set(master.get_privkey_from_path(SCAN_KEY))
-    spend = ECKey().set(master.get_privkey_from_path(SPEND_KEY))
-    Scan = scan.get_pubkey()
-    Spend = spend.get_pubkey()
-
-    return scan, spend, Scan, Spend
 
 
 def encode_silent_payment_address(B_scan: ECPubKey, B_m: ECPubKey, hrp: str = "tsp", version: int = 0) -> str:
